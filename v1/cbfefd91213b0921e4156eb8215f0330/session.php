@@ -159,8 +159,8 @@ class SESSION extends GCConfig
 				$token = $this->decrypt($this->base64_url_decode($token), $this->app_secret);
 				$token = explode(':', $token);
 				$token[2] = (string)$token[2];
-				$token[4] = (string)$token[4];
-				if (trim($this->username) == "" || trim($this->username) == $token[4]){
+				$token[3] = (string)$token[3];
+				if (trim($this->username) == "" || trim($this->username) == $token[3]){
 					if (count($token) == 4){
 						if ((trim($this->_scopes) == trim($token[2])) && (((strtotime($result[0]->columns['updated_at'])*1000)+$result[0]->columns['expires']) > (time()*1000))){
 							$this->api_token = $result[0];

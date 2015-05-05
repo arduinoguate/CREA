@@ -152,9 +152,9 @@ $(document).ready(function(){
     		$('#dashboard').html(info);
     	  },
       	  error: function (jqXHR,  textStatus,  errorThrown) { 
-            if (jqXHR.status != '422')
+            if (jqXHR.status != '422'){
             	window.location = "logout.php";
-            else
+            }else
             	$('#devices').append('<li class="list-group-item"><span class="glyphicon glyphicon-remove text-primary"></span>No hay dispositivos</li>'); 
           }, 
     	});    
@@ -183,9 +183,9 @@ $(document).ready(function(){
             $('#dashboard').html(info);
     	  },
       	  error: function (jqXHR,  textStatus,  errorThrown) { 
-            if (jqXHR.status != '422')
+            if (jqXHR.status != '422'){
             	window.location = "logout.php";
-            else
+            }else
             	$('#devices').append('<li class="list-group-item"><span class="glyphicon glyphicon-remove text-primary"></span>No hay dispositivos</li>'); 
           }, 
     	});    
@@ -223,9 +223,9 @@ $(document).ready(function(){
 	    		});
     	  },
       	  error: function (jqXHR,  textStatus,  errorThrown) { 
-            if (jqXHR.status != '422')
+            if (jqXHR.status != '422'){
             	window.location = "logout.php";
-            else
+            }else
             	$('#devices').append('<li class="list-group-item"><span class="glyphicon glyphicon-remove text-primary"></span>No hay dispositivos</li>'); 
           }, 
     	});    
@@ -246,9 +246,9 @@ $(document).ready(function(){
     		});
     	  },
       	  error: function (jqXHR,  textStatus,  errorThrown) { 
-            if (jqXHR.status != '422')
+            if (jqXHR.status != '422'){
             	window.location = "logout.php";
-            else
+            }else
             	$("#act_type").append("<option>No hay tipos</option>"); 
           }, 
     	});    
@@ -269,9 +269,9 @@ $(document).ready(function(){
     		});
     	  },
       	  error: function (jqXHR,  textStatus,  errorThrown) { 
-            if (jqXHR.status != '422')
+            if (jqXHR.status != '422'){
             	window.location = "logout.php";
-            else
+            }else
             	$("#act_type").append("<option>No hay tipos</option>"); 
           }, 
     	});    
@@ -363,9 +363,9 @@ $(document).ready(function(){
 		    		
 		    	  },
 		      	  error: function (jqXHR,  textStatus,  errorThrown) { 
-		            if (jqXHR.status != '422')
+		            if (jqXHR.status != '422'){
 		            	window.location = "logout.php";
-		            else
+		            }else
 		            	$('#actions_int').html('<div class="col-md-12"><h2>No hay acciones disponibles</h2></div>');
 		          }, 
 		    	});
@@ -397,9 +397,9 @@ $(document).ready(function(){
     		get_modulo(mod);
     	  },
       	  error: function (jqXHR,  textStatus,  errorThrown) { 
-            if (jqXHR.status != '422')
+            if (jqXHR.status != '422'){
             	window.location = "logout.php";
-            else{
+            }else{
             	if (jqXHR.responseJSON.code == 2)
 	            	show_alert("Error de validacion de campos");
 	        	else
@@ -426,9 +426,9 @@ $(document).ready(function(){
     		get_modulo(mod);
     	  },
       	  error: function (jqXHR,  textStatus,  errorThrown) { 
-            if (jqXHR.status != '422')
+            if (jqXHR.status != '422'){
             	window.location = "logout.php";
-            else{
+            }else{
             	if (jqXHR.responseJSON.code == 2)
 	            	show_alert("Error de validacion de campos");
 	        	else
@@ -459,9 +459,9 @@ $(document).ready(function(){
 	    	$("#act_name").val("");
     	  },
       	  error: function (jqXHR,  textStatus,  errorThrown) { 
-            if (jqXHR.status != '422')
+            if (jqXHR.status != '422'){
             	window.location = "logout.php";
-            else{
+            }else{
             	if (jqXHR.responseJSON.code == 2)
 	            	show_alert("Error de validacion de campos");
 	        	else
@@ -489,9 +489,9 @@ $(document).ready(function(){
 	    	$("#mod_name").val("");
     	  },
       	  error: function (jqXHR,  textStatus,  errorThrown) { 
-            if (jqXHR.status != '422')
+            if (jqXHR.status != '422'){
             	window.location = "logout.php";
-            else{
+            }else{
             	if (jqXHR.responseJSON.code == 2)
 	            	show_alert("Error de validacion de campos");
 	        	else

@@ -64,6 +64,9 @@ class CREAPI extends API
                                 	$this->response_code = '401';
             						return allow::denied($this->session->session_scopes);
                                 }
+				if (!isset($this->args[0])){
+					$this->args[0]="";
+				}
                                 switch($this->args[0]){
                                     case 'actions':
 										$this->action = new ACTION('action');

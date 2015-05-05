@@ -1,4 +1,4 @@
-AddHandler x-httpd-php5-4 .php
+#AddHandler x-httpd-php5-4 .php
 
 <IfModule mod_rewrite.c>
 Options +FollowSymlinks

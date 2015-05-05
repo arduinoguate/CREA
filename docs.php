@@ -1,10 +1,10 @@
 <?php
 	session_start();
 	
-	$yaml = 'docs/lib/api.yml';
+	$yaml = file_get_contents('docs/lib/api.yml');
 	
 	$parsed = yaml_parse($yaml);
-	var_dump($parsed);
+	//print_r($parsed);
 ?>
 <!DOCTYPE html>
 <html lang="en">

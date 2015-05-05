@@ -76,8 +76,8 @@
 	
 	
 	<div class="container">
-	  <input type="hidden" id="sess_token" value="<? echo $_SESSION['token'] ?>"/>
-	  <input type="hidden" id="sess_user" value="<? echo $_SESSION['username'] ?>"/>
+	  <input type="hidden" id="sess_token" value="<?php echo $_SESSION['token'] ?>"/>
+	  <input type="hidden" id="sess_user" value="<?php echo $_SESSION['username'] ?>"/>
       <div class="row">
         <div class="col-sm-3 col-md-3">
           <div class="panel-group" id="accordion">

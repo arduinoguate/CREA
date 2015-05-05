@@ -11,6 +11,7 @@
 	);
 	
 	//url-ify the data for the POST
+	$fields_string = "";
 	foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
 	rtrim($fields_string, '&');
 	
@@ -28,6 +29,8 @@
 	$output = curl_exec($ch);
 	curl_close($ch);
 	
+	print_r($output);	
+
 	$response = json_decode($output);
 	
 	if ($response->code == 200){
