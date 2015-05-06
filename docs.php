@@ -74,181 +74,131 @@
 	
 	
 	<div class="container">
-	  <h2>Mobile-Friendly API Documentation</h2>
-	    <p class="lead">
-	        Emulate tables that collapse beautifully on mobile devices!
-	    </p>
+	  <h2>Portal de desarrolladores CREA</h2>
+	  <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
+              <div class="list-group">
+                <a href="#" class="list-group-item active text-center">
+                  <h4 class="glyphicon glyphicon-road"></h4><br/>Empieza aquí
+                </a>
+                <a href="#" class="list-group-item text-center">
+                  <h4 class="glyphicon glyphicon-cloud-upload"></h4><br/>API
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 bhoechie-tab">
+                <!-- flight section -->
+                <div class="bhoechie-tab-content active">
+                    <center>
+                      <h1 class="glyphicon glyphicon-road" style="font-size:14em;"></h1>
+                      <h2 style="margin-top: 0;">Pronto</h2>
+                      <h3 style="margin-top: 0;">Información para desarrolladores</h3>
+                    </center>
+                </div>
+                <!-- train section -->
+                <div class="bhoechie-tab-content">
+                	<center>
+                      <h1 class="glyphicon glyphicon-cloud-upload" style="font-size:14em;"></h1>
+                      <h2 style="margin-top: 10;">CREA API</h3>
+                    </center>
+                	
+                	<hr/>
+                	
+                    <p class="lead">
+				        A continuación encontrarás la documentación de llamadas al API de CREA. Este es un API <a href="http://es.wikipedia.org/wiki/Representational_State_Transfer" target="_blank">REST</a> para que lo tengas en cuenta.
+				        <br /><br />
+				        Suerte creando.
+				    </p>
+				    
+				    <?php foreach ($parsed['api-entries'] as $key => $value): ?>
+				    	<?php
+				    		$alertin = '';
+				    		switch ($value['method']) {
+								case 'GET':
+									$alertin = 'alert-success';
+									break;
+								case 'PUT':
+									$alertin = 'alert-info';
+									break;
+								case 'POST':
+									$alertin = 'alert-warning';
+									break;
+								case 'DELETE':
+									$alertin = 'alert-danger';
+									break;
+								default:
+									
+									break;
+							}
+				    	?>
+						<div class="alert <?php echo $alertin; ?>">
+					        <h4><?php echo $value['method'].' '.$value['entry']; ?></h4>
+					        <p><?php echo $value['description']; ?></p>
+					   </div>
+					    
+					    <div>
+					    	<b>Autenticación: </b><?php echo $value['authentication']; ?>
+					    </div>
+					    <br />
+					    
+					    <?php if ($value['parameters'] != 'NONE'): ?>
+							
+						<div class="method">
+					        <div class="row margin-0 list-header hidden-sm hidden-xs">
+					            <div class="col-md-3"><div class="header">Propiedad</div></div>
+					            <div class="col-md-2"><div class="header">Tipo</div></div>
+					            <div class="col-md-2"><div class="header">Requerido</div></div>
+					            <div class="col-md-5"><div class="header">Formato</div></div>
+					        </div>
+					        
+					        <?php foreach ($value['parameters'] as $val): ?>
+								<div class="row margin-0">
+						            <div class="col-md-3">
+						                <div class="cell">
+						                    <div class="propertyname">
+						                        <?php echo $val['name']; ?>
+						                    </div>
+						                </div>
+						            </div>
+						            <div class="col-md-2">
+						                <div class="cell">
+						                    <div class="type">
+						                    	<?php echo $val['type']; ?>
+						                    </div>
+						                </div>
+						            </div>
+						            <div class="col-md-2">
+						                <div class="cell">
+						                    <div class="isrequired">
+						                        <?php echo ($val['required'] != 1)?'No':'Si'; ?>
+						                    </div>
+						                </div>
+						            </div>
+						            <div class="col-md-5">
+						                <div class="cell">
+						                    <div class="description">
+						                        <code><?php echo $val['format']; ?></code>
+						                    </div>
+						                </div>
+						            </div>
+						        </div>
+							<?php endforeach ?>
+					    </div>
+					    
+					    <?php endif ?>
+					    
+					    <hr/>
+					<?php endforeach ?>
+				    
+				    </div>
+                </div>
+    
+                
+            </div>
+        </div>
+	  
 	    
-	    <div class="alert alert-info">
-	        <h4>Row modifier class included</h4>
-	        <p>This feature uses a row modifier I created called ".margin-0". When applied to a ".row" element, it will ensure the margins between the columns will be 0. </p>
-	        <p>This is important in order to emulate the table-like effect, but it will work in any environment.</p>
-	    </div>
-	
-	    <hr />
-	
-	    <div class="method">
-	        <div class="row margin-0 list-header hidden-sm hidden-xs">
-	            <div class="col-md-3"><div class="header">Property</div></div>
-	            <div class="col-md-2"><div class="header">Type</div></div>
-	            <div class="col-md-2"><div class="header">Required</div></div>
-	            <div class="col-md-5"><div class="header">Description</div></div>
-	        </div>
-	
-	        <div class="row margin-0">
-	            <div class="col-md-3">
-	                <div class="cell">
-	                    <div class="propertyname">
-	                        CurrencyCode  <span class="mobile-isrequired">[Required]</span>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-2">
-	                <div class="cell">
-	                    <div class="type">
-	                        <code>String</code>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-2">
-	                <div class="cell">
-	                    <div class="isrequired">
-	                        Yes
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-5">
-	                <div class="cell">
-	                    <div class="description">
-	                        The standard ISO 4217 3-letter currency code
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="row margin-0">
-	            <div class="col-md-3">
-	                <div class="cell">
-	                    <div class="propertyname">
-	                        PriceType  <span class="mobile-isrequired">[Required]</span>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-2">
-	                <div class="cell">
-	                    <div class="type">
-	                        <code>Int32</code>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-2">
-	                <div class="cell">
-	                    <div class="isrequired">
-	                        Yes
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-5">
-	                <div class="cell">
-	                    <div class="description">
-	                        The type of price
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="row margin-0">
-	            <div class="col-md-3">
-	                <div class="cell">
-	                    <div class="propertyname">
-	                        WarehouseID  <span class="mobile-isrequired">[Required]</span>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-2">
-	                <div class="cell">
-	                    <div class="type">
-	                        <code>Int32</code>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-2">
-	                <div class="cell">
-	                    <div class="isrequired">
-	                        Yes
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-5">
-	                <div class="cell">
-	                    <div class="description">
-	                        The unique identifier for the warehouse
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="row margin-0">
-	            <div class="col-md-3">
-	                <div class="cell">
-	                    <div class="propertyname">
-	                        ItemCodes
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-2">
-	                <div class="cell">
-	                    <div class="type">
-	                        <code>String[]</code>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-2">
-	                <div class="cell">
-	                    <div class="isrequired">
-	                        <span class="text-muted">No</span>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-5">
-	                <div class="cell">
-	                    <div class="description">
-	
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="row margin-0">
-	            <div class="col-md-3">
-	                <div class="cell">
-	                    <div class="propertyname">
-	                        LanguageID
-	                        <a class="lookuplink" href="javascript:;">
-	                            <i class="glyphicon glyphicon-search"></i>
-	                        </a>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-2">
-	                <div class="cell">
-	                    <div class="type">
-	                        <code>Int32?</code>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-2">
-	                <div class="cell">
-	                    <div class="isrequired">
-	                        <span class="text-muted">No</span>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-md-5">
-	                <div class="cell">
-	                    <div class="description">
-	                        The customer's preferred language ID (ex. 0 (English), 1 (Spanish), etc.)
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
     </div>
 		
 	
@@ -273,6 +223,17 @@
 	
 	  ga('create', 'UA-7853765-6', 'auto');
 	  ga('send', 'pageview');
+	
+	  $(document).ready(function() {
+		    $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
+		        e.preventDefault();
+		        $(this).siblings('a.active').removeClass("active");
+		        $(this).addClass("active");
+		        var index = $(this).index();
+		        $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+		        $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+		    });
+	  });
 	
 	</script>
 </body>

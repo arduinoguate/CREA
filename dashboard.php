@@ -103,11 +103,11 @@
               </div>
               <div id="collapseFour" class="panel-collapse collapse">
                 <div class="list-group">
-                  <a id="api_access" href="#" class="list-group-item" data-user="<? echo $_SESSION['username'] ?>">
+                  <a id="api_access" href="#" class="list-group-item" data-user="<?php echo $_SESSION['username'] ?>">
                     Acceso al API
                   </a>
-                  <a id="user_profile" href="#" data-user="<? echo $_SESSION['username'] ?>" class="list-group-item">Editar</a>
-                  <a id="user_password" href="#" data-user="<? echo $_SESSION['username'] ?>"  class="list-group-item">Cambiar Contraseña</a>
+                  <a id="user_profile" href="#" data-user="<?php echo $_SESSION['username'] ?>" class="list-group-item">Editar</a>
+                  <a id="user_password" href="#" data-user="<?php echo $_SESSION['username'] ?>"  class="list-group-item">Cambiar Contraseña</a>
                 </div>
               </div>
             </div>
