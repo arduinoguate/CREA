@@ -26,6 +26,10 @@
 	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT,1);
 	curl_setopt($ch, CURLOPT_POST, count($fields));
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
+	if(defined('CURLOPT_IPRESOLVE') && defined('CURL_IPRESOLVE_V4'))
+	{
+    curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+	}
 
 	$output = curl_exec($ch);
 	curl_close($ch);
