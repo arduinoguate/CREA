@@ -292,9 +292,9 @@ $(document).ready(function(){
     		json = resp.responseJSON;
     		$.each(json.modulos, function(i, item){
                 var info = '<div class="row"><div class="col-md-8">Nombre <b>'+item.nombre+'</b><br/>';
-                info += 'Dispositivo <b>'+item.tipo_modulo.nombre+'</b><br/>';
+								info += 'ID del dispositivo <b>'+item.id+'<br/>';
+								info += 'Dispositivo <b>'+item.tipo_modulo.nombre+'</b><br/>';
                 info += 'Estado <b>'+item.estado+'</b><br/>Ultima Respuesta <b>'+item.last_response+'</b><br/>';
-                info += 'ID <b>'+item.id+'<br/>';
                 info += '<small>Actualizado en: <b>'+item.updated_at+'</b></small></div>';
                 info += '<div class="col-md-4"><button data-mod="'+item.id+'" class="btn-success btn-lg add_action">Agregar Acción</button>';
                 info += '<br/><br/><small><a href="#" class="eliminar_mod" id="'+item.id+'">Eliminar</a></small></div>';
