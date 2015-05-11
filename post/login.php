@@ -23,7 +23,7 @@
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 	curl_setopt($ch, CURLOPT_UNRESTRICTED_AUTH, 1);
-	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT,1)
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT,1);
 	curl_setopt($ch, CURLOPT_POST, count($fields));
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
 
