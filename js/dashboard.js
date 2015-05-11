@@ -1,41 +1,41 @@
 $(document).ready(function(){
 	var token = $("#sess_token").val();
 	var api = '/v1/';
-	
+
     load_devices();
     load_types();
     load_module_types();
-    
+
     $("#add_action_btn").click(function(e){
     	e.preventDefault();
-    	
+
     	mod = $("#act_module").val();
     	cmd = $("#act_cmd").val();
     	type = $("#act_type").val();
     	name = $("#act_name").val();
-    	
+
     	save_new_action(mod, cmd, type, name);
-    	
+
     	$('#actionModal').modal("hide");
     });
-    
+
     $("#add_module_btn").click(function(e){
     	e.preventDefault();
-    	
+
     	type = $("#mod_type").val();
     	name = $("#mod_name").val();
-    	
+
     	save_new_module(name, type);
-    	
+
     	$('#moduleModal').modal("hide");
     });
-    
+
     $("#add_mod").click(function(e){
     	e.preventDefault();
-    	
+
     	$('#moduleModal').modal("show");
     });
-    
+
     $("#act_type").change(function(){
     	console.log($("#act_type").val());
     	console.log($("#act_type"));
@@ -43,31 +43,31 @@ $(document).ready(function(){
     	command = update_command($("#act_type").find(':selected').data("cmd"), $("#act_cmda").val());
     	$("#act_cmd").val(command);
     });
-    
-    $("#act_cmda").keyup(function () { 
+
+    $("#act_cmda").keyup(function () {
     	command = update_command($("#act_type").find(':selected').data("cmd"), $("#act_cmda").val());
     	$("#act_cmd").val(command);
 	});
-	
+
 	$("#api_access").click(function(e){
 		e.preventDefault();
-		
+
 		user = $(this).data("user");
 		$("#user-info").hide();
-		
+
 		load_api(user);
 	});
-	
+
 	$("#user_profile").click(function(e){
 		e.preventDefault();
-		
+
 		user = $(this).data("user");
 		$("#user-info").show();
-		
+
 		load_user(user);
 	});
-    
-    
+
+
     $("#user-edit-form input").jqBootstrapValidation({
         preventSubmit: true,
         submitError: function($form, event, errors) {
@@ -90,7 +90,7 @@ $(document).ready(function(){
 	    	  beforeSend: function (xhr) {
 	          	xhr.setRequestHeader("Authorization", "Bearer "+ token);
 	          },
-	    	  complete: function (resp) { 
+	    	  complete: function (resp) {
 	    		json = resp.responseJSON;
 	    		console.log(json);
 	    		load_user(user);
@@ -106,16 +106,16 @@ $(document).ready(function(){
 		            	if (jqXHR.responseJSON.code == 2)
 			            	show_alert("Error de validacion de campos");
 			        	else
-			        		show_alert("Error general");	
+			        		show_alert("Error general");
 	            }
-	          }, 
+	          },
 	    	});
         },
         filter: function() {
             return $(this).is(":visible");
         },
     });
-    
+
     function update_command(cmd, value){
     	if (cmd == ''){
     		return "NA:"+value;
@@ -123,10 +123,10 @@ $(document).ready(function(){
     		return cmd+":"+value;
     	}
     }
-    
-    
+
+
     function load_user(user){
-        //LOAD API ACCESS KEYS    
+        //LOAD API ACCESS KEYS
         $.ajax({
     	  url: api+"user/"+user,
     	  type: 'GET',
@@ -136,7 +136,7 @@ $(document).ready(function(){
     	  beforeSend: function (xhr) {
           	xhr.setRequestHeader("Authorization", "Bearer "+ token);
           },
-    	  complete: function (resp) { 
+    	  complete: function (resp) {
     		json = resp.responseJSON;
     		var info = "";
     		console.log(json.usuarios[0]);
@@ -151,17 +151,17 @@ $(document).ready(function(){
 	    	   console.log("test");
     		$('#dashboard').html(info);
     	  },
-      	  error: function (jqXHR,  textStatus,  errorThrown) { 
+      	  error: function (jqXHR,  textStatus,  errorThrown) {
             if (jqXHR.status != '422'){
             	window.location = "logout.php";
             }else
-            	$('#devices').append('<li class="list-group-item"><span class="glyphicon glyphicon-remove text-primary"></span>No hay dispositivos</li>'); 
-          }, 
-    	});    
+            	$('#devices').append('<li class="list-group-item"><span class="glyphicon glyphicon-remove text-primary"></span>No hay dispositivos</li>');
+          },
+    	});
     }
-    
+
     function load_api(user){
-        //LOAD API ACCESS KEYS    
+        //LOAD API ACCESS KEYS
         $.ajax({
     	  url: api+"user/"+user+"/api",
     	  type: 'GET',
@@ -171,7 +171,7 @@ $(document).ready(function(){
     	  beforeSend: function (xhr) {
           	xhr.setRequestHeader("Authorization", "Bearer "+ token);
           },
-    	  complete: function (resp) { 
+    	  complete: function (resp) {
     		json = resp.responseJSON;
     		console.log(json);
     		var info = '<div class="row"><div class="col-md-12"><h2>Credenciales del API</h2></div>';
@@ -182,17 +182,17 @@ $(document).ready(function(){
     		info += '</div>';
             $('#dashboard').html(info);
     	  },
-      	  error: function (jqXHR,  textStatus,  errorThrown) { 
+      	  error: function (jqXHR,  textStatus,  errorThrown) {
             if (jqXHR.status != '422'){
             	window.location = "logout.php";
             }else
-            	$('#devices').append('<li class="list-group-item"><span class="glyphicon glyphicon-remove text-primary"></span>No hay dispositivos</li>'); 
-          }, 
-    	});    
+            	$('#devices').append('<li class="list-group-item"><span class="glyphicon glyphicon-remove text-primary"></span>No hay dispositivos</li>');
+          },
+    	});
     }
-    
+
 	function load_devices(){
-        //LOAD DEVICES    
+        //LOAD DEVICES
         $("#user-info").hide();
         $("#devices").html("");
     	$.ajax({
@@ -204,7 +204,7 @@ $(document).ready(function(){
     	  beforeSend: function (xhr) {
           	xhr.setRequestHeader("Authorization", "Bearer "+ token);
           },
-    	  complete: function (resp) { 
+    	  complete: function (resp) {
     		json = resp.responseJSON;
     		console.log(json);
     		if (json.http_code == 200)
@@ -212,73 +212,73 @@ $(document).ready(function(){
 	                $.each(item, function(j, modulo){
 	    			    var item = '<li class="list-group-item"><span class="glyphicon glyphicon-hdd text-primary"></span><a href="#" class="modulo" id="'+modulo.id+'">'+modulo.nombre+'</a></li>';
 	                    $("#devices").append(item);
-	                    
+
 	                });
 	                $(".modulo").click(function(e){
 	                	e.preventDefault();
-	                	
+
 	                    get_modulo($(this).attr("id"));
 	                    $("#user-info").hide();
 	                });
 	    		});
     	  },
-      	  error: function (jqXHR,  textStatus,  errorThrown) { 
+      	  error: function (jqXHR,  textStatus,  errorThrown) {
             if (jqXHR.status != '422'){
             	window.location = "logout.php";
             }else
-            	$('#devices').append('<li class="list-group-item"><span class="glyphicon glyphicon-remove text-primary"></span>No hay dispositivos</li>'); 
-          }, 
-    	});    
+            	$('#devices').append('<li class="list-group-item"><span class="glyphicon glyphicon-remove text-primary"></span>No hay dispositivos</li>');
+          },
+    	});
     }
-    
-    function load_types(){  
+
+    function load_types(){
     	$.ajax({
     	  url: api+"action_type",
     	  type: 'GET',
     	  dataType: 'json',
     	  crossDomain: true,
           async: false,
-    	  complete: function (resp) { 
+    	  complete: function (resp) {
     		json = resp.responseJSON;
     		$.each(json.tipos, function(i, item){
                 var item = '<option value="'+item.idtipo_action+'" data-cmd="'+item.comando+'">'+item.nombre+'</option>';
                 $("#act_type").append(item);
     		});
     	  },
-      	  error: function (jqXHR,  textStatus,  errorThrown) { 
+      	  error: function (jqXHR,  textStatus,  errorThrown) {
             if (jqXHR.status != '422'){
             	window.location = "logout.php";
             }else
-            	$("#act_type").append("<option>No hay tipos</option>"); 
-          }, 
-    	});    
+            	$("#act_type").append("<option>No hay tipos</option>");
+          },
+    	});
     }
-    
-    function load_module_types(){  
+
+    function load_module_types(){
     	$.ajax({
     	  url: api+"module_type",
     	  type: 'GET',
     	  dataType: 'json',
     	  crossDomain: true,
           async: false,
-    	  complete: function (resp) { 
+    	  complete: function (resp) {
     		json = resp.responseJSON;
     		$.each(json.modulos, function(i, item){
                 var item = '<option value="'+item.idtipo_modulo+'">'+item.nombre+'</option>';
                 $("#mod_type").append(item);
     		});
     	  },
-      	  error: function (jqXHR,  textStatus,  errorThrown) { 
+      	  error: function (jqXHR,  textStatus,  errorThrown) {
             if (jqXHR.status != '422'){
             	window.location = "logout.php";
             }else
-            	$("#act_type").append("<option>No hay tipos</option>"); 
-          }, 
-    	});    
+            	$("#act_type").append("<option>No hay tipos</option>");
+          },
+    	});
     }
-    
+
     function get_modulo(mod){
-        //LOAD DEVICES    
+        //LOAD DEVICES
         $.ajax({
     	  url: api+"module/"+mod,
     	  type: 'GET',
@@ -288,31 +288,31 @@ $(document).ready(function(){
     	  beforeSend: function (xhr) {
           	xhr.setRequestHeader("Authorization", "Bearer "+ token);
           },
-    	  complete: function (resp) { 
+    	  complete: function (resp) {
     		json = resp.responseJSON;
     		$.each(json.modulos, function(i, item){
                 var info = '<div class="row"><div class="col-md-8">Nombre <b>'+item.nombre+'</b><br/>';
                 info += 'Dispositivo <b>'+item.tipo_modulo.nombre+'</b><br/>';
                 info += 'Estado <b>'+item.estado+'</b><br/>Ultima Respuesta <b>'+item.last_response+'</b><br/>';
-                info += 'URL <b>http://api.arduinogt.com/v1/aw/'+item.id+'<br/>';
+                info += 'ID <b>'+item.id+'<br/>';
                 info += '<small>Actualizado en: <b>'+item.updated_at+'</b></small></div>';
                 info += '<div class="col-md-4"><button data-mod="'+item.id+'" class="btn-success btn-lg add_action">Agregar Acción</button>';
                 info += '<br/><br/><small><a href="#" class="eliminar_mod" id="'+item.id+'">Eliminar</a></small></div>';
                 info += '</div><hr/><p>Acciones</p>';
                 info += '<div class="row" id="actions_int"></div>';
-                
+
                 $('#dashboard').html(info);
-                
+
                 $(".add_action").click(function(e){
                 	e.preventDefault();
                 	$('#actionModal').modal("show");
                 	$('#act_module').val($(this).data("mod"));
                 });
-                
+
                 $(".eliminar_mod").click(function(e){
                 	e.preventDefault();
                 });
-                
+
                 $.ajax({
 		    	  url: api+"module/"+mod+'/actions',
 		    	  type: 'GET',
@@ -322,7 +322,7 @@ $(document).ready(function(){
 		    	  beforeSend: function (xhr) {
 		          	xhr.setRequestHeader("Authorization", "Bearer "+ token);
 		          },
-		    	  complete: function (resp) { 
+		    	  complete: function (resp) {
 		    		json = resp.responseJSON;
 		    		console.log(json);
 		    		$.each(json.acciones, function(i, item){
@@ -338,48 +338,48 @@ $(document).ready(function(){
     					info += '<button class="col-md-8 btn btn-primary btn-sm send_action" data-act="'+item.id+'">Enviar</button><button class="btn btn-danger btn-sm delete_action" data-act="'+item.id+'"><span class="glyphicon glyphicon-trash"></span></button>';
   						info += '</div>';
 		                info += '<small>Actualizado en: <b>'+item.updated_at+'</b></small></div></div>';
-		                
-		                
+
+
 		                $('#actions_int').append(info);
-		                
+
 		    		});
-		    		
+
 		    		$(".send_action").click(function(e){
 		    			e.preventDefault();
 		    			id = $(this).data("act");
 		    			mod = $("#"+id).data("modulo");
 		    			value = $("#"+id).val();
-		    			
+
 		    			execute_action(mod, value, id);
 		    		});
-		    		
+
 		    		$(".delete_action").click(function(e){
 		    			e.preventDefault();
 		    			id = $(this).data("act");
 		    			mod = $("#"+id).data("modulo");
-		    			
+
 		    			delete_action(mod, id);
 		    		});
-		    		
+
 		    	  },
-		      	  error: function (jqXHR,  textStatus,  errorThrown) { 
+		      	  error: function (jqXHR,  textStatus,  errorThrown) {
 		            if (jqXHR.status != '422'){
 		            	window.location = "logout.php";
 		            }else
 		            	$('#actions_int').html('<div class="col-md-12"><h2>No hay acciones disponibles</h2></div>');
-		          }, 
+		          },
 		    	});
-		    	
-		    	
+
+
     		});
     	  },
-      	  error: function (jqXHR,  textStatus,  errorThrown) { 
+      	  error: function (jqXHR,  textStatus,  errorThrown) {
             window.location = "logout.php";
-            console.log( textStatus ); 
-          }, 
+            console.log( textStatus );
+          },
     	});
 	}
-	
+
 	function delete_action(mod, action){
 		$.ajax({
     	  url: api+"module/"+mod+'/actions',
@@ -391,24 +391,24 @@ $(document).ready(function(){
     	  beforeSend: function (xhr) {
           	xhr.setRequestHeader("Authorization", "Bearer "+ token);
           },
-    	  complete: function (resp) { 
+    	  complete: function (resp) {
     		json = resp.responseJSON;
     		console.log(json);
     		get_modulo(mod);
     	  },
-      	  error: function (jqXHR,  textStatus,  errorThrown) { 
+      	  error: function (jqXHR,  textStatus,  errorThrown) {
             if (jqXHR.status != '422'){
             	window.location = "logout.php";
             }else{
             	if (jqXHR.responseJSON.code == 2)
 	            	show_alert("Error de validacion de campos");
 	        	else
-	        		show_alert("Error general");	
+	        		show_alert("Error general");
             }
-          }, 
+          },
     	});
 	}
-	
+
 	function execute_action(mod, value, action){
 		$.ajax({
     	  url: api+"module/"+mod+'/execute-action',
@@ -420,24 +420,24 @@ $(document).ready(function(){
     	  beforeSend: function (xhr) {
           	xhr.setRequestHeader("Authorization", "Bearer "+ token);
           },
-    	  complete: function (resp) { 
+    	  complete: function (resp) {
     		json = resp.responseJSON;
     		console.log(json);
     		get_modulo(mod);
     	  },
-      	  error: function (jqXHR,  textStatus,  errorThrown) { 
+      	  error: function (jqXHR,  textStatus,  errorThrown) {
             if (jqXHR.status != '422'){
             	window.location = "logout.php";
             }else{
             	if (jqXHR.responseJSON.code == 2)
 	            	show_alert("Error de validacion de campos");
 	        	else
-	        		show_alert("Error general");	
+	        		show_alert("Error general");
             }
-          }, 
+          },
     	});
 	}
-	
+
 	function save_new_action(mod, cmd, type, name){
 		$.ajax({
     	  url: api+"module/"+mod+'/register-action',
@@ -449,7 +449,7 @@ $(document).ready(function(){
     	  beforeSend: function (xhr) {
           	xhr.setRequestHeader("Authorization", "Bearer "+ token);
           },
-    	  complete: function (resp) { 
+    	  complete: function (resp) {
     		json = resp.responseJSON;
     		console.log(json);
     		get_modulo(mod);
@@ -458,19 +458,19 @@ $(document).ready(function(){
 	    	$("#act_cmda").val("");
 	    	$("#act_name").val("");
     	  },
-      	  error: function (jqXHR,  textStatus,  errorThrown) { 
+      	  error: function (jqXHR,  textStatus,  errorThrown) {
             if (jqXHR.status != '422'){
             	window.location = "logout.php";
             }else{
             	if (jqXHR.responseJSON.code == 2)
 	            	show_alert("Error de validacion de campos");
 	        	else
-	        		show_alert("Error general");	
+	        		show_alert("Error general");
             }
-          }, 
+          },
     	});
 	}
-	
+
 	function save_new_module(name, type){
 		$.ajax({
     	  url: api+'module/',
@@ -482,25 +482,25 @@ $(document).ready(function(){
     	  beforeSend: function (xhr) {
           	xhr.setRequestHeader("Authorization", "Bearer "+ token);
           },
-    	  complete: function (resp) { 
+    	  complete: function (resp) {
     		json = resp.responseJSON;
     		console.log(json);
     		load_devices();
 	    	$("#mod_name").val("");
     	  },
-      	  error: function (jqXHR,  textStatus,  errorThrown) { 
+      	  error: function (jqXHR,  textStatus,  errorThrown) {
             if (jqXHR.status != '422'){
             	window.location = "logout.php";
             }else{
             	if (jqXHR.responseJSON.code == 2)
 	            	show_alert("Error de validacion de campos");
 	        	else
-	        		show_alert("Error general");	
+	        		show_alert("Error general");
             }
-          }, 
+          },
     	});
 	}
-	
+
 	function show_alert(message){
 		//pending to implement
 	}
