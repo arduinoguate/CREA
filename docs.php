@@ -131,6 +131,7 @@
 				    </p>
 
 						<?php foreach ($api_ref as $api_module): ?>
+							<hr/>
 							<h2><?php echo $api_module['api-section']; ?></h2>
 							<legend><?php echo $api_module['api-section-description']; ?></legend>
 							<?php foreach ($api_module['api-entries'] as $key => $value): ?>
@@ -212,8 +213,6 @@
 
 						    <hr/>
 							<?php endforeach; ?>
-
-							<hr/>
 						<?php endforeach; ?>
 				    </div>
           </div>
