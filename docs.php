@@ -7,7 +7,7 @@
 	foreach($files as $file) {
 		if (trim($file) != "." || trim($file) != ".."){
 			print_r($file);
-			$yaml = file_get_contents($file);
+			$yaml = file_get_contents('docs/lib/'.$file);
 
 			$parsed = yaml_parse($yaml);
 			$api_ref[] = $parsed;
