@@ -257,7 +257,7 @@ class CREAPI extends API
           }
           break;
         case 'POST':
-          if (allow::is_allowed($this->session->session_scopes, allow::PUBLISH())){
+          if (allow::is_allowed($this->session->session_scopes, allow::MODERATE())){
             $this->action->create($_POST, $this->session->session_token);
             $this->response_code = $this->action->response['http_code'];
             return $this->action->response;
@@ -350,6 +350,7 @@ class CREAPI extends API
         $this->response_code = $this->action->response['http_code'];
         return $this->action->response;
         break;
+      case 'POST':
       default:
         $this->response_code = 405;
         return "Invalid action method";
@@ -365,6 +366,7 @@ class CREAPI extends API
         $this->response_code = $this->action->response['http_code'];
         return $this->action->response;
         break;
+      case 'POST':
       default:
         $this->response_code = 405;
         return "Invalid action method";
