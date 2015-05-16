@@ -105,7 +105,7 @@
               <h4 class="glyphicon glyphicon-cloud-upload"></h4><br/>API
             </a>
 						<a href="#" class="list-group-item text-center">
-              <h4 class="fa fa-mobile"></h4><br/>Desarrollo móvil
+              <h4 class="fa fa-mobile fa-lg"></h4><br/>Desarrollo móvil
             </a>
           </div>
         </div>
