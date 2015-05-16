@@ -41,9 +41,11 @@
 		$_SESSION['token'] = $response->access_token;
 		$_SESSION['username'] = $_POST['username'];
 
-		header("Location: ../dashboard.php");
+		echo json_encode($response,JSON_UNESCAPED_SLASHES);
 	}else{
-		header("Location: ../login.php?msg=$response->message");
+		header("HTTP/1.1 422 Unauthorized");
+
+		echo json_encode($response,JSON_UNESCAPED_SLASHES);
 	}
 
 
