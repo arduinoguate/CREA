@@ -41,12 +41,8 @@
 		$_SESSION['token'] = $response->access_token;
 		$_SESSION['username'] = $_POST['username'];
 
-		echo json_encode($response,JSON_UNESCAPED_SLASHES);
-	}else{
-		header("HTTP/1.1 422 Unauthorized");
 
-		echo json_encode($response,JSON_UNESCAPED_SLASHES);
 	}
-
+	echo json_encode($response,JSON_UNESCAPED_SLASHES);
 
 ?>
