@@ -20,9 +20,9 @@
       <div class="avatar"></div>
       <div class="form-box">
         <form id="loginfrm" action="" method="">
-          <input name="user" type="text" placeholder="username">
+          <input name="user" type="text" placeholder="usuario">
           <div class="password">
-            <input type="password" name="passwordfield" id="passwordfield" placeholder="password">
+            <input type="password" name="passwordfield" id="passwordfield" placeholder="contraseña">
             <span class="glyphicon glyphicon-eye-open"></span>
           </div>
           <button class="btn btn-info btn-block login" type="submit">Login</button>

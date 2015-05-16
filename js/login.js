@@ -15,37 +15,37 @@ $(document).ready(function() {
           },
           success: function(json) {
 						json = JSON.parse(json);
-            if (json.code == 0) {
-              logged(json.user, json.email);
+            if (json.code == 200) {
+              logged(textfield.val(), json.email);
             } else {
               $("#output").removeClass(' alert alert-success');
-              $("#output").addClass("alert alert-danger animated fadeInUp").html("Wrong credentials");
+              $("#output").addClass("alert alert-danger animated fadeInUp").html("Credenciales incorrectas");
             }
           },
           error: function(e, msj, xmlHttpReq) {
             $("#output").removeClass(' alert alert-success');
-            $("#output").addClass("alert alert-danger animated fadeInUp").html("Oops, something went wrong. Please try again");
+            $("#output").addClass("alert alert-danger animated fadeInUp").html("Oops, algo a salido mal. Intenta de nuevo");
           }
         });
 
       } else {
         //remove success mesage replaced with error message
         $("#output").removeClass(' alert alert-success');
-        $("#output").addClass("alert alert-danger animated fadeInUp").html("sorry enter a password ");
+        $("#output").addClass("alert alert-danger animated fadeInUp").html("Ingrese una contraseña ");
       }
     } else {
       //remove success mesage replaced with error message
       $("#output").removeClass(' alert alert-success');
-      $("#output").addClass("alert alert-danger animated fadeInUp").html("sorry enter a username ");
+      $("#output").addClass("alert alert-danger animated fadeInUp").html("Ingrese un usuario ");
     }
     //console.log(textfield.val());
 
   });
 });
 
-function logged(username, email) {
+function logged(username) {
   //$("body").scrollTo("#output");
-  $("#output").addClass("alert alert-success animated fadeInUp").html("Welcome back " + "<span style='text-transform:uppercase'>" + username + "</span>");
+  $("#output").addClass("alert alert-success animated fadeInUp").html("Bienvenido " + "<span style='text-transform:uppercase'>" + username + "</span>");
   $("#output").removeClass(' alert-danger');
   $("input").css({
     "height": "0",
@@ -62,7 +62,7 @@ function logged(username, email) {
 
   //show avatar
   $(".avatar").css({
-    "background-image": "url('http://robohash.org/" + email + "?gravatar=yes')"
+    "background-image": "url('http://robohash.org/" + username + "?gravatar=yes')"
   });
 }
 
