@@ -50,7 +50,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Crea</a>
+                <a class="navbar-brand" href="index.html"><img src="img/crea.png" width="25px">Crea</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -62,9 +62,16 @@
                     <li class="page-scroll">
                        Documentación del API
                     </li>
-										<li class="page-scroll">
-                        <a href="logout.php">Salir</a>
-                    </li>
+										<?php if (isset($_SESSION['token'])): ?>
+
+											<li class="page-scroll">
+	                        <a href="dashboard.php">Dashboard</a>
+	                    </li>
+											<li class="page-scroll">
+	                        <a href="logout.php">Salir</a>
+	                    </li>
+
+										<?php endif; ?>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
