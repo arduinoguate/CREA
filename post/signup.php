@@ -80,15 +80,15 @@
 			$headers = "From: info@arduinogt.com\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
 			$headers .= "Reply-To: ".$_POST['email'];
 			mail($to,$email_subject,$email_body,$headers);
-			echo $response;
+			echo json_encode($response,JSON_UNESCAPED_SLASHES);
 			return true;
 		}else
 			header("HTTP/1.1 422 Unauthorized");
-			echo $response;
+			echo json_encode($response,JSON_UNESCAPED_SLASHES);
 			return false;
 	}else{
 		header("HTTP/1.1 401 Unauthorized");
-		echo $response;
+		echo json_encode($response,JSON_UNESCAPED_SLASHES);
 		return false;
 	}
 
