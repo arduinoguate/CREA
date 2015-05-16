@@ -142,7 +142,7 @@
 							</ul>
 						</p>
 
-						<p class="lead">
+						<p class="">
 							REST is the underlying architectural principle of the web. The amazing thing about the web is the fact that clients (browsers) and servers can interact in complex ways without the client knowing anything beforehand about the server and the resources it hosts. The key constraint is that the server and client must both agree on the media used, which in the case of the web is HTML.
 							<br /><br />
 							An API that adheres to the principles of REST does not require the client to know anything about the structure of the API. Rather, the server needs to provide whatever information the client needs to interact with the service. An HTML form is an example of this: The server specifies the location of the resource, and the required fields. The browser doesn't know in advance where to submit the information, and it doesn't know in advance what information to submit. Both forms of information are entirely supplied by the server. (This principle is called HATEOAS.)
@@ -154,8 +154,6 @@
 							<blockquote>
 							A REST API should spend almost all of its descriptive effort in defining the media type(s) used for representing resources and driving application state, or in defining extended relation names and/or hypertext-enabled mark-up for existing standard media types.
 							</blockquote>
-							<br /><br />
-							A request for the base resource / might return something like this:
 							<br />
 						</p>
           </div>
