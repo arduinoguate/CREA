@@ -131,6 +131,8 @@
               <h2 style="margin-top: 0;">Bienvenidos al portal de desarrolladores CREA</h2>
             </center>
 
+						<hr/>
+						
 						<h2>Antes de Empezar</h2>
 
 						<p class="lead">
