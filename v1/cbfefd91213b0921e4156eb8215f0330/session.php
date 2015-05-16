@@ -80,6 +80,7 @@ class SESSION extends GCConfig
 		if (count($result) == 1){
 			$this->client_id = $result[0]->columns['client_id'];
 			$this->email = $result[0]->columns['email'];
+      $this->username = $result[0]->columns['user_id']['idusuario'];
 			if ($result[0]->columns['asoc'] == 1){
 				return $this->validate_login($params);
 			}
