@@ -114,9 +114,34 @@
           <div class="bhoechie-tab-content active">
             <center>
               <h1 class="glyphicon glyphicon-road" style="font-size:14em;"></h1>
-              <h2 style="margin-top: 0;">Pronto</h2>
-              <h3 style="margin-top: 0;">Información para desarrolladores</h3>
+              <h2 style="margin-top: 0;">Bienvenidos al portal de desarrolladores CREA</h2>
             </center>
+
+						<h1>Antes de Empezar</h1>
+
+						<p class="lead">
+							Te sugerimos que leas los siguientes recursos antes de comenzar a utilizar esta guía.
+							<br />
+							<ul>
+								<li><a href="https://www.ibm.com/developerworks/webservices/library/ws-restful/" target"_blank">Conceptos básicos de servicos REST</a></li>
+								<li><a href="https://www.youtube.com/watch?v=hdSrT4yjS1g" target="_blank">Un video explicando las mejores practicas para aplicar servicios REST</a></li>
+							</ul>
+						</p>
+
+						<p class="lead">
+							REST is the underlying architectural principle of the web. The amazing thing about the web is the fact that clients (browsers) and servers can interact in complex ways without the client knowing anything beforehand about the server and the resources it hosts. The key constraint is that the server and client must both agree on the media used, which in the case of the web is HTML.
+							<br />
+							An API that adheres to the principles of REST does not require the client to know anything about the structure of the API. Rather, the server needs to provide whatever information the client needs to interact with the service. An HTML form is an example of this: The server specifies the location of the resource, and the required fields. The browser doesn't know in advance where to submit the information, and it doesn't know in advance what information to submit. Both forms of information are entirely supplied by the server. (This principle is called HATEOAS.)
+							<br />
+							So, how does this apply to HTTP, and how can it be implemented in practice? HTTP is oriented around verbs and resources. The two verbs in mainstream usage are GET and POST, which I think everyone will recognize. However, the HTTP standard defines several others such as PUT and DELETE. These verbs are then applied to resources, according to the instructions provided by the server.
+							<br />
+							For example, Let's imagine that we have a user database that is managed by a web service. Our service uses a custom hypermedia based on JSON, for which we assign the mimetype application/json+userdb (There might also be an application/xml+userdb and application/whatever+userdb - many media types may be supported). The client and the server has both been programmed to understand this format, but they don't know anything about each other. As Roy Fielding points out:
+							<quote>
+							A REST API should spend almost all of its descriptive effort in defining the media type(s) used for representing resources and driving application state, or in defining extended relation names and/or hypertext-enabled mark-up for existing standard media types.
+							</quote>
+							A request for the base resource / might return something like this:
+							<br />
+						</p>
           </div>
           <!-- train section -->
           <div class="bhoechie-tab-content">
@@ -240,11 +265,12 @@
 			        	Te sugerimos que leas los siguientes recursos antes de comenzar a utilizar esta guía.
 				        <br />
 				        <ul>
-									<li><a href="#" target"_blank">Guia 1</a></li>
-									<li><a href="#" target"_blank">Guia 2</a></li>
-									<li><a href="#" target"_blank">Guia 3</a></li>
+									<li><a href="http://developer.android.com/index.html" target"_blank">Sitio para empezar a desarrollar en Android</a></li>
+									<li><a href="http://developer.android.com/training/basics/firstapp/index.html" target"_blank">Hola Mundo en Android</a></li>
+									<li><a href="http://www.androidhive.info/2012/01/android-json-parsing-tutorial/" target"_blank">Tutorial para parsing de JSON en Android</a></li>
 								</ul>
 					    </p>
+
 
 						</div>
 
