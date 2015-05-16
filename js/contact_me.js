@@ -29,7 +29,6 @@ $(function() {
         cache: false,
         success: function(resp) {
           // Success message
-          console.log(resp.entidad);
           json = JSON.parse(resp);
           $('#success').html("<div class='alert alert-success'>");
           $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
@@ -44,11 +43,12 @@ $(function() {
         },
         error: function(msj) {
           console.log(msj);
+          json = JSON.parse(msj.responseText);
           // Fail message
           $('#success').html("<div class='alert alert-danger'>");
           $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
             .append("</button>");
-          $('#success > .alert-danger').append("<strong>No hemos logrado crear tu cuenta satisfactoriamente, revisa los datos y vuelve a intentar</strong>");
+          $('#success > .alert-danger').append("<strong>No hemos logrado crear tu cuenta satisfactoriamente, "+json.message+"</strong>");
           $('#success > .alert-danger').append('</div>');
           //clear all fields
           $('#contactForm').trigger("reset");
