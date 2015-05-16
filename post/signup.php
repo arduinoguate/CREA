@@ -68,9 +68,9 @@
 		$output = curl_exec($ch);
 		curl_close($ch);
 
-		print_r($output);
-
 		$response = json_decode($output);
+
+		print_r($response);
 
 		if ($response->http_code == 200){
 			// Create the email and send the message
