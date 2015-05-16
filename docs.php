@@ -3,7 +3,7 @@
 
 	$api_ref = array();
 
-	$files = scandir('docs/lib');
+	$files = glob('folder/*.{yml}', GLOB_BRACE);
 	foreach($files as $file) {
 		if (trim($file) != "." || trim($file) != ".."){
 			print_r($file);
