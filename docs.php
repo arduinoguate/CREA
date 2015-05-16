@@ -35,7 +35,7 @@
     <link href="css/docs.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
@@ -103,6 +103,9 @@
             </a>
             <a href="#" class="list-group-item text-center">
               <h4 class="glyphicon glyphicon-cloud-upload"></h4><br/>API
+            </a>
+						<a href="#" class="list-group-item text-center">
+              <h4 class="fa fa-mobile"></h4><br/>Desarrollo móvil
             </a>
           </div>
         </div>
@@ -215,9 +218,37 @@
 							<?php endforeach; ?>
 						<?php endforeach; ?>
 				    </div>
+
+						<!-- flight section -->
+						<div class="bhoechie-tab-content active">
+							<center>
+								<h1 class="fa fa-mobile" style="font-size:14em;"></h1>
+								<h2 style="margin-top: 10;">Desarrollando aplicaciones móviles con CREA API</h3>
+							</center>
+
+	          	<hr/>
+
+							<p class="lead">
+			        	La siguiente guía te lleva de la mano explicándote como desarrollar aplicaciones móviles utilizando el API de CREA en un dispositivo <a href="https://www.android.com/" target="_blank">Android</a>
+				        <br /><br />
+				        Suerte creando.
+					    </p>
+
+							<h1>Antes de Empezar</h1>
+
+							<p class="lead">
+			        	Te sugerimos que leas los siguientes recursos antes de comenzar a utilizar esta guía.
+				        <br />
+				        <ul>
+									<li><a href="#" target"_blank">Guia 1</a></li>
+									<li><a href="#" target"_blank">Guia 2</a></li>
+									<li><a href="#" target"_blank">Guia 3</a></li>
+								</ul>
+					    </p>
+
+						</div>
+
           </div>
-
-
         </div>
       </div>
     </div>
