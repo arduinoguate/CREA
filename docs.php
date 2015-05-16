@@ -3,7 +3,7 @@
 
 	$api_ref = array();
 
-	$files = scandir('docs/lib`');
+	$files = scandir('./docs/lib`');
 	foreach($files as $file) {
 		$yaml = file_get_contents($file);
 
