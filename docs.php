@@ -134,7 +134,7 @@
 						<?php foreach ($api_ref as $api_module): ?>
 							<h2><?php echo $api_module['api-section']; ?></h2>
 							<legend><?php echo $api_module['api-section-description']; ?></legend>
-							<?php foreach ($api_module as $key => $value): ?>
+							<?php foreach ($api_module['api-entries'] as $key => $value): ?>
 								<?php
 					    		$alertin = '';
 					    		switch ($value['method']) {
