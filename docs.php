@@ -5,6 +5,7 @@
 
 	$files = scandir('docs/lib');
 	foreach($files as $file) {
+		print_r($file);
 		$yaml = file_get_contents($file);
 
 		$parsed = yaml_parse($yaml);
