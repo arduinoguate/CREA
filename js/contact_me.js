@@ -30,7 +30,7 @@ $(function() {
         success: function(resp) {
           // Success message
           console.log(resp);
-          json = resp.responseJSON;
+          json = resp;
           $('#success').html("<div class='alert alert-success'>");
           $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
             .append("</button>");
