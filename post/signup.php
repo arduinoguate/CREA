@@ -19,6 +19,8 @@
 		'username' => $_POST['user']
 	);
 
+	$fields_string = "";
+
 	$fields = array(
 		'scopes' => 'administrator'
 	);
@@ -62,7 +64,7 @@
 		curl_setopt($ch, CURLOPT_UNRESTRICTED_AUTH, 1);
 		curl_setopt($ch,CURLOPT_POST, count($nufields));
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
-
+		
 		$output = curl_exec($ch);
 		curl_close($ch);
 
