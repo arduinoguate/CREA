@@ -5,7 +5,7 @@
 
 	$files = scandir('docs/lib');
 	foreach($files as $file) {
-		if ($file != "." || $file != ".."){
+		if (trim($file) != "." || trim($file) != ".."){
 			print_r($file);
 			$yaml = file_get_contents($file);
 
