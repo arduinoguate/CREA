@@ -2,6 +2,7 @@
 	session_start();
 
 	$api_ref = array();
+	$cmd_ref = array();
 
 	$files = glob('docs/lib/*.{yml}', GLOB_BRACE);
 	foreach($files as $file) {
@@ -10,6 +11,16 @@
 
 			$parsed = yaml_parse($yaml);
 			$api_ref[] = $parsed;
+		}
+	}
+
+	$files = glob('docs/ws/*.{yml}', GLOB_BRACE);
+	foreach($files as $file) {
+		if (trim($file) != "." || trim($file) != ".."){
+			$yaml = file_get_contents($file);
+
+			$parsed = yaml_parse($yaml);
+			$cmd_ref[] = $parsed;
 		}
 	}
 
@@ -106,6 +117,9 @@
             </a>
 						<a href="#" class="list-group-item text-center">
               <h4 class="fa fa-mobile fa-2x"></h4><br/>Desarrollo móvil
+            </a>
+						<a href="#" class="list-group-item text-center">
+              <h4 class="fa fa-gears fa-2x"></h4><br/>CREA WebSocket
             </a>
           </div>
         </div>
@@ -272,6 +286,30 @@
 					    </p>
 
 
+						</div>
+
+						<!-- flight section -->
+						<div class="bhoechie-tab-content">
+							<center>
+								<h1 class="fa fa-gears" style="font-size:14em;"></h1>
+								<h2 style="margin-top: 10;">Interacción con el websocket CREA</h3>
+							</center>
+
+	          	<hr/>
+
+							<p class="lead">
+			        	En esta sección te explicaremos como el API de CREA interactua con el websocket y permite que los dispositivos interactuen con el API
+					    </p>
+
+							<h1>Antes de Empezar</h1>
+
+							<p class="lead">
+			        	Puedes probar el websocket <a href="crea.arduinogt.com/websockettest/client.html" target="_blank">aquí</a>
+					    </p>
+
+							<h1>Comandos</h1>
+
+							
 						</div>
 
           </div>
