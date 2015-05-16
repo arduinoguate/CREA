@@ -70,9 +70,9 @@
 
 		$response = json_decode($output);
 
-		print_r($response);
+		print_r($response->http_code);
 
-		if ($response["http_code"] == 200){
+		if ($response->http_code == 200){
 			// Create the email and send the message
 			$to = $_POST['email']; // Add your email address inbetween the '' replacing yourname@yourdomain.com - This is where the form will send a message to.
 			$email_subject = "Registro CREA";
@@ -80,14 +80,15 @@
 			$headers = "From: info@arduinogt.com\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
 			$headers .= "Reply-To: ".$_POST['email'];
 			mail($to,$email_subject,$email_body,$headers);
+			echo $response;
 			return true;
 		}else
 			header("HTTP/1.1 422 Unauthorized");
-			print_r($response);
+			echo $response;
 			return false;
 	}else{
 		header("HTTP/1.1 401 Unauthorized");
-		print_r($response);
+		echo $response;
 		return false;
 	}
 
