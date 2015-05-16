@@ -144,15 +144,17 @@
 
 						<p class="lead">
 							REST is the underlying architectural principle of the web. The amazing thing about the web is the fact that clients (browsers) and servers can interact in complex ways without the client knowing anything beforehand about the server and the resources it hosts. The key constraint is that the server and client must both agree on the media used, which in the case of the web is HTML.
-							<br />
+							<br /><br />
 							An API that adheres to the principles of REST does not require the client to know anything about the structure of the API. Rather, the server needs to provide whatever information the client needs to interact with the service. An HTML form is an example of this: The server specifies the location of the resource, and the required fields. The browser doesn't know in advance where to submit the information, and it doesn't know in advance what information to submit. Both forms of information are entirely supplied by the server. (This principle is called HATEOAS.)
-							<br />
+							<br /><br />
 							So, how does this apply to HTTP, and how can it be implemented in practice? HTTP is oriented around verbs and resources. The two verbs in mainstream usage are GET and POST, which I think everyone will recognize. However, the HTTP standard defines several others such as PUT and DELETE. These verbs are then applied to resources, according to the instructions provided by the server.
-							<br />
+							<br /><br />
 							For example, Let's imagine that we have a user database that is managed by a web service. Our service uses a custom hypermedia based on JSON, for which we assign the mimetype application/json+userdb (There might also be an application/xml+userdb and application/whatever+userdb - many media types may be supported). The client and the server has both been programmed to understand this format, but they don't know anything about each other. As Roy Fielding points out:
-							<quote>
+							<br /><br />
+							<blockquote>
 							A REST API should spend almost all of its descriptive effort in defining the media type(s) used for representing resources and driving application state, or in defining extended relation names and/or hypertext-enabled mark-up for existing standard media types.
-							</quote>
+							</blockquote>
+							<br /><br />
 							A request for the base resource / might return something like this:
 							<br />
 						</p>
