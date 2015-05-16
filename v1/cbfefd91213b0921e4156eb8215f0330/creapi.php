@@ -201,146 +201,146 @@ class CREAPI extends API
     }
   }
 
-	 /**
-     * /v1/user
-     */
-     protected function user(){
-         if ($this->session->validate_bearer_token($_SERVER['HTTP_Authorization'])){
-         	switch ($this->method) {
-    			 case 'GET':
-					 if (allow::is_allowed($this->session->session_scopes, allow::PUBLISH())){
-					 	switch($this->verb){
-    				 	    case 'form':
-                                $this->action->form();
-								$this->response_code = $this->action->response['http_code'];
-                 				return $this->action->response;
-                                break;
-							default:
-								$id = null;
-                                if (isset($this->verb) && (trim($this->verb) != '')){
-                                	$id = $this->verb;
-                                	if (($id != $this->session->username) && (!allow::is_allowed($this->session->session_scopes, allow::PUBLISH()))){
-                                		$this->response_code = '401';
-            							return allow::denied($this->session->session_scopes);
-									}
-                                }else{
-                                	if (!allow::is_allowed($this->session->session_scopes, allow::ADMINISTRATOR())){
-                                		$this->response_code = '401';
-            							return allow::denied($this->session->session_scopes);
-									}
-                                }
-                                if (isset($_GET['show']) && (!allow::is_allowed($this->session->session_scopes, allow::MODERATE()))){
-                                	$this->response_code = '401';
-            						return allow::denied($this->session->session_scopes);
-                                }
-								if (!isset($this->args[0])){
-									$this->args[0]="";
-								}
-                                switch($this->args[0]){
-                                    case 'api': //quejas/:id/api
-                                        $this->action->show_api($id);
-        								$this->response_code = $this->action->response['http_code'];
-                         				return $this->action->response;
-                                        break;
-                                    default: //quejas/:id
-                                        $this->action->show($id, $_GET);
-                        				$this->add_header($this->action->pagination_link);
-        								$this->response_code = $this->action->response['http_code'];
-                         				return $this->action->response;
-                                        break;
-                                }
-                                break;
-					 	}
-					 }else{
-					 	$this->response_code = '401';
-            			return allow::denied($this->session->session_scopes);
-					 }
-    				 break;
-    			 case 'POST':
-					 if (allow::is_allowed($this->session->session_scopes, allow::PUBLISH())){
-                    	$this->action->create($_POST, $this->session->session_token);
-						$this->response_code = $this->action->response['http_code'];
-         				return $this->action->response;
-					 }else{
-					 	$this->response_code = '401';
-            			return allow::denied($this->session->session_scopes);
-					 }
-    				 break;
-    			 case 'PUT':
-					 if (isset($this->verb) && isset($this->args[0]) && (trim($this->args[0]) != '')){
-					 	switch($this->args[0]){
-    				 	    case 'upload':
-                                if (($this->verb != $this->session->username) && !allow::is_allowed($this->session->session_scopes, allow::ADMINISTRATOR())){
-                                    $this->response_code = '401';
-            						return allow::denied($this->session->session_scopes);
-                                }
-								$this->action->upload($this->verb, $this->file);
-            					$this->response_code = $this->action->response['http_code'];
-                 				return $this->action->response;
-								break;
-							case 'enable':
-								if (!allow::is_allowed($this->session->session_scopes, allow::MODERATE())){
-                                    $this->response_code = '401';
-            						return allow::denied($this->session->session_scopes);
-                                }
-                                $this->action->enable($this->verb);
-                    			$this->response_code = $this->action->response['http_code'];
-								return $this->action->response;
-								break;
-							case 'update':
-								if (!allow::is_allowed($this->session->session_scopes, allow::PUBLISH())){
-                                    $this->response_code = '401';
-            						return allow::denied($this->session->session_scopes);
-                                }
-								parse_str($this->file,$post_vars);
-                                $this->action->update($this->verb, $post_vars, $this->session->username);
-                    			$this->response_code = $this->action->response['http_code'];
-								return $this->action->response;
-								break;
-							case 'disable':
-								if (!allow::is_allowed($this->session->session_scopes, allow::VALIDATE())){
-                                    $this->response_code = '401';
-            						return allow::denied($this->session->session_scopes);
-                                }
-								$this->action->disable($this->verb);
-            					$this->response_code = $this->action->response['http_code'];
-								return $this->action->response;
-								break;
-							default:
-								$this->response_code = '404';
-								return $this::return_message('Acción Invalida, metodo no encontrado: '.$this->args[1],'error');
-								break;
-						}
-					 }else{
-					 	$this->response_code = '401';
-						return $this::return_message('URL Invalido','error');
-					 }
-    				 break;
-    			 case 'DELETE':
-					if (isset($this->verb) && (trim($this->verb) != '')){
-                    	$id = $this->verb;
-                    	if (!allow::is_allowed($this->session->session_scopes, allow::ADMINISTRATOR())){
-						    $this->response_code = '401';
-							return allow::denied($this->session->session_scopes);
-						}
-						$this->action->delete($id);
-						$this->response_code = $this->action->response['http_code'];
-						return $this->action->response;
-                    }else{
-                    	$this->response_code = '401';
-						return $this::return_message('URL Invalido','error');
-                    }
-					break;
-    			 default:
-					$this->response_code = '401';
-					return $this::return_message('Método Invalido','error');
-					break;
-    		 }
-         }else{
-            $this->response_code = $this->session->response['code'];
-            return $this->session->response;
-         }
-     }
+  /**
+  * /v1/user
+  */
+  protected function user(){
+    if ($this->session->validate_bearer_token($_SERVER['HTTP_Authorization'])){
+      switch ($this->method) {
+        case 'GET':
+          if (allow::is_allowed($this->session->session_scopes, allow::PUBLISH())){
+            switch($this->verb){
+              case 'form':
+                $this->action->form();
+                $this->response_code = $this->action->response['http_code'];
+                return $this->action->response;
+                break;
+              default:
+                $id = null;
+                if (isset($this->verb) && (trim($this->verb) != '')){
+                  $id = $this->verb;
+                  if (($id != $this->session->username) && (!allow::is_allowed($this->session->session_scopes, allow::MODERATE()))){
+                    $this->response_code = '401';
+                    return allow::denied($this->session->session_scopes);
+                  }
+                }else{
+                  if (!allow::is_allowed($this->session->session_scopes, allow::ADMINISTRATOR())){
+                    $this->response_code = '401';
+                    return allow::denied($this->session->session_scopes);
+                  }
+                }
+                if (isset($_GET['show']) && (!allow::is_allowed($this->session->session_scopes, allow::MODERATE()))){
+                  $this->response_code = '401';
+                  return allow::denied($this->session->session_scopes);
+                }
+                if (!isset($this->args[0])){
+                  $this->args[0]="";
+                }
+                switch($this->args[0]){
+                  case 'api': //quejas/:id/api
+                    $this->action->show_api($id);
+                    $this->response_code = $this->action->response['http_code'];
+                    return $this->action->response;
+                    break;
+                  default: //quejas/:id
+                    $this->action->show($id, $_GET);
+                    $this->add_header($this->action->pagination_link);
+                    $this->response_code = $this->action->response['http_code'];
+                    return $this->action->response;
+                    break;
+                }
+                break;
+            }
+          }else{
+            $this->response_code = '401';
+            return allow::denied($this->session->session_scopes);
+          }
+          break;
+        case 'POST':
+          if (allow::is_allowed($this->session->session_scopes, allow::PUBLISH())){
+            $this->action->create($_POST, $this->session->session_token);
+            $this->response_code = $this->action->response['http_code'];
+            return $this->action->response;
+          }else{
+            $this->response_code = '401';
+            return allow::denied($this->session->session_scopes);
+          }
+          break;
+        case 'PUT':
+          if (isset($this->verb) && isset($this->args[0]) && (trim($this->args[0]) != '')){
+            switch($this->args[0]){
+              case 'upload':
+                if (($this->verb != $this->session->username) && !allow::is_allowed($this->session->session_scopes, allow::ADMINISTRATOR())){
+                  $this->response_code = '401';
+                  return allow::denied($this->session->session_scopes);
+                }
+                $this->action->upload($this->verb, $this->file);
+                $this->response_code = $this->action->response['http_code'];
+                return $this->action->response;
+                break;
+              case 'enable':
+                if (!allow::is_allowed($this->session->session_scopes, allow::MODERATE())){
+                  $this->response_code = '401';
+                  return allow::denied($this->session->session_scopes);
+                }
+                $this->action->enable($this->verb);
+                $this->response_code = $this->action->response['http_code'];
+                return $this->action->response;
+                break;
+              case 'update':
+                if (!allow::is_allowed($this->session->session_scopes, allow::PUBLISH())){
+                  $this->response_code = '401';
+                  return allow::denied($this->session->session_scopes);
+                }
+                parse_str($this->file,$post_vars);
+                $this->action->update($this->verb, $post_vars, $this->session->username);
+                $this->response_code = $this->action->response['http_code'];
+                return $this->action->response;
+                break;
+              case 'disable':
+                if (!allow::is_allowed($this->session->session_scopes, allow::VALIDATE())){
+                  $this->response_code = '401';
+                  return allow::denied($this->session->session_scopes);
+                }
+                $this->action->disable($this->verb);
+                $this->response_code = $this->action->response['http_code'];
+                return $this->action->response;
+                break;
+              default:
+                $this->response_code = '404';
+                return $this::return_message('Acción Invalida, metodo no encontrado: '.$this->args[1],'error');
+                break;
+            }
+          }else{
+            $this->response_code = '401';
+            return $this::return_message('URL Invalido','error');
+          }
+          break;
+        case 'DELETE':
+          if (isset($this->verb) && (trim($this->verb) != '')){
+            $id = $this->verb;
+            if (!allow::is_allowed($this->session->session_scopes, allow::ADMINISTRATOR())){
+              $this->response_code = '401';
+              return allow::denied($this->session->session_scopes);
+            }
+            $this->action->delete($id);
+            $this->response_code = $this->action->response['http_code'];
+            return $this->action->response;
+          }else{
+            $this->response_code = '401';
+            return $this::return_message('URL Invalido','error');
+          }
+          break;
+        default:
+          $this->response_code = '401';
+          return $this::return_message('Método Invalido','error');
+          break;
+      }
+    }else{
+      $this->response_code = $this->session->response['code'];
+      return $this->session->response;
+    }
+  }
 
   protected function action_type(){
     switch ($this->method) {
