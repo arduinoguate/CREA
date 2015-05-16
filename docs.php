@@ -5,11 +5,13 @@
 
 	$files = scandir('docs/lib');
 	foreach($files as $file) {
-		print_r($file);
-		$yaml = file_get_contents($file);
+		if ($file != "." || $file != ".."){
+			print_r($file);
+			$yaml = file_get_contents($file);
 
-		$parsed = yaml_parse($yaml);
-		$api_ref[] = $parsed;
+			$parsed = yaml_parse($yaml);
+			$api_ref[] = $parsed;
+		}
 	}
 
 	//print_r($parsed);
