@@ -54,7 +54,7 @@ function logged(username) {
     "opacity": "0"
   });
   //change button text
-  $('button[type="submit"]').html("continue")
+  $('button[type="submit"]').html("Continuar")
     .removeClass("btn-info")
     .addClass("btn-default").click(function() {
       location = 'dashboard.php';

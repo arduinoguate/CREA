@@ -25,7 +25,7 @@
             <input type="password" name="passwordfield" id="passwordfield" placeholder="contraseña">
             <span class="glyphicon glyphicon-eye-open"></span>
           </div>
-          <button class="btn btn-info btn-block login" type="submit">Login</button>
+          <button class="btn btn-info btn-block login" type="submit">Ingresar</button>
         </form>
       </div>
     </div>
