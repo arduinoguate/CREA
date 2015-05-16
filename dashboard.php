@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-top">Crea</a>
+                <a class="navbar-brand" href="#page-top"><span><img src="img/crea.png" width="25px"></span> Crea</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -70,11 +70,11 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-	
+
 	<div class="row">
-		
-	
-	
+
+
+
 	<div class="container">
 	  <input type="hidden" id="sess_token" value="<?php echo $_SESSION['token'] ?>"/>
 	  <input type="hidden" id="sess_user" value="<?php echo $_SESSION['username'] ?>"/>
@@ -90,7 +90,7 @@
               </div>
               <div id="collapseOne" class="panel-collapse collapse in">
                 <ul class="list-group" id="devices">
-                  
+
                 </ul>
               </div>
             </div>
@@ -160,7 +160,7 @@
 		              <input type="text" placeholder="Nombre" class="form-control" id="eu-nombre" required="required">
 		            </div>
 		          </div>
-		
+
 		          <!-- Text input-->
 		          <div class="form-group">
 		            <label class="col-sm-2 control-label" for="textinput">Apellido</label>
@@ -168,7 +168,7 @@
 		              <input type="text" placeholder="Apellido" class="form-control" id="eu-apellido">
 		            </div>
 		          </div>
-		
+
 		          <!-- Text input-->
 		          <div class="form-group">
 		            <label class="col-sm-2 control-label" for="textinput">Email</label>
@@ -176,7 +176,7 @@
 		              <input type="text" placeholder="Correo Electrónico" class="form-control" id="eu-email" required="required">
 		            </div>
 		          </div>
-		
+
 		          <div class="form-group">
 		            <div class="col-sm-offset-2 col-sm-10">
 		              <div class="pull-right">
@@ -184,20 +184,20 @@
 		              </div>
 		            </div>
 		          </div>
-		
+
 		        </fieldset>
 		      </form>
-		      
-		      
+
+
             </div>
           </div>
         </div>
       </div>
     </div>
-		
-	
+
+
 	</div>
-	
+
     <div id="actionModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -220,7 +220,7 @@
                             <label for="status" class="col-sm-3 control-label">Tipo de acción</label>
                             <div class="col-sm-9">
                                 <select class="form-control" id="act_type" name="act_type">
-                                    
+
                                 </select>
                             </div>
                         </div>
@@ -229,7 +229,7 @@
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="act_cmda" name="act_cmda">
                             </div>
-                        </div> 
+                        </div>
                         <div class="form-group">
                             <div class="col-sm-12 text-right">
                                 <button type="button" id="add_action_btn" class="btn btn-default preview-add-button">
@@ -244,8 +244,8 @@
       </div>
     </div>
 
-	
-	
+
+
 	<div id="moduleModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -268,7 +268,7 @@
                             <label for="status" class="col-sm-3 control-label">Tipo de modulo</label>
                             <div class="col-sm-9">
                                 <select class="form-control" id="mod_type" name="mod_type">
-                                    
+
                                 </select>
                             </div>
                         </div>
@@ -285,23 +285,23 @@
         </div>
       </div>
     </div>
-	
+
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jqBootstrapValidation.js"></script>
 	<script src="js/dashboard.js"></script>
-	
-	
+
+
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-	
+
 	  ga('create', 'UA-7853765-6', 'auto');
 	  ga('send', 'pageview');
-	
+
 	</script>
 </body>
