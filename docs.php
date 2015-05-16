@@ -220,7 +220,7 @@
 				    </div>
 
 						<!-- flight section -->
-						<div class="bhoechie-tab-content active">
+						<div class="bhoechie-tab-content">
 							<center>
 								<h1 class="fa fa-mobile" style="font-size:14em;"></h1>
 								<h2 style="margin-top: 10;">Desarrollando aplicaciones móviles con CREA API</h3>
