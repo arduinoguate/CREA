@@ -1,4 +1,6 @@
 ---
+api-section: module
+api-section-description: 'Esta sección es la encargada de gestionar los modulos asociados al usuario'
 api-entries:
   - entry: 'v1/module'
     method: GET

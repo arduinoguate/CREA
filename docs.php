@@ -1,9 +1,16 @@
 <?php
 	session_start();
 
-	$yaml = file_get_contents('docs/lib/api.yml');
+	$api_ref = array();
 
-	$parsed = yaml_parse($yaml);
+	$files = scandir('docs/lib`');
+	foreach($files as $file) {
+		$yaml = file_get_contents($file);
+
+		$parsed = yaml_parse($yaml);
+		$api_ref[] = $parsed;
+	}
+
 	//print_r($parsed);
 ?>
 <!DOCTYPE html>
@@ -86,132 +93,133 @@
 	<div class="container">
 	  <h2>Portal de desarrolladores CREA</h2>
 	  <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container">
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
-              <div class="list-group">
-                <a href="#" class="list-group-item active text-center">
-                  <h4 class="glyphicon glyphicon-road"></h4><br/>Empieza aquí
-                </a>
-                <a href="#" class="list-group-item text-center">
-                  <h4 class="glyphicon glyphicon-cloud-upload"></h4><br/>API
-                </a>
-              </div>
-            </div>
-            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 bhoechie-tab">
-                <!-- flight section -->
-                <div class="bhoechie-tab-content active">
-                    <center>
-                      <h1 class="glyphicon glyphicon-road" style="font-size:14em;"></h1>
-                      <h2 style="margin-top: 0;">Pronto</h2>
-                      <h3 style="margin-top: 0;">Información para desarrolladores</h3>
-                    </center>
-                </div>
-                <!-- train section -->
-                <div class="bhoechie-tab-content">
-                	<center>
-                      <h1 class="glyphicon glyphicon-cloud-upload" style="font-size:14em;"></h1>
-                      <h2 style="margin-top: 10;">CREA API</h3>
-                    </center>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container">
+      	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
+          <div class="list-group">
+            <a href="#" class="list-group-item active text-center">
+              <h4 class="glyphicon glyphicon-road"></h4><br/>Empieza aquí
+            </a>
+            <a href="#" class="list-group-item text-center">
+              <h4 class="glyphicon glyphicon-cloud-upload"></h4><br/>API
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 bhoechie-tab">
+        	<!-- flight section -->
+          <div class="bhoechie-tab-content active">
+            <center>
+              <h1 class="glyphicon glyphicon-road" style="font-size:14em;"></h1>
+              <h2 style="margin-top: 0;">Pronto</h2>
+              <h3 style="margin-top: 0;">Información para desarrolladores</h3>
+            </center>
+          </div>
+          <!-- train section -->
+          <div class="bhoechie-tab-content">
+          	<center>
+              <h1 class="glyphicon glyphicon-cloud-upload" style="font-size:14em;"></h1>
+              <h2 style="margin-top: 10;">CREA API</h3>
+            </center>
 
-                	<hr/>
+          	<hr/>
 
-                    <p class="lead">
-				        A continuación encontrarás la documentación de llamadas al API de CREA. Este es un API <a href="http://es.wikipedia.org/wiki/Representational_State_Transfer" target="_blank">REST</a> para que lo tengas en cuenta.
-				        <br /><br />
-				        Suerte creando.
+            <p class="lead">
+		        	A continuación encontrarás la documentación de llamadas al API de CREA. Este es un API <a href="http://es.wikipedia.org/wiki/Representational_State_Transfer" target="_blank">REST</a> para que lo tengas en cuenta.
+			        <br /><br />
+			        Suerte creando.
 				    </p>
 
-				    <?php foreach ($parsed['api-entries'] as $key => $value): ?>
-				    	<?php
-				    		$alertin = '';
-				    		switch ($value['method']) {
-								case 'GET':
-									$alertin = 'alert-success';
-									break;
-								case 'PUT':
-									$alertin = 'alert-info';
-									break;
-								case 'POST':
-									$alertin = 'alert-warning';
-									break;
-								case 'DELETE':
-									$alertin = 'alert-danger';
-									break;
-								default:
+						<?php foreach ($api_ref as $api_module): ?>
+							<h2><?php echo $api_module['api-section']; ?></h2>
+							<legend><?php echo $api_module['api-section-description']; ?></legend>
+							<?php foreach ($api_module as $key => $value): ?>
+								<?php
+					    		$alertin = '';
+					    		switch ($value['method']) {
+									case 'GET':
+										$alertin = 'alert-success';
+										break;
+									case 'PUT':
+										$alertin = 'alert-info';
+										break;
+									case 'POST':
+										$alertin = 'alert-warning';
+										break;
+									case 'DELETE':
+										$alertin = 'alert-danger';
+										break;
+									default:
 
-									break;
-							}
-				    	?>
-						<div class="alert <?php echo $alertin; ?>">
-					        <h4><?php echo $value['method'].' '.$value['entry']; ?></h4>
-					        <p><?php echo $value['description']; ?></p>
-					   </div>
+										break;
+								}
+					    	?>
 
-					    <div>
-					    	<b>Autenticación: </b><?php echo $value['authentication']; ?>
-					    </div>
-					    <br />
+								<div class="alert <?php echo $alertin; ?>">
+						        <h4><?php echo $value['method'].' '.$value['entry']; ?></h4>
+						        <p><?php echo $value['description']; ?></p>
+						   	</div>
 
-					    <?php if ($value['parameters'] != 'NONE'): ?>
+						    <div>
+						    	<b>Autenticación: </b><?php echo $value['authentication']; ?>
+						    </div>
+						    <br />
 
-						<div class="method">
-					        <div class="row margin-0 list-header hidden-sm hidden-xs">
-					            <div class="col-md-3"><div class="header">Propiedad</div></div>
-					            <div class="col-md-2"><div class="header">Tipo</div></div>
-					            <div class="col-md-2"><div class="header">Requerido</div></div>
-					            <div class="col-md-5"><div class="header">Formato</div></div>
-					        </div>
+						    <?php if ($value['parameters'] != 'NONE'): ?>
 
-					        <?php foreach ($value['parameters'] as $val): ?>
-								<div class="row margin-0">
-						            <div class="col-md-3">
-						                <div class="cell">
-						                    <div class="propertyname">
-						                        <?php echo $val['name']; ?>
-						                    </div>
-						                </div>
-						            </div>
-						            <div class="col-md-2">
-						                <div class="cell">
-						                    <div class="type">
-						                    	<?php echo $val['type']; ?>
-						                    </div>
-						                </div>
-						            </div>
-						            <div class="col-md-2">
-						                <div class="cell">
-						                    <div class="isrequired">
-						                        <?php echo ($val['required'] != 1)?'No':'Si'; ?>
-						                    </div>
-						                </div>
-						            </div>
-						            <div class="col-md-5">
-						                <div class="cell">
-						                    <div class="description">
-						                        <code><?php echo $val['format']; ?></code>
-						                    </div>
-						                </div>
-						            </div>
+									<div class="method">
+						        <div class="row margin-0 list-header hidden-sm hidden-xs">
+						            <div class="col-md-3"><div class="header">Propiedad</div></div>
+						            <div class="col-md-2"><div class="header">Tipo</div></div>
+						            <div class="col-md-2"><div class="header">Requerido</div></div>
+						            <div class="col-md-5"><div class="header">Formato</div></div>
 						        </div>
-							<?php endforeach ?>
-					    </div>
 
-					    <?php endif ?>
+						        <?php foreach ($value['parameters'] as $val): ?>
+											<div class="row margin-0">
+							            <div class="col-md-3">
+							                <div class="cell">
+							                    <div class="propertyname">
+							                        <?php echo $val['name']; ?>
+							                    </div>
+							                </div>
+							            </div>
+							            <div class="col-md-2">
+							                <div class="cell">
+							                    <div class="type">
+							                    	<?php echo $val['type']; ?>
+							                    </div>
+							                </div>
+							            </div>
+							            <div class="col-md-2">
+							                <div class="cell">
+							                    <div class="isrequired">
+							                        <?php echo ($val['required'] != 1)?'No':'Si'; ?>
+							                    </div>
+							                </div>
+							            </div>
+							            <div class="col-md-5">
+							                <div class="cell">
+							                    <div class="description">
+							                        <code><?php echo $val['format']; ?></code>
+							                    </div>
+							                </div>
+							            </div>
+							        </div>
+										<?php endforeach ?>
+						    	</div>
+						    <?php endif ?>
 
-					    <hr/>
-					<?php endforeach ?>
+						    <hr/>
+							<?php endforeach; ?>
 
+							<hr/>
+						<?php endforeach; ?>
 				    </div>
-                </div>
+          </div>
 
 
-            </div>
         </div>
-
-
+      </div>
     </div>
-
-
 	</div>
 
 

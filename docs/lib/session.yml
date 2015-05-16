@@ -1,0 +1,13 @@
+---
+api-section: session
+api-section-description: 'Esta sección se encarga de gestionar los ingresos y generación de tokens del api'
+api-entries:
+  - entry: 'v1/session'
+    method: POST
+    description: 'Genera un nuevo token, el token se obtiene del uso del API key y el API Secret obtenido de la sección "Acceso al API" del panel de control.'
+    parameters:
+      - name: scopes
+        format: string (default: module-owner)
+        type: REQUEST
+        required: TRUE
+    authentication: BASIC
