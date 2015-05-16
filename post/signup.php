@@ -72,7 +72,7 @@
 
 		print_r($response);
 
-		if ($response->http_code == 200){
+		if ($output->http_code == 200){
 			// Create the email and send the message
 			$to = $_POST['email']; // Add your email address inbetween the '' replacing yourname@yourdomain.com - This is where the form will send a message to.
 			$email_subject = "Registro CREA";
