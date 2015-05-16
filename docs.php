@@ -304,12 +304,12 @@
 							<h1>Antes de Empezar</h1>
 
 							<p class="lead">
-			        	Puedes probar el websocket <a href="crea.arduinogt.com/websockettest/client.html" target="_blank">aquí</a>
+			        	Puedes probar el websocket <a href="http://crea.arduinogt.com/websockettest/client.html" target="_blank">aquí</a>
 					    </p>
 
 							<h1>Comandos</h1>
 
-							
+
 						</div>
 
           </div>
