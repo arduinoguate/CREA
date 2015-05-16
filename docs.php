@@ -131,7 +131,7 @@
               <h2 style="margin-top: 0;">Bienvenidos al portal de desarrolladores CREA</h2>
             </center>
 
-						<h1>Antes de Empezar</h1>
+						<h2>Antes de Empezar</h2>
 
 						<p class="lead">
 							Te sugerimos que leas los siguientes recursos antes de comenzar a utilizar esta guía.
@@ -141,6 +141,8 @@
 								<li><a href="https://www.youtube.com/watch?v=hdSrT4yjS1g" target="_blank">Un video explicando las mejores practicas para aplicar servicios REST</a></li>
 							</ul>
 						</p>
+
+						<h2>¿Qué es REST?</h2>
 
 						<p class="">
 							REST is the underlying architectural principle of the web. The amazing thing about the web is the fact that clients (browsers) and servers can interact in complex ways without the client knowing anything beforehand about the server and the resources it hosts. The key constraint is that the server and client must both agree on the media used, which in the case of the web is HTML.
