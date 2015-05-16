@@ -64,9 +64,11 @@
 		curl_setopt($ch, CURLOPT_UNRESTRICTED_AUTH, 1);
 		curl_setopt($ch,CURLOPT_POST, count($nufields));
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
-		
+
 		$output = curl_exec($ch);
 		curl_close($ch);
+
+		print_r($output);
 
 		$response = json_decode($output);
 

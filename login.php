@@ -1,52 +1,32 @@
-<?php
-
-?>
 <!DOCTYPE html>
-<html lang="en">
 
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Crea - Ingreso</title>
-
-    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/login.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body id="page-top" class="index">
-	<div id="fullscreen_bg" class="fullscreen_bg"/>
-
-	<div class="container">
-	
-		<form class="form-signin" action="post/login.php" method="post">
-			<h1 class="form-signin-heading text-muted">Ingresa</h1>
-			<input name="username" type="text" class="form-control" placeholder="Usuario" required="" autofocus="">
-			<input name="password" type="password" class="form-control" placeholder="Contraseña" required="">
-			<button class="btn btn-lg btn-primary btn-block" type="submit">
-				Ingresar
-			</button>
-		</form>
-	
-	</div>
-</body>
+<html>
+    <head>
+        <title></title>
+        <meta charset="">
+        <link rel="stylesheet" media="screen" href="css/login.css">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+		<link rel="shortcut icon" type="img/png" href="img/favicon.png">
+        <script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/login.js"></script>
+    </head>
+    <body>
+    	<div class="container">
+		    <div class="login-container">
+	            <div id="output"></div>
+	            <div class="avatar"></div>
+	            <div class="form-box">
+	                <form id="loginfrm" action="" method="">
+	                    <input name="user" type="text" placeholder="username">
+	                    <div class="password">
+	                        <input type="password" name="passwordfield" id="passwordfield" placeholder="password">
+	                        <span class="glyphicon glyphicon-eye-open"></span>
+	                    </div>
+	                    <button class="btn btn-info btn-block login" type="submit">Login</button>
+	                </form>
+	            </div>
+	        </div>
+		</div>
+    </body>
+</html>

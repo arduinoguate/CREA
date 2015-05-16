@@ -6,7 +6,7 @@ class SESSION extends GCConfig
 {
     const BASIC = 'Basic ';
     const BEARER = 'Bearer ';
-    
+
 	protected $token;
 	protected $_scopes;
 	public $client_id;
@@ -16,42 +16,42 @@ class SESSION extends GCConfig
 	public $email;
 	public $err;
 	public $response;
-	
+
 	public function __construct($request) {
 		parent::__construct($request);
 		$this->response = array();
 		$this->username = '';
 	}
-    
-	
+
+
 	function base64_url_encode($input) {
 	 return strtr(base64_encode($input), '+/', '-_');
 	}
-	
+
 	function base64_url_decode($input) {
 	 return base64_decode(strtr($input, '-_', '+/'));
 	}
-	
-    /**
-     * Returns an encrypted & utf8-encoded
-     */
-    function encrypt($pure_string, $encryption_key) {
-        $iv_size = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB);
-        $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
-        $encrypted_string = mcrypt_encrypt(MCRYPT_BLOWFISH, $encryption_key, utf8_encode($pure_string), MCRYPT_MODE_ECB, $iv);
-        return $encrypted_string;
-    }
-    
-    /**
-     * Returns decrypted original string
-     */
-    function decrypt($encrypted_string, $encryption_key) {
-        $iv_size = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB);
-        $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
-        $decrypted_string = mcrypt_decrypt(MCRYPT_BLOWFISH, $encryption_key, $encrypted_string, MCRYPT_MODE_ECB, $iv);
-        return $decrypted_string;
-    }
-	
+
+  /**
+   * Returns an encrypted & utf8-encoded
+   */
+  function encrypt($pure_string, $encryption_key) {
+      $iv_size = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB);
+      $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
+      $encrypted_string = mcrypt_encrypt(MCRYPT_BLOWFISH, $encryption_key, utf8_encode($pure_string), MCRYPT_MODE_ECB, $iv);
+      return $encrypted_string;
+  }
+
+  /**
+   * Returns decrypted original string
+   */
+  function decrypt($encrypted_string, $encryption_key) {
+      $iv_size = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB);
+      $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
+      $decrypted_string = mcrypt_decrypt(MCRYPT_BLOWFISH, $encryption_key, $encrypted_string, MCRYPT_MODE_ECB, $iv);
+      return $decrypted_string;
+  }
+
 	private function validate_login($params=array()){
 		if ($this->validate_fields($params, 'login')){
 			$result = array();
@@ -59,7 +59,7 @@ class SESSION extends GCConfig
 			if ($this->user->fetch_id(array('idusuario' => $params['username']),null,true," password = '$pass' AND enabled is TRUE ")){
 				if ($this->api_user_asoc->fetch_id(array('client_id'=>$this->client_id,'id_usuario'=>$this->user->columns['idusuario']))){
 					$this->username = $this->user->columns['idusuario'];
-					return true;	
+					return true;
 				}else{
 					$this->err = 'Usuario no asociado';
 					return false;
@@ -73,7 +73,7 @@ class SESSION extends GCConfig
 			return false;
 		}
 	}
-	
+
 	private function validate_basic($params = array()){
 		$token64 = base64_decode($this->token);
 		$result = $this->api_client->fetch("CONCAT(client_id,':',client_secret) = '$token64' AND enabled is true");
@@ -89,7 +89,7 @@ class SESSION extends GCConfig
 			return false;
 		}
 	}
-    
+
     private function validate_scopes($method){
     	$retval = true;
 		if ($method == 'GET'){
@@ -116,12 +116,12 @@ class SESSION extends GCConfig
         }
 		return $retval;
     }
-	
+
 	private function sanitize_token($token, $type){
 		$this->token = str_replace($type, '', $token);
         return (strpos($token,$type) !== false);
 	}
-	
+
 	private function validate_token($token){
 		$this->session_token = $token;
 		$result = $this->api_token->fetch("token = '$token' AND enabled is TRUE", false, array('updated_at'), false);
@@ -142,14 +142,14 @@ class SESSION extends GCConfig
 				}
 			}else{
 				$this->err = 'Malformed token';
-				return false;	
+				return false;
 			}
 		}else{
 			$this->err = 'Invalid token';
 			return false;
 		}
 	}
-	
+
 	private function locate_valid_token(){
 		$result = $this->api_token->fetch("client_id = '$this->client_id'", false, array('updated_at'), false);
 		$last = false;
@@ -178,18 +178,18 @@ class SESSION extends GCConfig
 					}else{
 						$this->err = 'Malformed token';
 						return false;
-					}	
+					}
 				}else{
 					$last = false;
 				}
 			}else{
 				$last = false;
-			}	
+			}
 		}
 		return $last;
-		
+
 	}
-	
+
 	private function generate_token(){
 		if ($this->locate_valid_token()){
 			return $this->api_token->columns['token'];
@@ -214,23 +214,23 @@ class SESSION extends GCConfig
 			}
 		}
 	}
-	
+
 	public function validate_bearer_token($token){
         try{
 		    if ($this->sanitize_token($token, self::BEARER)){
 		    	if ($this->validate_token($this->token)){
-		    		return true;	
+		    		return true;
 		    	}else{
 		    		$this->response['type'] = 'error';
 		    		$this->response['code'] = 401;
 					$this->response['message'] = $this->err;
 					return false;
-		    	}    
+		    	}
 		    }else{
 		    	$this->response['type'] = 'error';
     	        $this->response['code'] = 401;
     		    $this->response['message'] = 'Malformed token';
-			    return false; 
+			    return false;
 		    }
         }catch(Exception $e){
         	$this->response['type'] = 'error';
@@ -239,7 +239,7 @@ class SESSION extends GCConfig
 			return false;
 		}
 	}
-	
+
 	public function validate_basic_token($token, $params = array(), $method){
 		try{
 			if ($this->sanitize_token($token, self::BASIC)){
@@ -254,24 +254,24 @@ class SESSION extends GCConfig
     				$this->response['code'] = 401;
     				$this->response['message'] = $this->err;
     				return false;
-    			}	    
+    			}
 			}else{
 				$this->response['type'] = 'error';
     		    $this->response['code'] = 401;
     			$this->response['message'] = 'Malformed token';
 				return false;
 			}
-			
+
 		}catch(Exception $e){
 			$this->response['type'] = 'error';
 			$this->response['code'] = 401;
 			$this->response['message'] = $this->err;
 			return false;
 		}
-		
+
 	}
-    
-    
+
+
 
 }
 ?>
