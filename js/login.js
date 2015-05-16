@@ -9,7 +9,7 @@ $(document).ready(function(){
 	    		$.ajax({
 			        type: 'POST',
 			        url: 'post/login.php',
-			        data: {user: textfield.val(), pass: pass.val()},
+			        data: {username: textfield.val(), password: pass.val()},
 			        success: function(json) {
 						if (json.code == 0){
 			                logged(json.user, json.email);
