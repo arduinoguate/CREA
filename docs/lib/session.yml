@@ -7,7 +7,7 @@ api-entries:
     description: 'Genera un nuevo token, el token se obtiene del uso del API key y el API Secret obtenido de la sección "Acceso al API" del panel de control.'
     parameters:
       - name: scopes
-        format: string (default: module-owner)
+        format: 'string (default: module-owner)'
         type: REQUEST
         required: TRUE
     authentication: BASIC
