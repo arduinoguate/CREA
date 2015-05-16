@@ -6,8 +6,7 @@
 	$files = glob('docs/lib/*.{yml}', GLOB_BRACE);
 	foreach($files as $file) {
 		if (trim($file) != "." || trim($file) != ".."){
-			print_r($file);
-			$yaml = file_get_contents('docs/lib/'.$file);
+			$yaml = file_get_contents($file);
 
 			$parsed = yaml_parse($yaml);
 			$api_ref[] = $parsed;
