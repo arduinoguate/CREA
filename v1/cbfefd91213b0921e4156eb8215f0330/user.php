@@ -6,13 +6,13 @@ class USER extends GCConfig
 {
 	public $pagination_link = "";
 	private static $private_fields = array('id', 'endpoint', 'sample', 'scopes', 'internal');
-	
+
     public function __construct($request) {
 		parent::__construct($request);
 		$this->response = array();
 		$this->action = 'user';
 	}
-    
+
 	//Public Methods
 	public function form($action=''){
     	if ($action == '')
@@ -21,7 +21,7 @@ class USER extends GCConfig
         if (count($q_list) > 0){
             $this->response['code'] = 0;
 			$this->response['fields'] = array();
-            
+
 			$i=0;
 			foreach ($q_list as $q_item) {
 				$this->response['fields'][$i] = array();
@@ -41,30 +41,30 @@ class USER extends GCConfig
 			$this->response['http_code'] = 500;
 		}
     }
-	
+
     public function show($eid=null, $params=array()){
     	$this->set_pagination($this->user, $params);
-		
+
 		$verified = " enabled is TRUE ";
-		
+
 		if (isset($params['show'])){
 			$opts = explode(',', $params['show']);
 			if (in_array('disabled', $opts))
 				$verified = " enabled is FALSE ";
 		}
-		
+
 		$q_list = array();
-		
+
 		if (is_null($eid)){
 			$q_list = $this->user->fetch("$verified",false,array('idusuario'),false,$this->page);
 		}else{
 			if ($this->user->fetch_id(array('idusuario'=>$eid),null,true,"$verified"))
 				$q_list[] = $this->user;
 		}
-		
+
         if (count($q_list) > 0){
         	$this->paginate($this->user);
-            
+
 			$this->response['code'] = 0;
 			$this->response['usuarios'] = array();
 			foreach ($q_list as $q_item) {
@@ -82,7 +82,7 @@ class USER extends GCConfig
 	public function show_api($id, $params=array()){
 		if ($this->validate_user($id)){
 	    	$q_list = $this->api_user_asoc->fetch("id_usuario = '$id'");
-			
+
 			if (count($q_list) > 0){
 				$this->response['code'] = 0;
 				$this->response['credenciales'] = array();
@@ -118,7 +118,7 @@ class USER extends GCConfig
                     }else{
                     	$this->response['message'] = 'Deleted';
                 		$this->response['http_code'] = 202;
-        				$this->response['code'] = 0;	    
+        				$this->response['code'] = 0;
                     }
                 }
         	}else{
@@ -153,7 +153,7 @@ class USER extends GCConfig
 	            $this->user->columns['enabled'] = 1;
 				$this->user->columns['created_at'] = date("Y-m-d H:i:s");
 				$this->user->columns['updated_at'] = date("Y-m-d H:i:s");
-	            
+
 	    	    $id = $this->user->insert();
 	            if (is_int($id)){
 	            	$client = '';
@@ -162,7 +162,7 @@ class USER extends GCConfig
 				    	    if ($this->user->fetch_id(array('idusuario' => $params['username']))){
 			                    $this->response['entidad'] = $this->user->columns;
 			            		$this->response['http_code'] = 200;
-			    				$this->response['code'] = 0;	    
+			    				$this->response['code'] = 0;
 			                }else{
 			                    $this->response['type'] = 'error';
 			                    $this->response['title'] = 'Mostrar usuario';
@@ -193,7 +193,7 @@ class USER extends GCConfig
 		            $this->user->columns['email'] = (isset($params['email']))?$params['email']:$this->user->columns['email'];
 		            $this->user->columns['password'] = $password;
 					$this->user->columns['updated_at'] = date("Y-m-d H:i:s");
-		            
+
 	    		    if (!$this->user->update()){
 	                    $this->response['type'] = 'error';
 	                    $this->response['title'] = 'Update Error';
@@ -204,7 +204,7 @@ class USER extends GCConfig
 	                	if ($this->user->fetch_id(array('idusuario' => $id))){
 	                        $this->response['entidad'] = $this->user->columns;
 	                		$this->response['http_code'] = 202;
-	        				$this->response['code'] = 0;	    
+	        				$this->response['code'] = 0;
 	                    }else{
 	                        $this->response['type'] = 'error';
 	                        $this->response['title'] = 'Mostrar entidad';
@@ -219,7 +219,7 @@ class USER extends GCConfig
     }
 
 	public function upload($id, $params){
-		
+
 		if ($this->validate_user($id)){
         	//Base file type detection
         	$file_info = new finfo(FILEINFO_MIME);  // object oriented approach!
@@ -228,7 +228,7 @@ class USER extends GCConfig
 			if ($this->user->fetch_id( array("idusuario" => $id) )){
 				if ($this->prepare_asset($mime_type[0], $id, $filepath, $filename, $tip)){
 		            $this->user->columns['path_avatar'] = stripslashes($filename);
-					
+
 					if ($tip->columns['type'] == "image"){
 	                    if (!$this->user->update()){
 	                    	$this->response['type'] = 'error';
@@ -241,7 +241,7 @@ class USER extends GCConfig
 	                        if ($this->user->fetch_id(array('idusuario' => $id))){
 	                            $this->response['entidad'] = $this->user->columns;
 	                    		$this->response['http_code'] = 200;
-	            				$this->response['code'] = 0;	    
+	            				$this->response['code'] = 0;
 	                        }else{
 	                            $this->response['type'] = 'error';
 	                            $this->response['title'] = 'Crear asset';
@@ -275,12 +275,12 @@ class USER extends GCConfig
                 }else{
                 	$this->response['entidad'] = $this->user->columns;
             		$this->response['http_code'] = 202;
-    				$this->response['code'] = 0;	    
+    				$this->response['code'] = 0;
                 }
 			}
     	}
     }
-	
+
 	public function disable($id, $params = array()){
 		if ($this->validate_user($id)){
     		if ($this->user->fetch_id( array("idusuario" => $id) )){
@@ -294,16 +294,16 @@ class USER extends GCConfig
                 }else{
                 	$this->response['entidad'] = $this->user->columns;
             		$this->response['http_code'] = 202;
-    				$this->response['code'] = 0;	    
+    				$this->response['code'] = 0;
                 }
 			}
     	}
     }
-	
+
 	//Private Methods
 	private function validate_user($user){
         $validation = $this->user->fetch_id(array('idusuario'=>$user));
-        
+
         if (!$validation){
             $this->response['type'] = 'error';
             $this->response['title'] = 'Usuario';
@@ -311,36 +311,35 @@ class USER extends GCConfig
 			$this->response['code'] = 2;
 			$this->response['http_code'] = 422;
         }
-        
+
         return $validation;
-    }	
-	
+    }
+
 	public function validate_association($userid, $token){
-		$password = md5($params['password']);
-    	$this->api_user_asoc->columns['client_id'] = $token;
-        $this->api_user_asoc->columns['id_usuario'] = $userid;
-	    
-	    $id = $this->api_user_asoc->insert();
-        if (is_int($id)){
-            if ($this->api_user_asoc->fetch_id(array('client_id' => $token, 'id_usuario' => $userid))){
-                return true;	    
-            }else{
-                $this->response['type'] = 'error';
-                $this->response['title'] = 'Error de Asociacion';
-                $this->response['message'] = 'Se ha producido el siguiente error: '.$this->entidad->err_data;
-        		$this->response['code'] = 1;
-    			$this->response['http_code'] = 500;
+		$this->api_user_asoc->columns['client_id'] = $token;
+		$this->api_user_asoc->columns['id_usuario'] = $userid;
+
+    $id = $this->api_user_asoc->insert();
+    if (is_int($id)){
+      if ($this->api_user_asoc->fetch_id(array('client_id' => $token, 'id_usuario' => $userid))){
+        return true;
+      }else{
+        $this->response['type'] = 'error';
+        $this->response['title'] = 'Error de Asociacion';
+        $this->response['message'] = 'Se ha producido el siguiente error: '.$this->entidad->err_data;
+  			$this->response['code'] = 1;
+  			$this->response['http_code'] = 500;
 				return false;
-            }
-        }else{
-            $this->response['type'] = 'error';
-            $this->response['title'] = 'Crear asociacion';
-            $this->response['message'] = 'Se ha producido el siguiente error: '.$this->entidad->err_data;
+      }
+    }else{
+      $this->response['type'] = 'error';
+      $this->response['title'] = 'Crear asociacion';
+    	$this->response['message'] = 'Se ha producido el siguiente error: '.$this->entidad->err_data;
 			$this->response['code'] = 1;
 			$this->response['http_code'] = 422;
 			return false;
-        }
     }
+  }
 
 	public function validate_api($userid, $email, &$client, $asoc = 1){
 		$client = md5($userid.$email.date("Y-m-d H:i:s"));
@@ -353,7 +352,7 @@ class USER extends GCConfig
 		$this->api_client->columns['asoc'] = $asoc;
 		$this->api_client->columns['created_at'] = date("Y-m-d H:i:s");;
 		$this->api_client->columns['updated_at'] = date("Y-m-d H:i:s");;
-		
+
 	    $id = $this->api_client->insert();
         if (is_int($id)){
             if ($this->api_client->fetch_id(array('client_id' => $client))){
@@ -362,7 +361,7 @@ class USER extends GCConfig
 				$idx = $this->api_client_scopes->insert();
 		        if (is_int($idx)){
 		            if ($this->api_client_scopes->fetch_id(array('id_client' => $client,'id_scope'=>'module-owner'))){
-		            	return true;	    
+		            	return true;
 		            }else{
 		                $this->response['type'] = 'error';
 		                $this->response['title'] = 'Error de Asociacion scope';
@@ -378,7 +377,7 @@ class USER extends GCConfig
 					$this->response['code'] = 1;
 					$this->response['http_code'] = 422;
 					return false;
-		        }	    
+		        }
             }else{
                 $this->response['type'] = 'error';
                 $this->response['title'] = 'Error de token';
@@ -396,7 +395,7 @@ class USER extends GCConfig
 			return false;
         }
     }
-	
+
 	private function remove_asset($url){
         $filepath = str_replace("http://assets.arduinogt.com/user/",$_SERVER['DOCUMENT_ROOT'].'/arduinogt_assets/user/',$url);
         if (unlink($filepath)){
@@ -410,13 +409,13 @@ class USER extends GCConfig
             return false;
         }
     }
-	
+
 	private function prepare_asset($mime, $id, &$filepath, &$filename, &$tip){
 		$validation = false;
-		
+
 		if (!is_null($mime) && trim($mime) != ''){
 			$q_list = $this->asset_type->fetch(" mime LIKE '%$mime%' ");
-		
+
 			if (count($q_list) > 0){
 				$validation = true;
 				if (!file_exists($_SERVER['DOCUMENT_ROOT'].'/arduinogt_assets/user/'.$id)) {
@@ -431,7 +430,7 @@ class USER extends GCConfig
 	            $this->response['message'] = 'El archivo no es valido, por favor intente un archivo valido (jpg, png, bmp, gif)';
 				$this->response['code'] = 6;
 				$this->response['http_code'] = 422;
-			}	
+			}
 		}else{
 			$this->response['type'] = 'error';
             $this->response['title'] = 'Formato Invalido';
@@ -439,7 +438,7 @@ class USER extends GCConfig
 			$this->response['code'] = 6;
 			$this->response['http_code'] = 422;
 		}
-		
+
 		return $validation;
 	}
 }
