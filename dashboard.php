@@ -1,6 +1,9 @@
 <?php
 	session_start();
 
+	$output = "";
+	exec('git rev-list HEAD --count', $output);
+	$version = $output[0];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -140,6 +143,13 @@
               </div>
             </div>
           </div>
+					<div class="row">
+						<div class="col-md-12">
+							<small>
+								Version: 0.1.<?php echo $version; ?>
+							</small>
+						</div>
+					</div>
         </div>
         <div class="col-sm-9 col-md-9">
           <div class="panel panel-default">
