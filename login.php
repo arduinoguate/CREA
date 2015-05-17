@@ -5,8 +5,8 @@
 <head>
   <title></title>
   <meta charset="">
-  <link rel="stylesheet" media="screen" href="css/login.css">
   <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" media="screen" href="css/login.css">
   <link rel="shortcut icon" type="img/png" href="img/favicon.png">
   <script src="js/jquery.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
