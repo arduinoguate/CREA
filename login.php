@@ -7,6 +7,12 @@
   <meta charset="">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" media="screen" href="css/login.css">
+  <!-- Custom Fonts -->
+  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+
   <link rel="shortcut icon" type="img/png" href="img/favicon.png">
   <script src="js/jquery.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
