@@ -21,7 +21,7 @@
 
 <body>
   <div class="container">
-    <div class="page-header">
+    <div class="page-header" style="color:#fff;">
       <center><h1 class="logo">CREA Dashboard<small> Ingresa tus credenciales</small></h1></center>
     </div>
     <div class="login-container">
