@@ -297,7 +297,7 @@ $(document).ready(function() {
           info += 'Estado <b>' + item.estado + '</b><br/>Ultima Respuesta <b>' + item.last_response + '</b><br/>';
           info += '<small>Actualizado en: <b>' + item.updated_at + '</b></small></div>';
           info += '<div class="col-md-4"><button data-mod="' + item.id + '" class="btn-success btn-lg add_action">Agregar Acción</button>';
-          info += '<br/><a href="'+item.tipo_modulo.url_libreria+'" target="_blank" class="btn btn-primary btn-lg">Descargar Librería</a>';
+          info += '<br/><a href="'+item.tipo_modulo.url_libreria+'" target="_blank" class="btn btn-primary btn-lg">Descargar</a>';
           info += '<br/><small><a href="#" class="eliminar_mod" id="' + item.id + '">Eliminar</a></small></div>';
           info += '</div><hr/><p>Acciones</p>';
           info += '<div class="row" id="actions_int"></div>';
