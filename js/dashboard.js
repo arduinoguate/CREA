@@ -296,9 +296,9 @@ $(document).ready(function() {
           info += 'Dispositivo <b>' + item.tipo_modulo.nombre + '</b><br/>';
           info += 'Estado <b>' + item.estado + '</b><br/>Ultima Respuesta <b>' + item.last_response + '</b><br/>';
           info += '<small>Actualizado en: <b>' + item.updated_at + '</b></small></div>';
-          info += '<div class="col-md-4"><button data-mod="' + item.id + '" class="btn-success btn-lg add_action">Agregar Acción</button>';
-          info += '<br/><a href="'+item.tipo_modulo.url_libreria+'" target="_blank" class="btn btn-primary btn-lg">Descargar Lib.</a>';
-          info += '<br/><small><a href="#" class="eliminar_mod" id="' + item.id + '">Eliminar</a></small></div>';
+          info += '<div class="col-md-4"><div class="col-md-12"><button data-mod="' + item.id + '" class="btn-success btn-lg add_action">Agregar Acción</button></div>';
+          info += '<div class="col-md-12"><a href="'+item.tipo_modulo.url_libreria+'" target="_blank" class="btn btn-primary btn-lg">Descargar Lib.</a></div>';
+          info += '<div class="col-md-12"><small><a href="#" class="eliminar_mod" id="' + item.id + '">Eliminar</a></small></div></div>';
           info += '</div><hr/><p>Acciones</p>';
           info += '<div class="row" id="actions_int"></div>';
 
