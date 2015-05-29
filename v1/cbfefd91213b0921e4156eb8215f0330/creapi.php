@@ -205,6 +205,7 @@ class CREAPI extends API
   * /v1/user
   */
   protected function user(){
+    echo $this->session->username;
     if ($this->session->validate_bearer_token($_SERVER['HTTP_Authorization'])){
       switch ($this->method) {
         case 'GET':
