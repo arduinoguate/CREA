@@ -59,6 +59,7 @@ class SESSION extends GCConfig
 			if ($this->user->fetch_id(array('idusuario' => $params['username']),null,true," password = '$pass' AND enabled is TRUE ")){
 				if ($this->api_user_asoc->fetch_id(array('client_id'=>$this->client_id,'id_usuario'=>$this->user->columns['idusuario']))){
 					$this->username = $this->user->columns['idusuario'];
+          echo $this->username;
 					return true;
 				}else{
 					$this->err = 'Usuario no asociado';
@@ -123,33 +124,33 @@ class SESSION extends GCConfig
         return (strpos($token,$type) !== false);
 	}
 
-	private function validate_token($token){
-		$this->session_token = $token;
-		$result = $this->api_token->fetch("token = '$token' AND enabled is TRUE", false, array('updated_at'), false);
-		if (count($result) == 1){
-			$token = $this->decrypt($this->base64_url_decode($this->token), $this->app_secret);
-            $token = explode(':', $token);
-			if (count($token) == 4){
-                if (((strtotime($result[0]->columns['updated_at'])*1000)+$result[0]->columns['expires']) > (time()*1000)){
-                	$this->session_scopes = $token[2];
-					$this->username = $token[3];
-					return true;
-				}else{
-					$result[0]->columns['enabled'] = 0;
-					$result[0]->columns['client_id'] = $result[0]->columns['client_id']['client_id'];
-					$result[0]->update();
-					$this->err = 'Expired token';
-					return false;
-				}
-			}else{
-				$this->err = 'Malformed token';
-				return false;
-			}
-		}else{
-			$this->err = 'Invalid token';
-			return false;
-		}
-	}
+  private function validate_token($token){
+    $this->session_token = $token;
+    $result = $this->api_token->fetch("token = '$token' AND enabled is TRUE", false, array('updated_at'), false);
+    if (count($result) == 1){
+      $token = $this->decrypt($this->base64_url_decode($this->token), $this->app_secret);
+      $token = explode(':', $token);
+      if (count($token) == 4){
+        if (((strtotime($result[0]->columns['updated_at'])*1000)+$result[0]->columns['expires']) > (time()*1000)){
+          $this->session_scopes = $token[2];
+          $this->username = $token[3];
+          return true;
+        }else{
+          $result[0]->columns['enabled'] = 0;
+          $result[0]->columns['client_id'] = $result[0]->columns['client_id']['client_id'];
+          $result[0]->update();
+          $this->err = 'Expired token';
+          return false;
+        }
+      }else{
+        $this->err = 'Malformed token';
+        return false;
+      }
+    }else{
+      $this->err = 'Invalid token';
+      return false;
+    }
+  }
 
 	private function locate_valid_token(){
 		$result = $this->api_token->fetch("client_id = '$this->client_id'", false, array('updated_at'), false);
