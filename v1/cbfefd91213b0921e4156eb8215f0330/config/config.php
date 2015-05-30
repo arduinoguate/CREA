@@ -8,7 +8,7 @@
 		private $db_pass;
 		private $db_database;
 
-        protected $ipp;
+    protected $ipp;
 		protected $fbappid;
 		protected $fbsecret;
 
@@ -16,10 +16,10 @@
 
 		private $connection;
 
-        //controller vars
-        public $pagination_link = "";
-        public $page;
-        public $per_page;
+    //controller vars
+    public $pagination_link = "";
+    public $page;
+    public $per_page;
 
         //API vars
 		protected $scopes;
@@ -27,14 +27,14 @@
 		protected $api_client;
 		protected $api_client_scopes;
 		protected $api_token;
-        protected $api_form;
-    	protected $api_field_type;
+    protected $api_form;
+  	protected $api_field_type;
 		protected $api_user_asoc;
 
-        //user vars
+    //user vars
 
-        //modulo vars
-        protected $modulo;
+    //modulo vars
+    protected $modulo;
 		protected $tipo_modulo;
 		protected $modulo_asoc;
 
@@ -46,7 +46,7 @@
 		public $err;
 		public $response;
 
-        public function __construct($request){
+    public function __construct($request){
 
 			$config = parse_ini_file("config.ini");
 
@@ -55,24 +55,24 @@
 			$this->db_pass = $config['db_pass'];
 			$this->db_database = $config['database'];
 
-		    $this->app_secret = $config['app_secret'];
+	    $this->app_secret = $config['app_secret'];
 
 			$this->fbappid = $config['fbapp'];
 			$this->fbsecret = $config['fbsecret'];
-            $this->ipp = $config['ipp'];
+	    $this->ipp = $config['ipp'];
 
 			$this->connection = new DataBase($this->server, $this->db_user, $this->db_pass, $this->db_database);
 
 			$col_asset_type = array('id', 'name', 'format', 'max_size', 'max_dimensions', 'mime', 'type');
 			$key_asset_type = array('id');
-            $this->asset_type = new DBManager($this->connection, 'asset_type', $col_asset_type, $key_asset_type);
+	    $this->asset_type = new DBManager($this->connection, 'asset_type', $col_asset_type, $key_asset_type);
 
-            $col_ftype = array('id', 'name', 'regex');
-        	$key_ftype = array('id');
+	    $col_ftype = array('id', 'name', 'regex');
+	  	$key_ftype = array('id');
 			$this->api_field_type = new DBManager($this->connection, 'api_field_type', $col_ftype, $key_ftype);
 
-            $col_aform = array('id', 'endpoint', 'field', 'id_type', 'sample', 'internal', 'required', 'scopes');
-    		$key_aform = array('id');
+	    $col_aform = array('id', 'endpoint', 'field', 'id_type', 'sample', 'internal', 'required', 'scopes');
+			$key_aform = array('id');
 			$foreign_aform = array('id_type' => array('api_field_type','id', $this->api_field_type));
 			$this->api_form = new DBManager($this->connection, 'api_form', $col_aform, $key_aform, $foreign_aform);
 
@@ -152,22 +152,22 @@
 
 		}
 
-        //Private Methods
-        private function filter_gets($ignored = array()){
-    		$query = "";
-    		$count = 0;
-    		foreach ($_GET as $key => $value) {
-    			if (!in_array($key, $ignored)){
-    				$query .= $key.'='.$value;
-    			}
-    			if ($count > 0){
-    				$query .= "&";
-    			}
-    			$count++;
-    		}
+		//Private Methods
+		private function filter_gets($ignored = array()){
+			$query = "";
+			$count = 0;
+			foreach ($_GET as $key => $value) {
+				if (!in_array($key, $ignored)){
+					$query .= $key.'='.$value;
+				}
+				if ($count > 0){
+					$query .= "&";
+				}
+				$count++;
+			}
 
-    		return $query;
-    	}
+			return $query;
+		}
 
 		//Protected methods
         protected function paginate($class){

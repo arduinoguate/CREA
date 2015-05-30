@@ -59,8 +59,7 @@ class SESSION extends GCConfig
 			if ($this->user->fetch_id(array('idusuario' => $params['username']),null,true," password = '$pass' AND enabled is TRUE ")){
 				if ($this->api_user_asoc->fetch_id(array('client_id'=>$this->client_id,'id_usuario'=>$this->user->columns['idusuario']))){
 					$this->username = $this->user->columns['idusuario'];
-          echo $this->username;
-					return true;
+          return true;
 				}else{
 					$this->err = 'Usuario no asociado';
 					return false;
@@ -87,41 +86,43 @@ class SESSION extends GCConfig
 			}
 			return true;
 		}else{
-            $this->err = 'Token not found';
+      $this->err = 'Token not found';
 			return false;
 		}
 	}
 
-    private function validate_scopes($method){
-    	$retval = true;
-		if ($method == 'GET'){
-			return true;
-		}
-        $scopes_arr = explode(',', $this->_scopes);
-		if (count($scopes_arr) <= 0){
-			$retval = ($retval && false);
-			$this->err = "no scopes selected";
-		}
-        foreach ($scopes_arr as $value) {
-            if ($this->scopes->fetch_id(array("name"=>$value))){
-                $result = $this->api_client_scopes->fetch("id_client = '$this->client_id' AND id_scope = '".$this->scopes->columns['name']."'");
-				if (count($result) > 0){
-					$retval = ($retval && true);
-				} else {
-					$retval = ($retval && false);
-					$this->err = "invalid scope for client";
-				}
-            }else{
-            	$this->err = "scope '$value' not found";
-            	$retval = ($retval && false);
-            }
-        }
-		return $retval;
+  private function validate_scopes($method){
+    $retval = true;
+    if ($method == 'GET'){
+      return true;
     }
+
+    $scopes_arr = explode(',', $this->_scopes);
+    if (count($scopes_arr) <= 0){
+      $retval = ($retval && false);
+      $this->err = "no scopes selected";
+    }
+
+    foreach ($scopes_arr as $value) {
+      if ($this->scopes->fetch_id(array("name"=>$value))){
+        $result = $this->api_client_scopes->fetch("id_client = '$this->client_id' AND id_scope = '".$this->scopes->columns['name']."'");
+        if (count($result) > 0){
+          $retval = ($retval && true);
+        } else {
+          $retval = ($retval && false);
+          $this->err = "invalid scope for client";
+        }
+      }else{
+        $this->err = "scope '$value' not found";
+        $retval = ($retval && false);
+      }
+    }
+    return $retval;
+  }
 
 	private function sanitize_token($token, $type){
 		$this->token = str_replace($type, '', $token);
-        return (strpos($token,$type) !== false);
+    return (strpos($token,$type) !== false);
 	}
 
   private function validate_token($token){
@@ -196,17 +197,18 @@ class SESSION extends GCConfig
 		if ($this->locate_valid_token()){
 			return $this->api_token->columns['token'];
 		}else{
-            $timestamp = time();
-			$token = $this->encrypt($this->client_id.':'.$timestamp.':'.$this->_scopes.':'.$this->username,$this->app_secret);
-            $token = $this->base64_url_encode($token);
-			$this->api_token->columns['token'] = $token;
-			$this->api_token->columns['created_at'] = date("Y-m-d H:i:s");
-			$this->api_token->columns['updated_at'] = date("Y-m-d H:i:s");
-			$this->api_token->columns['expires'] = 3600000;
-			$this->api_token->columns['enabled'] = true;
-			$this->api_token->columns['client_id'] = $this->client_id;
-            $this->api_token->columns['scopes'] = $this->_scopes;
-            $this->api_token->columns['timestamp'] = $timestamp;
+      $timestamp = time();
+      echo $this->username;
+      $token = $this->encrypt($this->client_id.':'.$timestamp.':'.$this->_scopes.':'.$this->username,$this->app_secret);
+      $token = $this->base64_url_encode($token);
+      $this->api_token->columns['token'] = $token;
+      $this->api_token->columns['created_at'] = date("Y-m-d H:i:s");
+      $this->api_token->columns['updated_at'] = date("Y-m-d H:i:s");
+      $this->api_token->columns['expires'] = 3600000;
+      $this->api_token->columns['enabled'] = true;
+      $this->api_token->columns['client_id'] = $this->client_id;
+      $this->api_token->columns['scopes'] = $this->_scopes;
+      $this->api_token->columns['timestamp'] = $timestamp;
 			if (is_int($this->api_token->insert()))
 				return $token;
 			else {
@@ -218,49 +220,49 @@ class SESSION extends GCConfig
 	}
 
 	public function validate_bearer_token($token){
-        try{
-		    if ($this->sanitize_token($token, self::BEARER)){
-		    	if ($this->validate_token($this->token)){
-		    		return true;
-		    	}else{
-		    		$this->response['type'] = 'error';
-		    		$this->response['code'] = 401;
-					$this->response['message'] = $this->err;
-					return false;
-		    	}
-		    }else{
-		    	$this->response['type'] = 'error';
-    	        $this->response['code'] = 401;
-    		    $this->response['message'] = 'Malformed token';
-			    return false;
-		    }
-        }catch(Exception $e){
-        	$this->response['type'] = 'error';
-    		$this->response['code'] = 401;
-			$this->response['message'] = $this->err;
-			return false;
-		}
+    try{
+      if ($this->sanitize_token($token, self::BEARER)){
+        if ($this->validate_token($this->token)){
+          return true;
+        }else{
+          $this->response['type'] = 'error';
+          $this->response['code'] = 401;
+          $this->response['message'] = $this->err;
+          return false;
+        }
+      }else{
+        $this->response['type'] = 'error';
+        $this->response['code'] = 401;
+        $this->response['message'] = 'Malformed token';
+        return false;
+      }
+    }catch(Exception $e){
+      $this->response['type'] = 'error';
+      $this->response['code'] = 401;
+      $this->response['message'] = $this->err;
+      return false;
+    }
 	}
 
 	public function validate_basic_token($token, $params = array(), $method){
 		try{
 			if ($this->sanitize_token($token, self::BASIC)){
-    		    $this->_scopes = (isset($params['scopes']) && $params['scopes'] != '')?$params['scopes']:'';
-        		if ($this->validate_basic($params) && $this->validate_scopes($method)){
-    				$this->response['code'] = 200;
-    				$this->response['access_token'] = $this->generate_token();
-    				$this->response['expires'] = ((strtotime($this->api_token->columns['updated_at'])*1000)+$this->api_token->columns['expires']) - (time()*1000);
-    				return true;
-    			}else{
-    				$this->response['type'] = 'error';
-    				$this->response['code'] = 401;
-    				$this->response['message'] = $this->err;
-    				return false;
-    			}
+  		    $this->_scopes = (isset($params['scopes']) && $params['scopes'] != '')?$params['scopes']:'';
+      		if ($this->validate_basic($params) && $this->validate_scopes($method)){
+  				$this->response['code'] = 200;
+  				$this->response['access_token'] = $this->generate_token();
+  				$this->response['expires'] = ((strtotime($this->api_token->columns['updated_at'])*1000)+$this->api_token->columns['expires']) - (time()*1000);
+  				return true;
+  			}else{
+  				$this->response['type'] = 'error';
+  				$this->response['code'] = 401;
+  				$this->response['message'] = $this->err;
+  				return false;
+  			}
 			}else{
 				$this->response['type'] = 'error';
-    		    $this->response['code'] = 401;
-    			$this->response['message'] = 'Malformed token';
+		    $this->response['code'] = 401;
+        $this->response['message'] = 'Malformed token';
 				return false;
 			}
 
