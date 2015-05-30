@@ -131,11 +131,12 @@ class SESSION extends GCConfig
     if (count($result) == 1){
       $token = $this->decrypt($this->base64_url_decode($this->token), $this->app_secret);
       $token = explode(':', $token);
-      print_r($token);
+
       if (count($token) == 4){
         if (((strtotime($result[0]->columns['updated_at'])*1000)+$result[0]->columns['expires']) > (time()*1000)){
           $this->session_scopes = $token[2];
           $this->username = $token[3];
+          echo $this->username;
           return true;
         }else{
           $result[0]->columns['enabled'] = 0;
