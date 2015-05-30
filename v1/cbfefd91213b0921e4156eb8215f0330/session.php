@@ -131,6 +131,7 @@ class SESSION extends GCConfig
     if (count($result) == 1){
       $token = $this->decrypt($this->base64_url_decode($this->token), $this->app_secret);
       $token = explode(':', $token);
+      print_r($token);
       if (count($token) == 4){
         if (((strtotime($result[0]->columns['updated_at'])*1000)+$result[0]->columns['expires']) > (time()*1000)){
           $this->session_scopes = $token[2];
@@ -163,7 +164,7 @@ class SESSION extends GCConfig
 				$token = explode(':', $token);
 				$token[2] = (string)$token[2];
 				$token[3] = (string)$token[3];
-        print_r($token);
+
 				if (trim($this->username) == "" || trim($this->username) == $token[3]){
 					if (count($token) == 4){
 						if ((trim($this->_scopes) == trim($token[2])) && (((strtotime($result[0]->columns['updated_at'])*1000)+$result[0]->columns['expires']) > (time()*1000))){
