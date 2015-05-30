@@ -136,7 +136,7 @@ class SESSION extends GCConfig
         if (((strtotime($result[0]->columns['updated_at'])*1000)+$result[0]->columns['expires']) > (time()*1000)){
           $this->session_scopes = $token[2];
           $this->username = $token[3];
-          echo $this->username;
+          
           return true;
         }else{
           $result[0]->columns['enabled'] = 0;
