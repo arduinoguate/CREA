@@ -206,7 +206,6 @@ class CREAPI extends API
   */
   protected function user(){
     if ($this->session->validate_bearer_token($_SERVER['HTTP_Authorization'])){
-      echo '--: '.$this->session->username;
       switch ($this->method) {
         case 'GET':
           if (allow::is_allowed($this->session->session_scopes, allow::PUBLISH())){
@@ -220,6 +219,7 @@ class CREAPI extends API
                 $id = null;
                 if (isset($this->verb) && (trim($this->verb) != '')){
                   $id = $this->verb;
+                  echo 'ido: '.$id;
                   if (($id != $this->session->username) && (!allow::is_allowed($this->session->session_scopes, allow::MODERATE()))){
                     $this->response_code = '401';
                     return allow::denied($this->session->session_scopes);
