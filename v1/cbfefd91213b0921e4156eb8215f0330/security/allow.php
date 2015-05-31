@@ -12,11 +12,11 @@ class allow {
   private static $ADMINISTRATOR = array('administrator');
 
 	public static function MANAGER(){
-    	return self::$MANAGER;
+  	return self::$MANAGER;
 	}
 
   public static function ADMINISTRATOR(){
-    	return self::$ADMINISTRATOR;
+  	return self::$ADMINISTRATOR;
 	}
 
 	public static function PUBLISH(){

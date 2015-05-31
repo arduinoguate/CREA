@@ -94,7 +94,7 @@ class ACTION extends GCConfig {
 			}
 		}
 	}
-	
+
 	public function show_action_type() {
 		$q_list = $this->tipo_action->fetch();
 
@@ -112,7 +112,7 @@ class ACTION extends GCConfig {
 			$this->response['http_code'] = 422;
 		}
 	}
-	
+
 	public function show_module_type() {
 		$q_list = $this->tipo_modulo->fetch();
 
@@ -177,7 +177,7 @@ class ACTION extends GCConfig {
 					$this->actions->columns['enabled'] = 1;
 					$this->actions->columns['created_at'] = date("Y-m-d H:i:s");
 					$this->actions->columns['updated_at'] = date("Y-m-d H:i:s");
-	
+
 					$id = $this->actions->insert();
 					if (is_int($id)) {
 						if ($this->actions->fetch_id(array('id' => $id))) {
@@ -247,7 +247,7 @@ class ACTION extends GCConfig {
 						$this->actions->columns['modulo_id'] = $this->actions->columns['modulo_id']['id'];
 						$this->actions->columns['tipo_accion'] = $this->actions->columns['tipo_accion']['idtipo_action'];
 						$this->actions->columns['updated_at'] = date("Y-m-d H:i:s");
-						
+
 						if (!$this->actions->update()) {
 							$this->response['type'] = 'error';
 							$this->response['title'] = 'Execute Error';
@@ -259,7 +259,7 @@ class ACTION extends GCConfig {
 								$this->modulo->columns['estado'] = "ACCION";
 								$this->modulo->columns['tipo_modulo'] = $this->modulo->columns['tipo_modulo']['idtipo_modulo'];
 								$this->modulo->columns['updated_at'] = date("Y-m-d H:i:s");
-								
+
 								if (!$this->modulo->update()) {
 									$this->response['type'] = 'error';
 									$this->response['title'] = 'Execute asociation Error';
@@ -285,7 +285,7 @@ class ACTION extends GCConfig {
 				$this->modulo->columns['estado'] = "STATUS";
 				$this->modulo->columns['tipo_modulo'] = $this->modulo->columns['tipo_modulo']['idtipo_modulo'];
 				$this->modulo->columns['updated_at'] = date("Y-m-d H:i:s");
-				
+
 				if (!$this->modulo->update()) {
 					$this->response['type'] = 'error';
 					$this->response['title'] = 'Execute asociation Error';
@@ -302,26 +302,26 @@ class ACTION extends GCConfig {
 	}
 
 	public function api_what($mid, $params = array()) {
-	    if ($this->validate_module_id_only($mid)){
-            if ($this->modulo->fetch_id(array("id" => $mid))) {
-            	$status = 'IDLE';
-            	$this->actions->set_pagination(true);
+    if ($this->validate_module_id_only($mid)){
+      if ($this->modulo->fetch_id(array("id" => $mid))) {
+      	$status = 'IDLE';
+      	$this->actions->set_pagination(true);
 				$this->actions->set_ipp(1);
 				$acciones = $this->actions->fetch("modulo_id = '$mid' AND TRIM(ultimo_valor) <> '' ");
-				
+
 				$this->response['message'] = "<NA>";
 				$this->response['http_code'] = 200;
-				
+
 				foreach ($acciones as $accion) {
 					$this->response['message'] = "<".$accion->columns['comando']."|".$accion->columns['ultimo_valor'].">";
 					if ($this->actions->fetch_id(array("id" => $accion->columns['id']))) {
 						$status = 'OPERATED';
-						
+
 						$this->actions->columns['ultimo_valor'] = "";
 						$this->actions->columns['modulo_id'] = $this->actions->columns['modulo_id']['id'];
 						$this->actions->columns['tipo_accion'] = $this->actions->columns['tipo_accion']['idtipo_action'];
 						$this->actions->columns['updated_at'] = date("Y-m-d H:i:s");
-						
+
 						if (!$this->actions->update()) {
 							$this->response['message'] = '<UPD_ERR>';
 							$this->response['http_code'] = 422;
@@ -331,26 +331,26 @@ class ACTION extends GCConfig {
 						$this->response['http_code'] = 500;
 					}
 				}
-				
-            	if (isset($params['q']) && $params['q'] != ''){
-            		$this->modulo->columns['estado'] = "REPLIED";
+
+    		if (isset($params['q']) && $params['q'] != ''){
+      		$this->modulo->columns['estado'] = "REPLIED";
 					$this->modulo->columns['last_response'] = $params['q'];
-            	}else{
-            		$this->modulo->columns['estado'] = $status;
-            	}
-				
+      	}else{
+      		$this->modulo->columns['estado'] = $status;
+      	}
+
 				$this->modulo->columns['tipo_modulo'] = $this->modulo->columns['tipo_modulo']['idtipo_modulo'];
 				$this->modulo->columns['updated_at'] = date("Y-m-d H:i:s");
-				
+
 				if (!$this->modulo->update()) {
 					$this->response['message'] = '<UPD_M_ERR>';
 					$this->response['http_code'] = 422;
-				}  
-            }else{
-            	$this->response['message'] = '<MOD_ERR>';
+				}
+      }else{
+      	$this->response['message'] = '<MOD_ERR>';
 				$this->response['http_code'] = 422;
-            }
-	    }	
+      }
+    }
 	}
 
 	public function enable($id, $params = array()) {
@@ -360,7 +360,7 @@ class ACTION extends GCConfig {
 				$this->actions->columns['modulo_id'] = $this->actions->columns['modulo_id']['id'];
 				$this->actions->columns['tipo_accion'] = $this->actions->columns['tipo_accion']['idtipo_action'];
 				$this->actions->columns['updated_at'] = date("Y-m-d H:i:s");
-				
+
 				if (!$this->actions->update()) {
 					$this->response['type'] = 'error';
 					$this->response['title'] = 'Validate Error';
@@ -383,7 +383,7 @@ class ACTION extends GCConfig {
 				$this->actions->columns['modulo_id'] = $this->actions->columns['modulo_id']['id'];
 				$this->actions->columns['tipo_accion'] = $this->actions->columns['tipo_accion']['idtipo_action'];
 				$this->actions->columns['updated_at'] = date("Y-m-d H:i:s");
-				
+
 				if (!$this->actions->update()) {
 					$this->response['type'] = 'error';
 					$this->response['title'] = 'Validate Error';
@@ -443,7 +443,7 @@ class ACTION extends GCConfig {
 
 		return $validation;
 	}
-    
+
     private function validate_module_id_only($id) {
 
     	$validation = false;
@@ -475,13 +475,13 @@ class ACTION extends GCConfig {
 
 		return $validation;
 	}
-	
+
 	private function validate_action_name($action, $module) {
 		$validation = false;
-		
+
 		$result = $this->actions->fetch("nombre = '$action' AND modulo_id = '$module'");
 		$validation = (count($result)>0);
-	
+
 		if (!$validation) {
 			$this->response['type'] = 'error';
 			$this->response['title'] = 'Accion';
