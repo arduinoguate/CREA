@@ -9,7 +9,7 @@ class allow {
 	private static $MODERATE = array('administrator', 'moderator');
 	private static $RESOLVE = array('administrator', 'owner');
 	private static $MANAGER = array('administrator', 'manager');
-    private static $ADMINISTRATOR = array('administrator');
+  private static $ADMINISTRATOR = array('administrator');
 
 	public static function MANAGER(){
     	return self::$MANAGER;
@@ -30,7 +30,7 @@ class allow {
 	public static function COMMENT(){
 		return self::$COMMENT;
 	}
-	
+
 	public static function SEARCH(){
 		return self::$SEARCH;
 	}

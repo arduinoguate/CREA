@@ -222,6 +222,7 @@ class CREAPI extends API
                   echo 'ido: '.$id;
                   echo ' ide: '.$this->session->username;
                   if (($id != $this->session->username) && (!allow::is_allowed($this->session->session_scopes, allow::MODERATE()))){
+                    echo ' validated here!';
                     $this->response_code = '401';
                     return allow::denied($this->session->session_scopes);
                   }
