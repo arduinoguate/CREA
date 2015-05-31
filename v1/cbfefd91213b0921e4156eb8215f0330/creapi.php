@@ -219,11 +219,7 @@ class CREAPI extends API
                 $id = null;
                 if (isset($this->verb) && (trim($this->verb) != '')){
                   $id = $this->verb;
-                  echo 'ido: '.$id;
-                  echo ' ide: '.$this->session->username;
-                  echo ' compi: '.((trim($id) != trim($this->session->username))?'yup':'nien');
                   if (($id != $this->session->username) && (!allow::is_allowed($this->session->session_scopes, allow::MODERATE()))){
-                    echo ' validated here!';
                     $this->response_code = '401';
                     return allow::denied($this->session->session_scopes);
                   }

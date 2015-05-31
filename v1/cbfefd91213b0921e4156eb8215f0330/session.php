@@ -58,7 +58,7 @@ class SESSION extends GCConfig
 			$pass = md5($params['password']);
 			if ($this->user->fetch_id(array('idusuario' => $params['username']),null,true," password = '$pass' AND enabled is TRUE ")){
 				if ($this->api_user_asoc->fetch_id(array('client_id'=>$this->client_id,'id_usuario'=>$this->user->columns['idusuario']))){
-					$this->username = $this->user->columns['idusuario'];
+					$this->username = trim($this->user->columns['idusuario']);
           return true;
 				}else{
 					$this->err = 'Usuario no asociado';
@@ -136,7 +136,7 @@ class SESSION extends GCConfig
         if (((strtotime($result[0]->columns['updated_at'])*1000)+$result[0]->columns['expires']) > (time()*1000)){
           $this->session_scopes = $token[2];
           $this->username = $token[3];
-          
+
           return true;
         }else{
           $result[0]->columns['enabled'] = 0;
