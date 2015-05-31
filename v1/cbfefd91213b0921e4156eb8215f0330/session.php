@@ -135,7 +135,7 @@ class SESSION extends GCConfig
       if (count($token) == 4){
         if (((strtotime($result[0]->columns['updated_at'])*1000)+$result[0]->columns['expires']) > (time()*1000)){
           $this->session_scopes = $token[2];
-          $this->username = $token[3];
+          $this->username = trim($token[3]);
 
           return true;
         }else{
