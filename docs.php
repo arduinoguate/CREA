@@ -132,7 +132,7 @@
             </center>
 
 						<hr/>
-						
+
 						<h2>Antes de Empezar</h2>
 
 						<p class="lead">
@@ -311,8 +311,79 @@
 			        	Puedes probar el websocket <a href="http://crea.arduinogt.com/websockettest/client.html" target="_blank">aquí</a>
 					    </p>
 
-							<h1>Comandos</h1>
+							<?php foreach ($cmd_ref as $command): ?>
+								<hr/>
+								<h2><?php echo $command['api-section']; ?></h2>
+								<legend><?php echo $api_module['api-section-description']; ?></legend>
+								<?php foreach ($command['api-commands'] as $key => $value): ?>
+									<?php
+						    		$alertin = 'alert-success';
+						    	?>
 
+									<div class="alert <?php echo $alertin; ?>">
+							        <h4><?php echo $value['entry']; ?></h4>
+							        <p><?php echo $value['description']; ?></p>
+							   	</div>
+
+							    <br />
+
+							    <?php if ($value['parameters'] != 'NONE'): ?>
+
+										<div class="method">
+							        <div class="row margin-0 list-header hidden-sm hidden-xs">
+							            <div class="col-md-3"><div class="header">Nombre</div></div>
+							            <div class="col-md-2"><div class="header">Formato</div></div>
+							            <div class="col-md-2"><div class="header">Requerido</div></div>
+							            <div class="col-md-5"><div class="header">Sintaxis</div></div>
+													<div class="col-md-5"><div class="header">Retorno</div></div>
+							        </div>
+
+							        <?php foreach ($value['parameters'] as $val): ?>
+												<div class="row margin-0">
+								            <div class="col-md-3">
+								                <div class="cell">
+								                    <div class="propertyname">
+								                        <?php echo $val['name']; ?>
+								                    </div>
+								                </div>
+								            </div>
+														<div class="col-md-5">
+								                <div class="cell">
+								                    <div class="description">
+								                        <code><?php echo $val['format']; ?></code>
+								                    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-2">
+								                <div class="cell">
+								                    <div class="isrequired">
+								                        <?php echo ($val['required'] != 1)?'No':'Si'; ?>
+								                    </div>
+								                </div>
+								            </div>
+								            <div class="col-md-3">
+								                <div class="cell">
+								                    <div class="description">
+								                        <code><?php echo $val['syntax']; ?></code>
+								                    </div>
+								                </div>
+								            </div>
+														<div class="col-md-2">
+								                <div class="cell">
+								                    <div class="description">
+								                        <code><?php echo $val['return']; ?></code>
+								                    </div>
+								                </div>
+								            </div>
+								        </div>
+											<?php endforeach ?>
+							    	</div>
+							    <?php endif ?>
+
+							    <hr/>
+								<?php endforeach; ?>
+							<?php endforeach; ?>
+					    </div>
 
 						</div>
 
