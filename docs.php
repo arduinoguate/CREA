@@ -314,7 +314,7 @@
 							<?php foreach ($cmd_ref as $command): ?>
 								<hr/>
 								<h2><?php echo $command['api-section']; ?></h2>
-								<legend><?php echo $api_module['api-section-description']; ?></legend>
+								<legend><?php echo $command['api-section-description']; ?></legend>
 								<?php foreach ($command['api-commands'] as $key => $value): ?>
 									<?php
 						    		$alertin = 'alert-success';
