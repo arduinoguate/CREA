@@ -332,10 +332,10 @@
 										<div class="method">
 							        <div class="row margin-0 list-header hidden-sm hidden-xs">
 							            <div class="col-md-3"><div class="header">Nombre</div></div>
-							            <div class="col-md-2"><div class="header">Formato</div></div>
+							            <div class="col-md-3"><div class="header">Formato</div></div>
 							            <div class="col-md-2"><div class="header">Requerido</div></div>
-							            <div class="col-md-5"><div class="header">Sintaxis</div></div>
-													<div class="col-md-5"><div class="header">Retorno</div></div>
+							            <div class="col-md-2"><div class="header">Sintaxis</div></div>
+													<div class="col-md-2"><div class="header">Retorno</div></div>
 							        </div>
 
 							        <?php foreach ($value['parameters'] as $val): ?>
@@ -347,7 +347,7 @@
 								                    </div>
 								                </div>
 								            </div>
-														<div class="col-md-5">
+														<div class="col-md-3">
 								                <div class="cell">
 								                    <div class="description">
 								                        <code><?php echo $val['format']; ?></code>
@@ -361,7 +361,7 @@
 								                    </div>
 								                </div>
 								            </div>
-								            <div class="col-md-3">
+								            <div class="col-md-2">
 								                <div class="cell">
 								                    <div class="description">
 								                        <code><?php echo $val['syntax']; ?></code>
