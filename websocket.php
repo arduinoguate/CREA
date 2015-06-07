@@ -25,9 +25,7 @@
 		    border-bottom: 1px dotted #ccc;
 		}
 		#log {
-			width:600px;
-			height:300px;
-			border:1px solid #7F9DB9;
+			height:400px;
 			overflow:auto;
 		}
 		</style>
@@ -99,7 +97,7 @@
           <div class="page-header">
             <h1><small class="pull-right">CREA</small> WebSocket Client </h1>
           </div>
-					<div id="log" class="comments-list"></div>
+					<div id="log" class="comments-list form-control"></div>
 
 					<div class="send-wrap ">
 						<input id="msg" type="textbox" class="form-control" onkeypress="onkey(event)"/>
