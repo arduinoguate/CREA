@@ -24,6 +24,12 @@
 		.comments-list .media{
 		    border-bottom: 1px dotted #ccc;
 		}
+		#log {
+			width:600px;
+			height:300px;
+			border:1px solid #7F9DB9;
+			overflow:auto;
+		}
 		</style>
 
     <!-- Custom Fonts -->

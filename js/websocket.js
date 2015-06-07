@@ -1,7 +1,7 @@
 var socket;
 
 function init() {
-	var host = "ws://crea.arduinogt.com:8000"; // SET THIS TO YOUR SERVER
+	var host = "ws://crea.arduinogt.com:9000"; // SET THIS TO YOUR SERVER
 	try {
 		socket = new WebSocket(host);
 		log('WebSocket - status '+socket.readyState);
