@@ -1,28 +1,6 @@
 <?php
 	session_start();
 
-	$api_ref = array();
-	$cmd_ref = array();
-
-	$files = glob('docs/lib/*.{yml}', GLOB_BRACE);
-	foreach($files as $file) {
-		if (trim($file) != "." || trim($file) != ".."){
-			$yaml = file_get_contents($file);
-
-			$parsed = yaml_parse($yaml);
-			$api_ref[] = $parsed;
-		}
-	}
-
-	$files = glob('docs/ws/*.{yml}', GLOB_BRACE);
-	foreach($files as $file) {
-		if (trim($file) != "." || trim($file) != ".."){
-			$yaml = file_get_contents($file);
-
-			$parsed = yaml_parse($yaml);
-			$cmd_ref[] = $parsed;
-		}
-	}
 
 	//print_r($parsed);
 ?>
@@ -95,15 +73,27 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
+		
 	<div class="row">
 		<div class="container">
 		  <h2>Portal de descargas</h2>
-			<legend>Descargas para <?php echo $_GET['plat'] ?></legend>
-			<hr/>
-	  	<div class="row" id="files">
+			<<?php if (isset($_GET['plat'])): ?>
+				<legend>Descargas para <?php echo $_GET['plat'] ?></legend>
+				<hr/>
+		  	<div class="row" id="files">
 
-	    </div>
+		    </div>
+
+				<script src="js/downloads.js"></script>
+			<?php else: ?>
+				<legend>404 sitio no encontrado</legend>
+			<?php endif; ?>
+
+
 	  </div>
   </div>
 
@@ -113,11 +103,7 @@
 
 
 
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-		<script src="js/downloads.js"></script>
+
 
 
 	<script>
