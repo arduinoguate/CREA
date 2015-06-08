@@ -37,7 +37,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Crea - Documentacion</title>
+    <title>Crea - Descargas</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -79,10 +79,7 @@
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
-                    <li class="page-scroll">
-                       Documentación del API
-                    </li>
-										<?php if (isset($_SESSION['token'])): ?>
+                    <?php if (isset($_SESSION['token'])): ?>
 
 											<li class="page-scroll">
 	                        <a href="dashboard.php">Dashboard</a>
@@ -103,7 +100,8 @@
 		<div class="container">
 		  <h2>Portal de descargas</h2>
 			<legend>Descargas para <?php echo $_GET['plat'] ?></legend>
-	  	<div class="row">
+			<hr/>
+	  	<div class="row" id="files">
 
 	    </div>
 	  </div>
@@ -115,10 +113,11 @@
 
 
 
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+		<script src="js/downloads.js"></script>
 
 
 	<script>

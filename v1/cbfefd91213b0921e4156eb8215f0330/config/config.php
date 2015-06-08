@@ -106,7 +106,7 @@
 			$this->api_user_asoc = new DBManager($this->connection, 'api_user_asoc', $col_token, $key_token, $foreign_token);
 
 			//Types will be loaded always
-			$col_tmod = array('idtipo_modulo', 'nombre', 'url_libreria');
+			$col_tmod = array('idtipo_modulo', 'nombre', 'url_libreria', 'url_doc', 'url_img', 'descripcion');
 			$key_tmod = array('idtipo_modulo');
 			$this->tipo_modulo = new DBManager($this->connection, 'tipo_modulo', $col_tmod, $key_tmod);
 

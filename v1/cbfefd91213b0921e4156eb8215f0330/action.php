@@ -113,8 +113,16 @@ class ACTION extends GCConfig {
 		}
 	}
 
-	public function show_module_type() {
-		$q_list = $this->tipo_modulo->fetch();
+	public function show_module_type($params = array()) {
+		$search_val = null;
+		if (isset($params['q'])) {
+			$search_val = $params['q'];
+		}
+
+		if (is_null($search_val))
+			$q_list = $this->tipo_modulo->fetch();
+		else
+			$q_list = $this->tipo_modulo->fetch("nombre like '%$search_val%'");
 
 		if (count($q_list) > 0) {
 			$this->response['code'] = 0;
