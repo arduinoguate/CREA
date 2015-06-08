@@ -362,7 +362,7 @@ class CREAPI extends API
     switch ($this->method) {
       case 'GET':
         $this->action = new ACTION('action');
-        $this->action->show_module_type();
+        $this->action->show_module_type($_GET);
         $this->response_code = $this->action->response['http_code'];
         return $this->action->response;
         break;
