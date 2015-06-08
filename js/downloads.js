@@ -15,7 +15,7 @@ $(document).ready(function(){
       complete: function(resp) {
         json = resp.responseJSON;
         $.each(json.modulos, function(i, item) {
-          var info = '<div class="row"><div class="col-md-3"><img src="'+item.url_img+'" alt="'+item.nombre+'" class="img-rounded"></div>';
+          var info = '<div class="row"><div class="col-md-3"><img heigth="50%" src="'+item.url_img+'" alt="'+item.nombre+'" class="img-rounded"></div>';
           info += '<div class="col-md-2"><b>'+item.nombre+'</b></div>';
           info += '<div class="col-md-4">'+item.descripcion+'</div>';
           info += '<div class="col-md-3"><a href="'+item.url_libreria+'" target="_blank" class="btn btn-primary">Descargar</a><br/>';
