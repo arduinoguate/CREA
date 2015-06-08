@@ -16,7 +16,11 @@ $(document).ready(function(){
         json = resp.responseJSON;
         $.each(json.modulos, function(i, item) {
           var item = '<option value="' + item.idtipo_modulo + '">' + item.nombre + '</option>';
-          $("#files").append(item);
+          var info = '<div class="row"><div class="col-md-3"><img src="'+item.url_img+'" alt="'+item.nombre+'" class="img-rounded"></div>';
+          info += '<div class="col-md-6">'+item.descripcion+'</div>';
+          info += '<div class="col-md-3"><a href="'+item.url_libreria+'" target="_blank" class="btn btn-primary">Descargar</a><br/>';
+          info += '</div><hr/>';
+          $("#files").append(info);
         });
       },
       error: function(jqXHR, textStatus, errorThrown) {
