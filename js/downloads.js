@@ -15,11 +15,11 @@ $(document).ready(function(){
       complete: function(resp) {
         json = resp.responseJSON;
         $.each(json.modulos, function(i, item) {
-          var item = '<option value="' + item.idtipo_modulo + '">' + item.nombre + '</option>';
           var info = '<div class="row"><div class="col-md-3"><img src="'+item.url_img+'" alt="'+item.nombre+'" class="img-rounded"></div>';
-          info += '<div class="col-md-6">'+item.descripcion+'</div>';
+          info += '<div class="col-md-2"><b>'+item.nombre+'</b></div>';
+          info += '<div class="col-md-4">'+item.descripcion+'</div>';
           info += '<div class="col-md-3"><a href="'+item.url_libreria+'" target="_blank" class="btn btn-primary">Descargar</a><br/>';
-          info += '</div><hr/>';
+          info += '</div></div><hr/>';
           $("#files").append(info);
         });
       },
