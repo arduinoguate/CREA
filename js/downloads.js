@@ -1,7 +1,9 @@
 $(document).ready(function(){
   var api = '/v1/';
 
-  function load_module_types() {
+  load_module_libs();
+
+  function load_module_libs() {
     var plat = getParameterByName('plat');
 
     $.ajax({
