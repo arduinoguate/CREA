@@ -27,7 +27,7 @@ $(document).ready(function(){
         if (jqXHR.status != '422') {
           window.location = "logout.php";
         } else
-          $("#files").html("<h1><center>No hay librerias</center><br/><small>Pronto estaremos agregando nuevas librerias</small></h1>");
+          $("#files").html("<center><h1>No hay librerias</h1><br/><small>Pronto estaremos agregando nuevas librerias</small></center>");
       },
     });
   }
