@@ -124,8 +124,8 @@
               <div id="collapseFive" class="panel-collapse collapse">
                 <div class="list-group">
                   <a href="#" class="list-group-item">
-                    <h4 class="list-group-item-heading">Descarga la libreria para Arduino Mega</h4>
-                    <p class="list-group-item-text">Por el momento solo soporta el modulo ESP8266. Puedes descargalo <a class="btn btn-primary" href="https://github.com/oleche/CREA_ESP8266_MEGA/archive/master.zip" target="_blank">Aquí</a></p>
+                    <h4 class="list-group-item-heading">CREA ahora funciona con websockets</h4>
+                    <p class="list-group-item-text">Por el momento solo soporta el modulo ESP8266. Sin embargo, tenemos abierto el codigo para que puedas modificarlo al que mas te parezca. Revisa la documentacion para mas informacion.</p>
                   </a>
                 </div>
                 <div class="list-group">
