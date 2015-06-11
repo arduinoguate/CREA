@@ -11,7 +11,7 @@ class CSS{
     $this->attribute = array();
   }
 
-  public add_attribute($attr, $value){
+  public function add_attribute($attr, $value){
     if (array_key_exists($attr, $this->attribute)){
       if (is_array($this->attribute[$attr]))
         $this->attribute[$attr][] = $value;
@@ -24,14 +24,14 @@ class CSS{
     }
   }
 
-  public to_html(){
+  public function to_html(){
     $attrs = $this->break_attributes();
 
     $converted = "<link href='$this->href' rel='$this->rel' $attrs>";
     return $converted;
   }
 
-  private break_attributes(){
+  private function break_attributes(){
     $output = "";
     foreach ($this->attribute as $key => $value) {
       if (is_array($value)){
