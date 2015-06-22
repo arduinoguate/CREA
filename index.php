@@ -161,7 +161,7 @@
                     <p><?php echo $locale['about_col_1']; ?></p>
                 </div>
                 <div class="col-lg-4">
-                    <p></p>
+                    <p><?php echo $locale['about_col_2']; ?></p>
                 </div>
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <a href="downloads.php?plat=arduino" class="btn btn-lg btn-outline">
