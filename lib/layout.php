@@ -61,7 +61,7 @@
   }
 
 
-  function addFooter(){
+  function addFooter($locale = array()){
     ?>
 
 

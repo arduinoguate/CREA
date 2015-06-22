@@ -2,7 +2,7 @@
   $locale = array(
     'documentation' => 'Documentación',
     'features' => 'Características',
-    'about crea' => 'Sobre Crea',
+    'about_crea' => 'Sobre Crea',
     'request' => 'Solicita',
     'login' => 'Ingresar',
     'platform_title' => 'Plataforma Crea',
