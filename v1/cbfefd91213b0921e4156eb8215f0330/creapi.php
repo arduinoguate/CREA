@@ -293,7 +293,7 @@ class CREAPI extends API
                   return allow::denied($this->session->session_scopes);
                 }
                 parse_str($this->file,$post_vars);
-                $this->action->update($this->verb, $post_vars, $this->session->username);
+                $this->action->update($this->verb, $post_vars, $this->session->username, $_GET);
                 $this->response_code = $this->action->response['http_code'];
                 return $this->action->response;
                 break;
