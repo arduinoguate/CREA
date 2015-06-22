@@ -168,7 +168,7 @@
               <h3 class="panel-title">Dashboard</h3>
             </div>
             <div class="panel-body" id="dashboard">
-              <p><?php echo $locale['dahsboard_welcome']; ?></p>
+              <p><?php echo $locale['dashboard_welcome']; ?></p>
               <div class="alert alert-success"><h3><?php echo $locale['dashboard_welcome_message']; ?></h3></div>
             </div>
 						<!-- USER UPDATE -->

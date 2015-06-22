@@ -9,7 +9,7 @@
     'platform_slogan' => 'IoT y más...',
     'about_col_1' => '<b>Crea</b> es un proyecto open source para el desarrollo de aplicaciones IoT. El objetivo principal es el de facilitar el acceso a un framework que permita administrar la comunicacion entre dipositivos IoT.',
     'about_col_2' => 'Contamos y contarémos con librerias que permitan esa interacción compatible para diversas plataformas de Open Harware. Adicional a eso el acceso al API de <b>Crea</b> se encuentra disponible para poderla integrar a cualquier aplicación.',
-    'download_for' => 'Descargar libreria para ',
+    'download_for' => ' Descargar libreria para ',
     'form_name' => 'Nombre',
     'form_name_validation' => 'Ingrese su nombre.',
     'form_email' => 'Correo Electronico',
