@@ -4,6 +4,17 @@
 	$output = "";
 	exec('git rev-list HEAD --count', $output);
 	$version = $output[0];
+
+	$lang = "";
+
+	if (isset($_SESSION['lang'])){
+    include 'locale/'.$_SESSION['lang'].'.php';
+		$lang = $_SESSION['lang'];
+  }else{
+    include 'locale/es.php';
+		$lang = 'es';
+  }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,13 +70,13 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="docs.php">Documentación</a>
+                        <a href="docs.php"><?php echo $locale['documentation']; ?></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#" id="add_mod">Agregar Modulo</a>
+                        <a href="#" id="add_mod"><?php echo $locale['add_module']; ?></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="logout.php">Salir</a>
+                        <a href="logout.php"><?php echo $locale['logout']; ?></a>
                     </li>
                 </ul>
             </div>
@@ -88,7 +99,7 @@
               <div class="panel-heading">
                 <h4 class="panel-title">
                   <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
-                    </span>Dispositivos</a>
+									</span><?php echo $locale['devices']; ?></a>
                 </h4>
               </div>
               <div id="collapseOne" class="panel-collapse collapse in">
@@ -101,13 +112,13 @@
               <div class="panel-heading">
                 <h4 class="panel-title">
                   <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><span class="glyphicon glyphicon-user">
-                    </span>Mi cuenta</a>
+									</span><?php echo $locale['my_account']; ?></a>
                 </h4>
               </div>
               <div id="collapseFour" class="panel-collapse collapse">
                 <div class="list-group">
                   <a id="api_access" href="#" class="list-group-item" data-user="<?php echo $_SESSION['username'] ?>">
-                    Acceso al API
+										<?php echo $locale['api_access']; ?>
                   </a>
                   <a id="user_profile" href="#" data-user="<?php echo $_SESSION['username'] ?>" class="list-group-item">Editar</a>
                   <a id="user_password" href="#" data-user="<?php echo $_SESSION['username'] ?>"  class="list-group-item">Cambiar Contraseña</a>
@@ -118,7 +129,7 @@
               <div class="panel-heading">
                 <h4 class="panel-title">
                   <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive"><span class="glyphicon glyphicon-heart">
-                    </span>Alertas</a>
+									</span><?php echo $locale['alerts']; ?></a>
                 </h4>
               </div>
               <div id="collapseFive" class="panel-collapse collapse">
@@ -157,46 +168,79 @@
               <h3 class="panel-title">Dashboard</h3>
             </div>
             <div class="panel-body" id="dashboard">
-              <p>Bienvenido a CREA.</p>
-              <div class="alert alert-success"><h3>Esta es una versión preliminar<br/> <small>aún estamos trabajando para darte una mejor experiencia</small></h3></div>
+              <p><?php echo $locale['dahsboard_welcome']; ?></p>
+              <div class="alert alert-success"><h3><?php echo $locale['dashboard_welcome_message']; ?></h3></div>
             </div>
+						<!-- USER UPDATE -->
             <div class="panel-body" id="user-info" style="display: none;">
               <form class="form-horizontal" id="user-edit-form" role="form" action="#" method="post" novalidate>
-		        <fieldset>
-		          <!-- Text input-->
-		          <div class="form-group">
-		            <label class="col-sm-2 control-label" for="textinput">Nombre</label>
-		            <div class="col-sm-10">
-		              <input type="text" placeholder="Nombre" class="form-control" id="eu-nombre" required="required">
-		            </div>
-		          </div>
+				        <fieldset>
+				          <!-- Text input-->
+				          <div class="form-group">
+				            <label class="col-sm-2 control-label" for="textinput"><?php echo $locale['form_name']; ?></label>
+				            <div class="col-sm-10">
+				              <input type="text" placeholder="<?php echo $locale['form_name']; ?>" class="form-control" id="eu-nombre" required="required">
+				            </div>
+				          </div>
 
-		          <!-- Text input-->
-		          <div class="form-group">
-		            <label class="col-sm-2 control-label" for="textinput">Apellido</label>
-		            <div class="col-sm-10">
-		              <input type="text" placeholder="Apellido" class="form-control" id="eu-apellido">
-		            </div>
-		          </div>
+				          <!-- Text input-->
+				          <div class="form-group">
+				            <label class="col-sm-2 control-label" for="textinput"><?php echo $locale['form_last_name']; ?></label>
+				            <div class="col-sm-10">
+				              <input type="text" placeholder="<?php echo $locale['form_last_name']; ?>" class="form-control" id="eu-apellido">
+				            </div>
+				          </div>
 
-		          <!-- Text input-->
-		          <div class="form-group">
-		            <label class="col-sm-2 control-label" for="textinput">Email</label>
-		            <div class="col-sm-10">
-		              <input type="text" placeholder="Correo Electrónico" class="form-control" id="eu-email" required="required">
-		            </div>
-		          </div>
+				          <!-- Text input-->
+				          <div class="form-group">
+				            <label class="col-sm-2 control-label" for="textinput"><?php echo $locale['form_email']; ?></label>
+				            <div class="col-sm-10">
+				              <input type="text" placeholder="<?php echo $locale['form_email']; ?>" class="form-control" id="eu-email" required="required">
+				            </div>
+				          </div>
 
-		          <div class="form-group">
-		            <div class="col-sm-offset-2 col-sm-10">
-		              <div class="pull-right">
-		                <button type="submit" id="eu-save" class="btn btn-primary">Guardar Cambios</button>
-		              </div>
-		            </div>
-		          </div>
+				          <div class="form-group">
+				            <div class="col-sm-offset-2 col-sm-10">
+				              <div class="pull-right">
+				                <button type="submit" id="eu-save" class="btn btn-primary"><?php echo $locale['form_save_changes']; ?></button>
+				              </div>
+				            </div>
+				          </div>
 
-		        </fieldset>
-		      </form>
+				        </fieldset>
+				      </form>
+            </div>
+
+						<!-- PASSWORD UPDATE -->
+						<div class="panel-body" id="user-password" style="display: none;">
+              <form class="form-horizontal" id="password-edit-form" role="form" action="#" method="post" novalidate>
+				        <fieldset>
+				          <!-- Text input-->
+				          <div class="form-group">
+				            <label class="col-sm-2 control-label" for="textinput"><?php echo $locale['form_password']; ?></label>
+				            <div class="col-sm-10">
+				              <input type="password" placeholder="<?php echo $locale['form_password']; ?>" class="form-control" id="cp-pass" required="required">
+				            </div>
+				          </div>
+
+				          <!-- Text input-->
+				          <div class="form-group">
+				            <label class="col-sm-2 control-label" for="textinput"><?php echo $locale['form_password_confirm']; ?></label>
+				            <div class="col-sm-10">
+				              <input type="password" placeholder="<?php echo $locale['form_password_confirm']; ?>" class="form-control" id="cp-pass-confirm">
+				            </div>
+				          </div>
+
+				          <div class="form-group">
+				            <div class="col-sm-offset-2 col-sm-10">
+				              <div class="pull-right">
+				                <button type="submit" id="cp-save" class="btn btn-primary"><?php echo $locale['form_save_changes']; ?></button>
+				              </div>
+				            </div>
+				          </div>
+
+				        </fieldset>
+				      </form>
 
 
             </div>
@@ -213,7 +257,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">✕</button>
-    	        <h3>Crear Acción</h3>
+    	        <h3><?php echo $locale['modal_create_action']; ?></h3>
     	    </div>
             <div class="modal-body" style="text-align:center;">
                 <div class="panel panel-default">
@@ -221,13 +265,13 @@
                     	<input type="hidden" id="act_module" />
                     	<input type="hidden" id="act_cmd" />
                         <div class="form-group">
-                            <label for="concept" class="col-sm-3 control-label">Nombre</label>
+                            <label for="concept" class="col-sm-3 control-label"><?php echo $locale['form_name']; ?></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="act_name" name="act_name">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="status" class="col-sm-3 control-label">Tipo de acción</label>
+                            <label for="status" class="col-sm-3 control-label"><?php echo $locale['form_action_type']; ?></label>
                             <div class="col-sm-9">
                                 <select class="form-control" id="act_type" name="act_type">
 
@@ -235,7 +279,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="concept" class="col-sm-3 control-label">Pin/Canal Serial Asociado</label>
+                            <label for="concept" class="col-sm-3 control-label"><?php echo $locale['form_pin']; ?></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="act_cmda" name="act_cmda">
                             </div>
@@ -243,7 +287,7 @@
                         <div class="form-group">
                             <div class="col-sm-12 text-right">
                                 <button type="button" id="add_action_btn" class="btn btn-default preview-add-button">
-                                    <span class="glyphicon glyphicon-plus"></span> Agregar
+                                    <span class="glyphicon glyphicon-plus"></span> <?php echo $locale['form_add']; ?>
                                 </button>
                             </div>
                         </div>
@@ -257,51 +301,77 @@
 
 
 	<div id="moduleModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">✕</button>
-    	        <h3>Crear Dispositivo</h3>
-    	    </div>
-            <div class="modal-body" style="text-align:center;">
-                <div class="panel panel-default">
-                    <div class="panel-body form-horizontal payment-form">
-                    	<input type="hidden" id="act_module" />
-                    	<input type="hidden" id="act_cmd" />
-                        <div class="form-group">
-                            <label for="concept" class="col-sm-3 control-label">Nombre</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="mod_name" name="mod_name">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="status" class="col-sm-3 control-label">Tipo de modulo</label>
-                            <div class="col-sm-9">
-                                <select class="form-control" id="mod_type" name="mod_type">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">✕</button>
+  	        <h3><?php echo $locale['modal_create_device']; ?></h3>
+  	    </div>
+          <div class="modal-body" style="text-align:center;">
+              <div class="panel panel-default">
+                  <div class="panel-body form-horizontal payment-form">
+                  	<input type="hidden" id="act_module" />
+                  	<input type="hidden" id="act_cmd" />
+                      <div class="form-group">
+                          <label for="concept" class="col-sm-3 control-label"><?php echo $locale['form_name']; ?></label>
+                          <div class="col-sm-9">
+                              <input type="text" class="form-control" id="mod_name" name="mod_name">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="status" class="col-sm-3 control-label"><?php echo $locale['form_module_type']; ?></label>
+                          <div class="col-sm-9">
+                              <select class="form-control" id="mod_type" name="mod_type">
 
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12 text-right">
-                                <button type="button" id="add_module_btn" class="btn btn-default preview-add-button">
-                                    <span class="glyphicon glyphicon-plus"></span> Agregar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-    	    </div>
-        </div>
+                              </select>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <div class="col-sm-12 text-right">
+                              <button type="button" id="add_module_btn" class="btn btn-default preview-add-button">
+                                  <span class="glyphicon glyphicon-plus"></span> <?php echo $locale['form_add']; ?>
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+  	    </div>
       </div>
     </div>
+  </div>
+
+	<div id="alertModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">✕</button>
+  	        <h3><?php echo $locale['modal_alert']; ?></h3>
+  	    </div>
+          <div class="modal-body" style="text-align:center;">
+            <div class="panel panel-default">
+              <div class="panel-body form-horizontal payment-form">
+            	  <div class="form-group">
+                	<h1 id="mod_alert_msg"></h1>
+                </div>
+              </div>
+            	<div class="form-group">
+                <div class="col-sm-12 text-right">
+									<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $locale['form_cloe']; ?></button>
+                </div>
+              </div>
+            </div>
+          </div>
+  	    </div>
+      </div>
+    </div>
+  </div>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jqBootstrapValidation.js"></script>
-	<script src="js/dashboard.js"></script>
+	<script src="js/dashboard-<?php echo $lang; ?>.js"></script>
 
 
 	<script>

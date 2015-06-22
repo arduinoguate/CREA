@@ -3,6 +3,16 @@
 
 	include_once 'lib/layout.php';
 
+	$lang = 'es';
+
+	if (isset($_SESSION['lang'])){
+    include 'locale/'.$_SESSION['lang'].'.php';
+		$lang = $_SESSION['lang'];
+  }else{
+    include 'locale/es.php';
+		$lang = 'es';
+  }
+
   $styles = array();
   $freelancer = new CSS('docs.css','css','stylesheet');
   $styles[] = $freelancer;
@@ -10,7 +20,7 @@
 	$api_ref = array();
 	$cmd_ref = array();
 
-	$files = glob('docs/lib/*.{yml}', GLOB_BRACE);
+	$files = glob('docs/'.$lang.'/lib/*.{yml}', GLOB_BRACE);
 	foreach($files as $file) {
 		if (trim($file) != "." || trim($file) != ".."){
 			$yaml = file_get_contents($file);
@@ -20,7 +30,7 @@
 		}
 	}
 
-	$files = glob('docs/ws/*.{yml}', GLOB_BRACE);
+	$files = glob('docs/'.$lang.'/ws/*.{yml}', GLOB_BRACE);
 	foreach($files as $file) {
 		if (trim($file) != "." || trim($file) != ".."){
 			$yaml = file_get_contents($file);
@@ -30,7 +40,7 @@
 		}
 	}
 
-	addHeader("CREA - Documentacion", $styles);
+	addHeader("CREA - ".$locale['documentation'], $styles);
 	//print_r($parsed);
 ?>
 
@@ -55,7 +65,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                       Documentación del API
+											<?php echo $locale['api_documentation']; ?>
                     </li>
 										<?php if (isset($_SESSION['token'])): ?>
 
@@ -63,7 +73,7 @@
 	                        <a href="dashboard.php">Dashboard</a>
 	                    </li>
 											<li class="page-scroll">
-	                        <a href="logout.php">Salir</a>
+	                        <a href="logout.php"><?php echo $locale['logout']; ?></a>
 	                    </li>
 
 										<?php endif; ?>
@@ -79,22 +89,22 @@
 
 
 	<div class="container">
-	  <h2>Portal de desarrolladores CREA</h2>
+	  <h2><?php echo $locale['crea_developer_gateway']; ?></h2>
 	  <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container">
       	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
           <div class="list-group">
             <a href="#" class="list-group-item active text-center">
-              <h4 class="glyphicon glyphicon-road"></h4><br/>Empieza aquí
+              <h4 class="glyphicon glyphicon-road"></h4><br/><?php echo $locale['docs_start_here']; ?>
             </a>
             <a href="#" class="list-group-item text-center">
               <h4 class="glyphicon glyphicon-cloud-upload"></h4><br/>API
             </a>
 						<a href="#" class="list-group-item text-center">
-              <h4 class="fa fa-mobile fa-2x"></h4><br/>Desarrollo móvil
+              <h4 class="fa fa-mobile fa-2x"></h4><br/><?php echo $locale['docs_mobile']; ?>
             </a>
 						<a href="#" class="list-group-item text-center">
-              <h4 class="fa fa-gears fa-2x"></h4><br/>CREA WebSocket
+              <h4 class="fa fa-gears fa-2x"></h4><br/><?php echo $locale['docs_socket']; ?>
             </a>
           </div>
         </div>

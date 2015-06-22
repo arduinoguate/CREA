@@ -60,4 +60,56 @@
     <?php
   }
 
+
+  function addFooter(){
+    ?>
+
+
+    	<!-- Footer -->
+    	<footer class="text-center">
+    			<div class="footer-above">
+    					<div class="container">
+    							<div class="row">
+    									<div class="footer-col col-md-4">
+    											<h3><?php echo $locale['sponsored_by']; ?></h3>
+    											<p>Comunidad Arduino Guatemala</p>
+    											<p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">Plataforma CREA</span> por <a xmlns:cc="http://creativecommons.org/ns#" href="http://www.arduinogt.com" property="cc:attributionName" rel="cc:attributionURL">Oscar Leche</a> se distribuye bajo una <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional</a>.<br />Basada en una obra en <a xmlns:dct="http://purl.org/dc/terms/" href="http://crea.arduinogt.com" rel="dct:source">http://crea.arduinogt.com</a>.</p>
+    									</div>
+    									<div class="footer-col col-md-4">
+    											<h3><?php echo $locale['on_web']; ?></h3>
+    											<ul class="list-inline">
+    													<li>
+    															<a href="https://www.facebook.com/ArduinoGuatemala" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+    													</li>
+    													<li>
+    															<a href="https://plus.google.com/u/0/b/114155441272026687984/114155441272026687984/posts" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+    													</li>
+    													<li>
+    															<a href="https://twitter.com/arduinoguate" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+    													</li>
+    													<li>
+    															<a href="https://github.com/arduinoguate" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-github"></i></a>
+    													</li>
+    											</ul>
+    									</div>
+    									<div class="footer-col col-md-4">
+    											<h3><?php echo $locale['about_the']; ?>Comunidad Arduino Guatemala</h3>
+    											<p><?php echo $locale['about_community']; ?></p>
+    									</div>
+    							</div>
+    					</div>
+    			</div>
+    			<div class="footer-below">
+    					<div class="container">
+    							<div class="row">
+    									<div class="col-lg-12">
+    											Copyright &copy; Crea 2015
+    									</div>
+    							</div>
+    					</div>
+    			</div>
+    	</footer>
+
+    <?php
+  }
 ?>

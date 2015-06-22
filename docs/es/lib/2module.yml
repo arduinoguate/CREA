@@ -1,0 +1,127 @@
+---
+api-section: module
+api-section-description: 'Esta sección es la encargada de gestionar los modulos asociados al usuario'
+api-entries:
+  - entry: 'v1/module'
+    method: GET
+    description: 'Retorna el listado de todos los modulos asociados al token'
+    parameters: NONE
+    authentication: BEARER
+  - entry: 'vi/module/:id'
+    method: GET
+    description: 'Retorna la informancion de un modulo especifico'
+    parameters:
+      - name: id
+        format: MD5
+        type: URL
+        required: TRUE
+    authentication: BEARER
+  - entry: 'v1/module/:id/actions'
+    method: GET
+    description: 'Retorna las acciones asociadas a un modulo'
+    parameters:
+      - name: id
+        format: MD5
+        type: URL
+        required: TRUE
+    authentication: BEARER
+  - entry: 'v1/module'
+    method: POST
+    description: 'Crea un nuevo modulo'
+    parameters:
+      - name: nombre
+        format: string
+        type: REQUEST
+        required: TRUE
+      - name: tipo
+        format: integer
+        type: REQUEST
+        required: TRUE
+    authentication: BEARER
+  - entry: 'v1/module/:id/register-action'
+    method: PUT
+    description: 'Crea una nueva accion asociada al modulo :id'
+    parameters:
+      - name: id
+        format: MD5
+        type: URL
+        required: TRUE
+      - name: comando
+        format: string
+        type: REQUEST
+        required: TRUE
+      - name: tipo-accion
+        format: integer
+        type: REQUEST
+        required: TRUE
+      - name: input
+        format: integer
+        type: REQUEST
+        required: TRUE
+    authentication: BEARER
+  - entry: 'v1/module/:id/execute-action'
+    method: PUT
+    description: 'Ejecuta una nueva accion asociada al modulo :id'
+    parameters:
+      - name: id
+        format: MD5
+        type: URL
+        required: TRUE
+      - name: value
+        format: string
+        type: REQUEST
+        required: TRUE
+      - name: action
+        format: integer
+        type: REQUEST
+        required: TRUE
+    authentication: BEARER
+  - entry: 'v1/module/:id/request-status'
+    method: PUT
+    description: 'Solicita informacion relacionada al modulo'
+    parameters:
+      - name: id
+        format: MD5
+        type: URL
+        required: TRUE
+    authentication: BEARER
+  - entry: 'v1/module/:id/disable'
+    method: PUT
+    description: 'Desactiva el modulo para ser utilizado'
+    parameters:
+      - name: id
+        format: MD5
+        type: URL
+        required: TRUE
+    authentication: BEARER
+  - entry: 'v1/module/:id/enable'
+    method: PUT
+    description: 'Activa un modulo desactivado anteriormente'
+    parameters:
+      - name: id
+        format: MD5
+        type: URL
+        required: TRUE
+    authentication: BEARER
+  - entry: 'v1/module/:id'
+    method: DELETE
+    description: 'Elimina el modulo id'
+    parameters:
+      - name: id
+        format: MD5
+        type: URL
+        required: TRUE
+    authentication: BEARER
+  - entry: 'v1/module/:id/actions'
+    method: DELETE
+    description: 'Solicita informacion relacionada al modulo'
+    parameters:
+      - name: id
+        format: MD5
+        type: URL
+        required: TRUE
+      - name: action
+        format: integer
+        type: REQUEST
+        required: TRUE
+    authentication: BEARER

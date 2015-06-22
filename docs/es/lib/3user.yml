@@ -1,0 +1,47 @@
+---
+api-section: user
+api-section-description: 'Esta sección es la encargada de gestionar las cuentas de usuario'
+api-entries:
+  - entry: 'vi/user/:id'
+    method: GET
+    description: 'Retorna la informancion de un usuario. Solamente se puede recuperar del usuario relacionado al token'
+    parameters:
+      - name: id
+        format: string
+        type: URL
+        required: TRUE
+    authentication: BEARER
+  - entry: 'vi/user/:id/api'
+    method: GET
+    description: 'Retorna la informancion de acceso al API relacionada al usuario'
+    parameters:
+      - name: id
+        format: string
+        type: URL
+        required: TRUE
+    authentication: BEARER
+  - entry: 'v1/module/:id/update'
+    method: PUT
+    description: 'Actualiza la información de un usuario'
+    parameters:
+      - name: id
+        format: string
+        type: URL
+        required: TRUE
+      - name: nombre
+        format: string
+        type: REQUEST
+        required: TRUE
+      - name: apellido
+        format: string
+        type: REQUEST
+        required: TRUE
+      - name: email
+        format: string
+        type: REQUEST
+        required: TRUE
+      - name: password
+        format: string
+        type: REQUEST
+        required: TRUE
+    authentication: BEARER

@@ -1,9 +1,16 @@
+<?php
+  if (isset($_SESSION['lang'])){
+    include 'locale/'.$_SESSION['lang'].'.php';
+  }else{
+    include 'locale/es.php';
+  }
+?>
 <!DOCTYPE html>
 
 <html>
 
 <head>
-  <title></title>
+  <title>CREA - Dashboard</title>
   <meta charset="">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" media="screen" href="css/login.css">
@@ -22,19 +29,19 @@
 <body>
   <div class="container">
     <div class="page-header" style="color:#fff;">
-      <center><h1 class="logo">CREA Dashboard<small> Ingresa tus credenciales</small></h1></center>
+      <center><h1 class="logo">CREA Dashboard<small> <?php echo $locale['login_credentials']; ?></small></h1></center>
     </div>
     <div class="login-container">
       <div id="output"></div>
       <div class="avatar"></div>
       <div class="form-box">
         <form id="loginfrm" action="" method="">
-          <input name="user" type="text" placeholder="usuario">
+          <input name="user" type="text" placeholder="<?php echo $locale['form_username']; ?>">
           <div class="password">
-            <input type="password" name="passwordfield" id="passwordfield" placeholder="contraseña">
+            <input type="password" name="passwordfield" id="passwordfield" placeholder="<?php echo $locale['form_password']; ?>">
             <span class="glyphicon glyphicon-eye-open"></span>
           </div>
-          <button class="btn btn-info btn-block login" type="submit">Ingresar</button>
+          <button class="btn btn-info btn-block login" type="submit"><?php echo $locale['login']; ?></button>
         </form>
       </div>
     </div>

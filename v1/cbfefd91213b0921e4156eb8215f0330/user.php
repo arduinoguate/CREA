@@ -185,7 +185,7 @@ class USER extends GCConfig
 		if ($this->validate_fields($params,'user/:id/update')){
 			if ($this->validate_user($id)){
         if ($this->user->fetch_id( array("idusuario" => $id) )){
-        	$password = (isset($params['password']))?$params['password']:$this->user->columns['password'];
+        	$password = (isset($params['password']))?md5($params['password']):$this->user->columns['password'];
           $this->user->columns['nombre'] = (isset($params['nombre']))?$params['nombre']:$this->user->columns['nombre'];
           $this->user->columns['apellido'] = (isset($params['apellido']))?$params['apellido']:$this->user->columns['apellido'];
           $this->user->columns['email'] = (isset($params['email']))?$params['email']:$this->user->columns['email'];

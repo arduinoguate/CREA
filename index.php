@@ -1,5 +1,13 @@
 <?php
+  session_start();
+
   include_once 'lib/layout.php';
+
+  if (isset($_SESSION['lang'])){
+    include 'locale/'.$_SESSION['lang'].'.php';
+  }else{
+    include 'locale/es.php';
+  }
 
   $styles = array();
   $freelancer = new CSS('freelancer.css','css','stylesheet');
@@ -28,19 +36,19 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="page-scroll">
-                        <a href="docs.php">Documentación</a>
+                        <a href="docs.php"><?php echo $locale['documentation']; ?></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#portfolio">Características</a>
+                        <a href="#portfolio"><?php echo $locale['features']; ?></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#about">Sobre Crea</a>
+                        <a href="#about"><?php echo $locale['about_crea']; ?></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#contact">Solicita</a>
+                        <a href="#contact"><?php echo $locale['request']; ?></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="login.php">Login</a>
+                        <a href="login.php"><?php echo $locale['login']; ?></a>
                     </li>
                 </ul>
             </div>
@@ -56,9 +64,9 @@
                 <div class="col-lg-12">
                     <img class="img-responsive" src="img/crea.png" alt="">
                     <div class="intro-text">
-                        <span class="name">Plataforma Crea</span>
+                        <span class="name"><?php echo $locale['platform_title']; ?></span>
                         <hr class="star-light">
-                        <span class="skills">IoT y más...</span>
+                        <span class="skills"><?php echo $locale['platform_slogan']; ?></span>
                     </div>
                 </div>
             </div>
@@ -70,7 +78,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Características</h2>
+                    <h2><?php echo $locale['features']; ?></h2>
                     <hr class="star-primary">
                 </div>
             </div>
@@ -144,35 +152,35 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Sobre Crea</h2>
+                    <h2><?php echo $locale['about_crea']; ?></h2>
                     <hr class="star-light">
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-4 col-lg-offset-2">
-                    <p><b>Crea</b> es un proyecto open source para el desarrollo de aplicaciones IoT. El objetivo principal es el de facilitar el acceso a un framework que permita administrar la comunicacion entre dipositivos IoT.</p>
+                    <p><?php echo $locale['about_col_1']; ?></p>
                 </div>
                 <div class="col-lg-4">
-                    <p>Contamos y contarémos con librerias que permitan esa interacción compatible para diversas plataformas de Open Harware. Adicional a eso el acceso al API de <b>Crea</b> se encuentra disponible para poderla integrar a cualquier aplicación.</p>
+                    <p></p>
                 </div>
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <a href="downloads.php?plat=arduino" class="btn btn-lg btn-outline">
-                        <i class="fa fa-download"></i> Descargar libreria para Arduino
+                        <i class="fa fa-download"></i><?php echo $locale['download_for']; ?>Arduino
                     </a>
                 </div>
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <a href="downloads.php?plat=launchpad" class="btn btn-lg btn-outline">
-                        <i class="fa fa-download"></i> Descargar libreria para TI Launchpad
+                        <i class="fa fa-download"></i><?php echo $locale['download_for']; ?>Launchpad
                     </a>
                 </div>
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <a href="downloads.php?plat=beaglebone" class="btn btn-lg btn-outline">
-                        <i class="fa fa-download"></i> Descargar libreria para Beaglebone
+                        <i class="fa fa-download"></i><?php echo $locale['download_for']; ?>Beaglebone
                     </a>
                 </div>
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <a href="downloads.php?plat=raspberry" class="btn btn-lg btn-outline">
-                        <i class="fa fa-download"></i> Descargar libreria para Raspberry Pi
+                        <i class="fa fa-download"></i><?php echo $locale['download_for']; ?>Raspberry Pi
                     </a>
                 </div>
             </div>
@@ -195,29 +203,29 @@
                     <form name="sentMessage" id="contactForm" novalidate>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Nombre</label>
-                                <input type="text" class="form-control" placeholder="Name" id="name" required data-validation-required-message="Ingrese su nombre.">
+                                <label><?php echo $locale['form_name']; ?></label>
+                                <input type="text" class="form-control" placeholder="<?php echo $locale['form_name']; ?>" id="name" required data-validation-required-message="<?php echo $locale['form_name_validation']; ?>">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Correo Electronico</label>
-                                <input type="email" class="form-control" placeholder="Email Address" id="email" required data-validation-required-message="Ingrese su email.">
+                                <label><?php echo $locale['form_email']; ?></label>
+                                <input type="email" class="form-control" placeholder="<?php echo $locale['form_email']; ?>" id="email" required data-validation-required-message="<?php echo $locale['form_email_validation']; ?>">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Usuario</label>
-                                <input type="text" class="form-control" placeholder="Nombre de Usuario" id="user" required data-validation-required-message="Ingrese un usuario valido.">
+                                <label><?php echo $locale['form_username']; ?></label>
+                                <input type="text" class="form-control" placeholder="<?php echo $locale['form_username']; ?>" id="user" required data-validation-required-message="<?php echo $locale['form_username_validation']; ?>">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Contraseña <small>(de 4 a 14 caracteres)</small></label>
-                                <input type="password" class="form-control" placeholder="Contraseña" id="pass" required data-validation-required-message="Ingrese su contraseña.">
+                                <label><?php echo $locale['form_password']; ?></label>
+                                <input type="password" class="form-control" placeholder="<?php echo $locale['form_password_placeholder']; ?>" id="pass" required data-validation-required-message="<?php echo $locale['form_password_validation']; ?>">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
@@ -225,7 +233,7 @@
                         <div id="success"></div>
                         <div class="row">
                             <div class="form-group col-xs-12">
-                                <button type="submit" class="btn btn-success btn-lg">Solicitar</button>
+                                <button type="submit" class="btn btn-success btn-lg"><?php echo $locale['form_request']; ?></button>
                             </div>
                         </div>
                     </form>
@@ -234,50 +242,9 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="text-center">
-        <div class="footer-above">
-            <div class="container">
-                <div class="row">
-                    <div class="footer-col col-md-4">
-                        <h3>Patrocinado por</h3>
-                        <p>Comunidad Arduino Guatemala</p>
-                        <p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">Plataforma CREA</span> por <a xmlns:cc="http://creativecommons.org/ns#" href="http://www.arduinogt.com" property="cc:attributionName" rel="cc:attributionURL">Oscar Leche</a> se distribuye bajo una <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional</a>.<br />Basada en una obra en <a xmlns:dct="http://purl.org/dc/terms/" href="http://crea.arduinogt.com" rel="dct:source">http://crea.arduinogt.com</a>.</p>
-                    </div>
-                    <div class="footer-col col-md-4">
-                        <h3>En la web</h3>
-                        <ul class="list-inline">
-                            <li>
-                                <a href="https://www.facebook.com/ArduinoGuatemala" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="https://plus.google.com/u/0/b/114155441272026687984/114155441272026687984/posts" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
-                            </li>
-                            <li>
-                                <a href="https://twitter.com/arduinoguate" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/arduinoguate" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-github"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer-col col-md-4">
-                        <h3>Sobre la Comunidad Arduino Guatemala</h3>
-                        <p>Somos entusiastas del hardware abierto, desarrollamos proyectos basados en el open source y compartimos la cultura do it yourself (DIY)</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-below">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        Copyright &copy; Crea 2015
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <?php
+    		addFooter();
+    ?>
 
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
     <div class="scroll-top page-scroll visible-xs visble-sm">
@@ -299,11 +266,11 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Diseñado para multiples dispositivos</h2>
+                            <h2><?php echo $locale['modal_md_title']; ?></h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/crea-05.png" class="img-responsive img-centered" alt="">
-                            <p>CREA está pensado para funcionar con diferentes plataformas de Open Hardware. Entre ellas estan Arduino, Raspberry PI, Beaglebone, STM32, ESP8266. Estamos trabajando para tener listas librerias y documentación que puedan servir de apoyo para desarrolladores.</p>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cerrar</button>
+                            <p><?php echo $locale['modal_md_text']; ?></p>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> <?php echo $locale['close']; ?></button>
                         </div>
                     </div>
                 </div>
@@ -322,11 +289,11 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Accede desde cualquier lugar</h2>
+                            <h2><?php echo $locale['modal_ap_title']; ?></h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/crea-06.png" class="img-responsive img-centered" alt="">
-                            <p>Una vez tus dispositivos están conectados a Internet, pueden llegar a CREA desde cualquier lugar en cualquier parte del mundo.</p>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cerrar</button>
+                            <p><?php echo $locale['modal_ap_text']; ?></p>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> <?php echo $locale['close']; ?></button>
                         </div>
                     </div>
                 </div>
@@ -345,12 +312,12 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Conecta cualquier dispositivo</h2>
+                            <h2><?php echo $locale['modal_cd_title']; ?></h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/crea-07.png" class="img-responsive img-centered" alt="">
-                            <p>Ya sea una solución de domótica o una licuadora, puedes conectar cualquier dispositvo con CREA para poder hacerlo interactual de la manera que quieras.</p>
+                            <p><?php echo $locale['modal_cd_text']; ?></p>
 
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cerrar</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> <?php echo $locale['close']; ?></button>
                         </div>
                     </div>
                 </div>
@@ -369,12 +336,12 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Un API para todos</h2>
+                            <h2><?php echo $locale['modal_at_title']; ?></h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/crea-08.png" class="img-responsive img-centered" alt="">
-                            <p>Hemos desarrollado un <a href="#">API</a> para que puedas desarrollar cualquier aplicación integrada a CREA. Ya sea un sitio web o un app movil, las opciones son infinitas.</p>
+                            <p><?php echo $locale['modal_at_text']; ?></p>
 
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cerrar</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> <?php echo $locale['close']; ?></button>
                         </div>
                     </div>
                 </div>
@@ -393,12 +360,12 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Todo Administrado</h2>
+                            <h2><?php echo $locale['modal_aa_title']; ?></h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/crea-10.png" class="img-responsive img-centered" alt="">
-                            <p>Con nuestro panel de control, puedes crear dispositivos, ver su estado y analizar su historial de funcionamiento. Todo en un solo lugar.</p>
+                            <p><?php echo $locale['modal_aa_text']; ?></p>
 
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cerrar</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> <?php echo $locale['close']; ?></button>
                         </div>
                     </div>
                 </div>
@@ -417,12 +384,12 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Somos comunidad</h2>
+                            <h2><?php echo $locale['modal_sc_title']; ?></h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/grupo-04.png" class="img-responsive img-centered" alt="">
-                            <p>Asi como este proyecto es Open Source, queremos formar una comunidad de desarrolladores para que colaboremos activamente en el crecimiento de CREA.</p>
+                            <p><?php echo $locale['modal_sc_text']; ?></p>
 
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cerrar</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> <?php echo $locale['close']; ?></button>
                         </div>
                     </div>
                 </div>
