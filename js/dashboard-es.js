@@ -63,8 +63,8 @@ $(document).ready(function() {
     e.preventDefault();
 
     user = $(this).data("user");
-    $("#user-password").show();
-    $("#user-info").hide();
+    $("#user-info").show();
+    $("#user-password").hide();
 
     load_user(user);
   });
@@ -73,8 +73,8 @@ $(document).ready(function() {
     e.preventDefault();
 
     user = $(this).data("user");
-    $("#user-info").show();
-    $("#user-password").hide();
+    $("#user-password").show();
+    $("#user-info").hide();
 
     load_password();
   });
