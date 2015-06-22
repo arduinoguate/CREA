@@ -69,7 +69,7 @@ $(document).ready(function() {
     load_user(user);
   });
 
-  $("#user_password").click(function(e)) {
+  $("#user_password").click(function(e) {
     e.preventDefault();
 
     user = $(this).data("user");
@@ -77,7 +77,7 @@ $(document).ready(function() {
     $("#user-password").hide();
 
     load_password();
-  }
+  });
 
   $("#user-edit-form input").jqBootstrapValidation({
     preventSubmit: true,
