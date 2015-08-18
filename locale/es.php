@@ -74,6 +74,7 @@
     'dashboard_welcome_message' => 'Esta es una versión preliminar<br/> <small>aún estamos trabajando para darte una mejor experiencia</small>',
     'modal_create_device' => 'Crear Dispositivo',
     'modal_create_action' => 'Crear Acción',
-    'modal_alert' => 'alerta'
+    'modal_alert' => 'alerta',
+    'donate' => 'Puedes apoyarnos realizando una donación'
   );
 ?>
