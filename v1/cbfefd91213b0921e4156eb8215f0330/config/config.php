@@ -106,13 +106,14 @@
 			$this->api_user_asoc = new DBManager($this->connection, 'api_user_asoc', $col_token, $key_token, $foreign_token);
 
 			//Types will be loaded always
-			$col_tmod = array('idtipo_modulo', 'nombre', 'url_libreria', 'url_doc', 'url_img', 'descripcion');
+			$col_tmod = array('idtipo_modulo', 'nombre', 'base_name', 'url_libreria', 'url_doc', 'url_img', 'descripcion');
 			$key_tmod = array('idtipo_modulo');
 			$this->tipo_modulo = new DBManager($this->connection, 'tipo_modulo', $col_tmod, $key_tmod);
 
-			$col_tact = array('idtipo_action', 'nombre', 'comando');
+			$col_tact = array('idtipo_action', 'nombre', 'comando', 'default_value', 'id_type', 'read_only', 'options');
 			$key_tact = array('idtipo_action');
-			$this->tipo_action = new DBManager($this->connection, 'tipo_action', $col_tact, $key_tact);
+			$foreign_tact = array('id_type' => array('api_field_type','id', $this->api_field_type));
+			$this->tipo_action = new DBManager($this->connection, 'tipo_action', $col_tact, $key_tact, $foreign_tact);
 
 			switch ($request) {
 				case 'module':
@@ -126,7 +127,7 @@
 					$foreign_ma = array('idusuario' => array('usuario','idusuario', $this->user),
 						'modulo_id' => array('modulo','id', $this->modulo));
 					$this->modulo_asoc = new DBManager($this->connection, 'modulo_asoc', $col_ma, $key_ma, $foreign_ma);
-                    break;
+          break;
 
 				case 'action':
 					$col_mod = array('id', 'nombre', 'tipo_modulo', 'estado', 'last_response', 'created_at', 'updated_at', 'enabled');
@@ -134,8 +135,8 @@
 					$foreign_mod = array('tipo_modulo' => array('tipo_modulo','idtipo_modulo', $this->tipo_modulo));
 					$this->modulo = new DBManager($this->connection, 'modulo', $col_mod, $key_mod, $foreign_mod);
 
-                    $col_ma = array('idusuario', 'modulo_id');
-    				$key_ma= array('idusuario', 'modulo_id');
+          $col_ma = array('idusuario', 'modulo_id');
+  				$key_ma= array('idusuario', 'modulo_id');
 					$foreign_ma = array('idusuario' => array('usuario','idusuario', $this->user),
 						'modulo_id' => array('modulo','id', $this->modulo));
 					$this->modulo_asoc = new DBManager($this->connection, 'modulo_asoc', $col_ma, $key_ma, $foreign_ma);

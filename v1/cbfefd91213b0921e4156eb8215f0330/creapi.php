@@ -237,12 +237,12 @@ class CREAPI extends API
                   $this->args[0]="";
                 }
                 switch($this->args[0]){
-                  case 'api': //quejas/:id/api
+                  case 'api': //user/:id/api
                     $this->action->show_api($id);
                     $this->response_code = $this->action->response['http_code'];
                     return $this->action->response;
                     break;
-                  default: //quejas/:id
+                  default: //user/:id
                     $this->action->show($id, $_GET);
                     $this->add_header($this->action->pagination_link);
                     $this->response_code = $this->action->response['http_code'];
