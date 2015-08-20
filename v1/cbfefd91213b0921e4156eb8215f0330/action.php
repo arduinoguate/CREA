@@ -343,6 +343,7 @@ class ACTION extends GCConfig {
     		if (isset($params['q']) && $params['q'] != ''){
       		$this->modulo->columns['estado'] = "REPLIED";
 					$this->modulo->columns['last_response'] = $params['q'];
+					$this->response['message'] = "ACK";
       	}else{
       		$this->modulo->columns['estado'] = $status;
       	}
