@@ -366,7 +366,7 @@ $(document).ready(function() {
           info += 'Estado <b>' + item.estado + '</b><br/>Ultima Respuesta <b>' + item.last_response + '</b><br/>';
           info += '<small>Actualizado en: <b>' + item.updated_at + '</b></small></div>';
           info += '<div class="col-md-4"><div class="col-md-12  text-right"><button data-mod="' + item.id + '" class="btn-success btn-lg add_action">Agregar Acción</button></div>';
-          info += '<div class="col-md-12  text-right"><small><a href="'+item.tipo_modulo.url_libreria+'" target="_blank" class="">Descargar Lib.</a></small></div>';
+          info += '<div class="col-md-12  text-right"><small><a href="'+item.tipo_modulo.url_libreria+'" target="_blank" class="">Descargar Librería</a></small></div>';
           info += '<div class="col-md-12  text-right"><small><a href="#" class="eliminar_mod text-danger" id="' + item.id + '">Eliminar</a></small></div></div>';
           info += '</div><hr/><p>Acciones</p>';
           info += '<div class="row" id="actions_int"></div>';
