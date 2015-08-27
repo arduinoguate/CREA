@@ -74,6 +74,7 @@ abstract class API
             $this->request = $this->_cleanInputs($_POST);
             break;
         case 'GET':
+        case 'OPTIONS':
             $this->request = $this->_cleanInputs($_GET);
             break;
         case 'DELETE':
