@@ -197,8 +197,9 @@ class CREAPI extends API
       }
     }else{
       if ($this->method == 'OPTIONS'){
-        $this->response_code = '200';
-        return "OK";
+        //$this->response_code = '200';
+        //return "OK";
+        exit(0);
       }else{
         $this->response_code = $this->session->response['code'];
         return $this->session->response;

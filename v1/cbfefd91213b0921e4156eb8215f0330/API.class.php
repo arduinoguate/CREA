@@ -7,13 +7,13 @@ abstract class API
      * The response of the api call, established by the controller result
      */
     protected $response_code = 202;
-	
+
 	/**
      * Property: headers
      * The response of the api call, established by the controller result
      */
     protected $headers = array();
-    
+
     /**
      * Property: method
      * The HTTP method this request was made in, either GET, POST, PUT or DELETE
@@ -68,7 +68,7 @@ abstract class API
                 throw new Exception("Unexpected Header");
             }
         }
-        
+
         switch($this->method) {
         case 'POST':
             $this->request = $this->_cleanInputs($_POST);
@@ -86,18 +86,18 @@ abstract class API
             break;
         }
     }
-    
+
     public function processAPI() {
         if ((int)method_exists($this, $this->endpoint) > 0) {
             return $this->_response($this->{$this->endpoint}($this->args), $this->response_code);
         }
         return $this->_response("No Endpoint: $this->endpoint", 404);
     }
-	
+
 	public function add_header($header){
 		$this->headers[] = $header;
 	}
-	
+
 	public static function return_message($message, $type){
 		$response = array();
 		$response['type'] = $type;
@@ -106,13 +106,16 @@ abstract class API
 	}
 
     private function _response($data, $status = 200) {
-        header("HTTP/1.1 " . $status . " " . $this->_requestStatus($status));
-		header("Access-Control-Allow-Origin: *");
-		header("Access-Control-Allow-Headers: *");
-		foreach ($this->headers as $header) {
-			header($header);
-		}
-        return json_encode($data,JSON_UNESCAPED_SLASHES);
+      header("HTTP/1.1 " . $status . " " . $this->_requestStatus($status));
+		  header("Access-Control-Allow-Origin: *");
+		  header("Access-Control-Allow-Headers: *");
+      header("Access-Control-Allow-Methods: POST, GET, PUT, OPTIONS")
+
+  		foreach ($this->headers as $header) {
+  			header($header);
+  		}
+
+      return json_encode($data,JSON_UNESCAPED_SLASHES);
     }
 
     private function _cleanInputs($data) {
@@ -128,16 +131,16 @@ abstract class API
     }
 
     private function _requestStatus($code) {
-        $status = array(  
+        $status = array(
             200 => 'OK',
             202 => 'OK',
-            401 => 'Unauthorized',   
-            404 => 'Not Found',   
+            401 => 'Unauthorized',
+            404 => 'Not Found',
             405 => 'Method Not Allowed',
             422 => 'Unprocessable Entity',
             500 => 'Internal Server Error',
-        ); 
-        return ($status[$code])?$status[$code]:$status[500]; 
+        );
+        return ($status[$code])?$status[$code]:$status[500];
     }
 }
 
