@@ -190,6 +190,10 @@ class CREAPI extends API
             return $this::return_message('URL Invalido','error');
           }
           break;
+        case 'OPTIONS':
+          $this->response_code = '200';
+          return "OK";
+          break;
         default:
           $this->response_code = '401';
           return $this::return_message('Método Invalido','error');
@@ -330,6 +334,10 @@ class CREAPI extends API
             $this->response_code = '401';
             return $this::return_message('URL Invalido','error');
           }
+          break;
+        case 'OPTIONS':
+          $this->response_code = '200';
+          return "OK";
           break;
         default:
           $this->response_code = '401';
