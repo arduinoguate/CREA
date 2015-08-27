@@ -48,6 +48,12 @@ abstract class API
      * Allow for CORS, assemble and pre-process the data
      */
     public function __construct($request) {
+        if(array_key_exists('HTTP_ACCESS_CONTROL_REQUEST_HEADERS', $_SERVER)) {
+            header('Access-Control-Allow-Headers: '
+                   . $_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']);
+        } else {
+            header('Access-Control-Allow-Headers: *');
+        }
         header("Access-Control-Allow-Origin: *");
         header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
         header("Content-Type: application/json");
