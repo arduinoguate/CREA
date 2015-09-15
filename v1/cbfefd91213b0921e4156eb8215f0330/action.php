@@ -151,7 +151,7 @@ class ACTION extends GCConfig {
 						$this->response['http_code'] = 422;
 					} else {
 						$this->response['message'] = 'Deleted';
-						$this->response['http_code'] = 203;
+						$this->response['http_code'] = 200;
 						$this->response['code'] = 0;
 					}
 				} else {
