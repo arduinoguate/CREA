@@ -136,7 +136,7 @@
           break;
 
 				case 'action':
-					$col_mod = array('id', 'nombre', 'tipo_modulo', 'estado', 'last_response', 'created_at', 'updated_at', 'enabled', 'tipo_respuesta');
+					$col_mod = array('id', 'nombre', 'tipo_modulo', 'estado', 'last_response', 'created_at', 'updated_at', 'enabled');
 					$key_mod = array('id');
 					$foreign_mod = array('tipo_modulo' => array('tipo_modulo','idtipo_modulo', $this->tipo_modulo));
 					$this->modulo = new DBManager($this->connection, 'modulo', $col_mod, $key_mod, $foreign_mod);
