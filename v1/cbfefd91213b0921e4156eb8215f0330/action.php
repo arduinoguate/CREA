@@ -139,6 +139,32 @@ class ACTION extends GCConfig {
 		}
 	}
 
+	public function show_action_response($params = array()) {
+		$search_val = null;
+		if (isset($params['q'])) {
+			$search_val = $params['q'];
+		}
+
+		if (is_null($search_val))
+			$q_list = $this->tipo_respuesta->fetch();
+		else
+			$q_list = $this->tipo_respuesta->fetch("nombre like '%$search_val%'");
+
+		if (count($q_list) > 0) {
+			$this->response['code'] = 0;
+			$this->response['respuestas'] = array();
+			foreach ($q_list as $q_item) {
+				$this->response['respuestas'][] = $q_item->columns;
+			}
+			$this->response['http_code'] = 200;
+		} else {
+			$this->response['type'] = 'error';
+			$this->response['message'] = 'Cannot retrieve data';
+			$this->response['code'] = 2;
+			$this->response['http_code'] = 422;
+		}
+	}
+
 	public function delete($id = null, $params = array()) {
 		if ($this->validate_fields($params, 'action/delete')) {
 			if ($this->validate_action($params['action'], $id)) {
@@ -222,7 +248,7 @@ class ACTION extends GCConfig {
 					$this->actions->columns['input'] = (isset($params['input'])) ? $params['input'] : $this->actions->columns['input'];
 					$this->actions->columns['modulo_id'] = $this->actions->columns['modulo_id']['id'];
 					$this->actions->columns['updated_at'] = date("Y-m-d H:i:s");
-					$this->actions->columns['tipo_respuesta'] = 1;
+					$this->actions->columns['tipo_respuesta'] = (isset($params['tipo_respuesta'])) ? $params['tipo_respuesta'] : $this->actions->columns['tipo_respuesta'];;
 
 					if (!$this->actions->update()) {
 						$this->response['type'] = 'error';
@@ -256,6 +282,7 @@ class ACTION extends GCConfig {
 						$this->actions->columns['ultimo_valor'] = $params['value'];
 						$this->actions->columns['modulo_id'] = $this->actions->columns['modulo_id']['id'];
 						$this->actions->columns['tipo_accion'] = $this->actions->columns['tipo_accion']['idtipo_action'];
+						$this->actions->columns['tipo_respuesta'] = $this->actions->columns['tipo_respuesta']['id'];
 						$this->actions->columns['updated_at'] = date("Y-m-d H:i:s");
 
 						if (!$this->actions->update()) {
