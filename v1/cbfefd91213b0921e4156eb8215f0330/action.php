@@ -185,6 +185,7 @@ class ACTION extends GCConfig {
 					$this->actions->columns['enabled'] = 1;
 					$this->actions->columns['created_at'] = date("Y-m-d H:i:s");
 					$this->actions->columns['updated_at'] = date("Y-m-d H:i:s");
+					$this->actions->columns['tipo_respuesta'] = 1;
 
 					$id = $this->actions->insert();
 					if (is_int($id)) {
@@ -221,6 +222,7 @@ class ACTION extends GCConfig {
 					$this->actions->columns['input'] = (isset($params['input'])) ? $params['input'] : $this->actions->columns['input'];
 					$this->actions->columns['modulo_id'] = $this->actions->columns['modulo_id']['id'];
 					$this->actions->columns['updated_at'] = date("Y-m-d H:i:s");
+					$this->actions->columns['tipo_respuesta'] = 1;
 
 					if (!$this->actions->update()) {
 						$this->response['type'] = 'error';

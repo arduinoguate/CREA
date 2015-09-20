@@ -16,7 +16,7 @@
     'form_email_validation' => 'Ingrese su email.',
     'form_username' => 'Usuario',
     'form_username_validation' => 'Ingrese un usuario valido.',
-    'form_password' => 'Contraseña <small>(de 4 a 14 caracteres)</small>',
+    'form_password' => 'Contrase&ntilde;a',
     'form_password_placeholder' => 'Contraseña',
     'form_password_confirm' => 'Confirmar contraseña',
     'form_password_validation' => 'Ingrese su contraseña.',
@@ -74,7 +74,11 @@
     'dashboard_welcome_message' => 'Esta es una versión preliminar<br/> <small>aún estamos trabajando para darte una mejor experiencia</small>',
     'modal_create_device' => 'Crear Dispositivo',
     'modal_create_action' => 'Crear Acción',
-    'modal_alert' => 'alerta',
+    'modal_alert' => 'Alerta',
+    'modal_delete' => 'Eliminar',
+    'modal_yes' => 'Si',
+    'modal_no' => 'No',
+    'form_close' => 'Cerrar',
     'donate' => 'Puedes apoyarnos realizando una donación'
   );
 ?>
