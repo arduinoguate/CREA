@@ -434,7 +434,7 @@ $(document).ready(function() {
             },
             error: function(jqXHR, textStatus, errorThrown) {
               if (jqXHR.status != '422') {
-                //window.location = "logout.php";
+                window.location = "logout.php";
               } else
                 $('#actions_int').html('<div class="col-md-12"><h2>No hay acciones disponibles</h2></div>');
             },
@@ -444,7 +444,7 @@ $(document).ready(function() {
         });
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        //window.location = "logout.php";
+        window.location = "logout.php";
         console.log(textStatus);
       },
     });
@@ -530,7 +530,7 @@ $(document).ready(function() {
       },
       error: function(jqXHR, textStatus, errorThrown) {
         if (jqXHR.status != '422') {
-          //window.location = "logout.php";
+          window.location = "logout.php";
         } else {
           if (jqXHR.responseJSON.code == 2)
             show_alert("Error de validacion de campos");
