@@ -444,7 +444,7 @@ $(document).ready(function() {
         });
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        window.location = "logout.php";
+        //window.location = "logout.php";
         console.log(textStatus);
       },
     });
