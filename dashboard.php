@@ -367,7 +367,34 @@
               </div>
             	<div class="form-group">
                 <div class="col-sm-12 text-right">
-									<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $locale['form_cloe']; ?></button>
+									<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $locale['form_close']; ?></button>
+                </div>
+              </div>
+            </div>
+          </div>
+  	    </div>
+      </div>
+    </div>
+  </div>
+
+	<div id="deleteModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">✕</button>
+  	        <h3><?php echo $locale['modal_delete']; ?></h3>
+  	    </div>
+          <div class="modal-body" style="text-align:center;">
+            <div class="panel panel-default">
+              <div class="panel-body form-horizontal payment-form">
+            	  <div class="form-group">
+                	<h1 id="mod_delete_msg"></h1>
+                </div>
+              </div>
+            	<div class="form-group">
+                <div class="col-sm-12 text-right">
+									<button type="button" class="btn btn-default" data-dismiss="modal" id="modal_delete_btn"><?php echo $locale['form_yes']; ?></button>
+									<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $locale['form_no']; ?></button>
                 </div>
               </div>
             </div>
