@@ -147,7 +147,7 @@
 						'modulo_id' => array('modulo','id', $this->modulo));
 					$this->modulo_asoc = new DBManager($this->connection, 'modulo_asoc', $col_ma, $key_ma, $foreign_ma);
 
-					$col_act = array('id', 'nombre', 'tipo_accion', 'comando', 'ultimo_valor', 'input', 'modulo_id', 'enabled', 'created_at', 'updated_at');
+					$col_act = array('id', 'nombre', 'tipo_accion', 'comando', 'ultimo_valor', 'input', 'modulo_id', 'enabled', 'created_at', 'updated_at', 'tipo_respuesta');
 					$key_act= array('id');
 					$foreign_act = array('tipo_accion' => array('tipo_action','idtipo_action', $this->tipo_action),
 						'modulo_id' => array('modulo','id', $this->modulo),
