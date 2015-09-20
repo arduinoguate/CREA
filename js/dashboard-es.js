@@ -530,7 +530,7 @@ $(document).ready(function() {
       },
       error: function(jqXHR, textStatus, errorThrown) {
         if (jqXHR.status != '422') {
-          window.location = "logout.php";
+          //window.location = "logout.php";
         } else {
           if (jqXHR.responseJSON.code == 2)
             show_alert("Error de validacion de campos");
@@ -572,6 +572,12 @@ $(document).ready(function() {
   }
 
   function show_alert(message) {
+    //pending to implement
+    $("#mod_alert_msg").html(message);
+    $('#alertModal').modal("show");
+  }
+
+  function show_confirm(message) {
     //pending to implement
     $("#mod_alert_msg").html(message);
     $('#alertModal').modal("show");
