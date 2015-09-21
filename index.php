@@ -68,9 +68,9 @@
     </nav>
 
     <!-- Header -->
-    <header>
-        <div class="container canvas-wrap">
-            <div class="row canvas-content">
+    <header class="canvas-wrap">
+        <div class="container canvas-content">
+            <div class="row">
                 <div class="col-lg-12">
                     <img class="img-responsive" src="img/crea.png" alt="">
                     <div class="intro-text">
@@ -79,8 +79,8 @@
                         <span class="skills"><?php echo $locale['platform_slogan']; ?></span>
                     </div>
                 </div>
-                <div id="canvas" class="gradient"></div>
             </div>
+            <div id="canvas" class="gradient"></div>
         </div>
     </header>
 
