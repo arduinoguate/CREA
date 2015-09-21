@@ -186,7 +186,7 @@ class CREAPI extends API
                 $this->response_code = '401';
                 return allow::denied($this->session->session_scopes);
               }
-              $this->action->delete($this->verb);
+              $this->action->delete($this->verb, $this->session->session_token);
               $this->response_code = $this->action->response['http_code'];
               return $this->action->response;
             }else{

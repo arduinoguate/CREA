@@ -78,8 +78,8 @@ class MODULE extends GCConfig
 		}
   }
 
-  public function delete($id=null, $params=array()){
-    if ($this->validate_user($id)){
+  public function delete($id=null, $token){
+		if ($this->validate_module($params['nombre'], $token)){
 			if ($this->modulo->fetch_id( array("idusuario" => $id) )){
 		    if (!$this->entidad->delete()){
           $this->response['type'] = 'error';
@@ -99,7 +99,7 @@ class MODULE extends GCConfig
 				$this->response['code'] = 2;
 				$this->response['http_code'] = 422;
     	}
-    }
+		}
   }
 
 	public function create($params = array(), $token){
