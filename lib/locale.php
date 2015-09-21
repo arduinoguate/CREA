@@ -5,10 +5,7 @@
 
     public function getCountryLanguageByIp($ip){
       $data = $this->getLocationInfoByIp($ip);
-      print_r($data);
       $q_list = $this->country->fetch("codigo = '".$data['country']."'");
-      echo $this->country->err_data;
-      print_r($q_list);
       if (count($q_list) > 0) {
         return $q_list[0]->columns['crea_lang'];
       }else {
