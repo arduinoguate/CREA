@@ -7,6 +7,7 @@
       $data = $this->getLocationInfoByIp($ip);
       $q_list = $this->country->fetch("nombre = '".$data['country']."'");
       if (count($q_list) > 0) {
+        print_r($q_list);
         return $q_list[0]->columns['crea_lang'];
       }else {
         return 'es';
