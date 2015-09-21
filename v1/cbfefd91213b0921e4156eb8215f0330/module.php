@@ -81,6 +81,7 @@ class MODULE extends GCConfig
   public function delete($id=null, $token){
 		if ($this->validate_module_id($id, $token)){
 			if ($this->modulo->fetch_id( array("id" => $id) )){
+				$modulo_id = $mod->columns['id'];
 		    if (!$this->modulo->delete()){
           $this->response['type'] = 'error';
           $this->response['title'] = 'Delete Error';
@@ -88,7 +89,7 @@ class MODULE extends GCConfig
   				$this->response['code'] = 1;
     			$this->response['http_code'] = 422;
         }else{
-					if ($this->modulo_asoc->fetch_id(array('idusuario'=>$token, 'modulo_id'=>$mod->columns['id']))){
+					if ($this->modulo_asoc->fetch_id(array('idusuario'=>$token, 'modulo_id'=>$modulo_id))){
 						if (!$this->modulo_asoc->delete()){
 							$this->response['type'] = 'error';
 		          $this->response['title'] = 'Delete Error';
