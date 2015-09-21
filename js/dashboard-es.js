@@ -381,6 +381,8 @@ $(document).ready(function() {
 
           $(".eliminar_mod").click(function(e) {
             e.preventDefault();
+            id = $(this).data("act");
+            show_confirm_delete_module("Desea eliminar este m&oacute;dulo?", id);
           });
 
           $.ajax({
@@ -480,7 +482,33 @@ $(document).ready(function() {
   }
 
   function delete_module(mod){
-
+    $.ajax({
+      url: api + "module/" + mod + '/actions',
+      type: 'DELETE',
+      dataType: 'json',
+      crossDomain: true,
+      async: false,
+      data: "action=" + action,
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader("Authorization", "Bearer " + token);
+      },
+      complete: function(resp) {
+        json = resp.responseJSON;
+        console.log(json);
+        load_devices();
+        $('#dashboard').html("");
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        if (jqXHR.status != '422') {
+          window.location = "logout.php";
+        } else {
+          if (jqXHR.responseJSON.code == 2)
+            show_alert("Error de validacion de campos");
+          else
+            show_alert("Error general");
+        }
+      },
+    });
   }
 
   function execute_action(mod, value, action) {
@@ -583,7 +611,7 @@ $(document).ready(function() {
 
   function show_confirm_delete_action(message, mod, id) {
     //pending to implement
-    $("#mod_alert_msg").html(message);
+    $("#mod_delete_msg").html(message);
     $('#deleteModal').modal("show");
     $("#modal_yes_btn").unbind("click");
     $("#modal_yes_btn").bind("click", function(){
@@ -593,7 +621,7 @@ $(document).ready(function() {
 
   function show_confirm_delete_module(message, mod) {
     //pending to implement
-    $("#mod_alert_msg").html(message);
+    $("#mod_delete_msg").html(message);
     $('#deleteModal').modal("show");
     $("#modal_yes_btn").unbind("click");
     $("#modal_yes_btn").bind("click", function(){
