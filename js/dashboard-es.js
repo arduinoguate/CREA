@@ -381,7 +381,7 @@ $(document).ready(function() {
 
           $(".eliminar_mod").click(function(e) {
             e.preventDefault();
-            id = $(this).data("act");
+            id = $(this).attr("id");
             show_confirm_delete_module("Desea eliminar este m&oacute;dulo?", id);
           });
 
