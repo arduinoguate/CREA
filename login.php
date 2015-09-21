@@ -1,11 +1,15 @@
 <?php
   include_once 'lib/locale.php';
   session_start();
-  if (isset($_SESSION['lang'])){
-    include 'locale/'.$_SESSION['lang'].'.php';
+  $lang = "";
+
+	if (isset($_SESSION['lang'])){
+		$lang = $_SESSION['lang'];
+    include 'locale/'.$lang.'.php';
   }else{
     $locale = new Locale();
-    include 'locale/'.$locale->getCountryLanguageByIp($_SERVER['REMOTE_ADDR']).'.php';
+		$lang = $locale->getCountryLanguageByIp($_SERVER['REMOTE_ADDR']);
+    include 'locale/'.$lang.'.php';
   }
 ?>
 <!DOCTYPE html>
