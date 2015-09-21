@@ -78,6 +78,8 @@
     'modal_delete' => 'Eliminar',
     'modal_yes' => 'Si',
     'modal_no' => 'No',
+    'form_yes' => 'Si',
+    'form_no' => 'No',
     'form_close' => 'Cerrar',
     'donate' => 'Puedes apoyarnos realizando una donación'
   );

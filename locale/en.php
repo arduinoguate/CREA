@@ -78,6 +78,8 @@
     'modal_delete' => 'Delete',
     'modal_yes' => 'Yes',
     'modal_no' => 'No',
+    'form_yes' => 'Yes',
+    'form_no' => 'No',
     'form_close' => 'Close',
     'donate' => 'You can support us with a donation'
   );

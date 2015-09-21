@@ -584,7 +584,7 @@ $(document).ready(function() {
   function show_confirm_delete_action(message, mod, id) {
     //pending to implement
     $("#mod_alert_msg").html(message);
-    $('#alertModal').modal("show");
+    $('#deleteModal').modal("show");
     $("#modal_yes_btn").unbind("click");
     $("#modal_yes_btn").bind("click", function(){
       delete_action(mod, id);
@@ -594,7 +594,7 @@ $(document).ready(function() {
   function show_confirm_delete_module(message, mod) {
     //pending to implement
     $("#mod_alert_msg").html(message);
-    $('#alertModal').modal("show");
+    $('#deleteModal').modal("show");
     $("#modal_yes_btn").unbind("click");
     $("#modal_yes_btn").bind("click", function(){
       delete_module(mod);
