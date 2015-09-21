@@ -8,13 +8,16 @@
 	$styles[] = new CSS('docs.css','css','stylesheet');
 	$styles[] = new CSS('freelancer.css','css','stylesheet');
 
+	$lang = "";
 
 	if (isset($_SESSION['lang'])){
-    include 'locale/'.$_SESSION['lang'].'.php';
-  }else{
-    $locale = new Locale();
-    include 'locale/'.$locale->getCountryLanguageByIp($_SERVER['REMOTE_ADDR']).'.php';
-  }
+		$lang = $_SESSION['lang'];
+		include 'locale/'.$lang.'.php';
+	}else{
+		$locale = new Locale();
+		$lang = $locale->getCountryLanguageByIp($_SERVER['REMOTE_ADDR']);
+		include 'locale/'.$lang.'.php';
+	}
 
 	addHeader("CREA - ".$locale['downloads'], $styles);
 ?>
@@ -70,7 +73,7 @@
 
 		    </div>
 
-				<script src="js/downloads.js"></script>
+				<script src="js/downloads-<?php echo $lang; ?>.js"></script>
 			<?php else: ?>
 				<legend><?php echo $locale['not_found']; ?></legend>
 			<?php endif; ?>

@@ -81,6 +81,24 @@
     'form_yes' => 'Si',
     'form_no' => 'No',
     'form_close' => 'Cerrar',
-    'donate' => 'Puedes apoyarnos realizando una donación'
+    'donate' => 'Puedes apoyarnos realizando una donación',
+    'authentication' => 'Autenticación',
+    'name' => 'Nombre',
+    'format' => 'Formato',
+    'required' => 'Requerido',
+    'syntax' => 'Sintaxis',
+    'returns' => 'Retorna',
+    'property' => 'Propiedad',
+    'type' => 'Tipo',
+    'docs_ws_test' => 'Puedes probar el websocket',
+    'docs_ws_here' => 'aquí',
+    'docs_ws_before' => 'Antes de Empezar',
+    'docs_ws_lead' => 'En esta sección te explicaremos como el API de CREA interactua con el websocket y permite que los dispositivos interactuen con el API',
+    'docs_ws_title' => 'Interacción con el websocket CREA',
+    'docs_mob_title' => 'Desarrollando aplicaciones móviles con CREA API',
+    'docs_mob_lead' => 'La siguiente guía te lleva de la mano explicándote como desarrollar aplicaciones móviles utilizando el API de CREA en un dispositivo <a href="https://www.android.com/" target="_blank">Android</a><br /><br />Suerte creando.',
+    'docs_welcome' => 'Bienvenidos al portal de desarrolladores CREA',
+    'docs_api_lead' => 'A continuación encontrarás la documentación de llamadas al API de CREA. Este es un API <a href="http://es.wikipedia.org/wiki/Representational_State_Transfer" target="_blank">REST</a> para que lo tengas en cuenta.<br /><br />  Suerte creando.',
+    'docs_gs' => 'Te sugerimos que leas los siguientes recursos antes de comenzar a utilizar esta guía.'
   );
 ?>

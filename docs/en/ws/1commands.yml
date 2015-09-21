@@ -1,9 +1,9 @@
 ---
-api-section: Comandos
-api-section-description: 'Los comandos son ejecutados durante la conexión con el WebSocket de CREA despues del handshake'
+api-section: Commands
+api-section-description: 'Commands are executed during the WebSocket connection with CREA after the handshake'
 api-commands:
   - entry: 'CRAUTH'
-    description: 'Autentica con el usuario de CREA asociado al token utilizado.'
+    description: 'Authenticates with the CREA user associated to the token'
     parameters:
       - name: authentication
         format: 'Base 64 encryption from API Key and API Secret'
@@ -11,7 +11,7 @@ api-commands:
         syntax: 'CRAUTH|[authentication]'
         return: ACK
   - entry: 'SUBSCR'
-    description: 'Subscribe el modulo a la conexión del websocket.'
+    description: 'Subscribe the module to the websocket connection.'
     parameters:
       - name: module
         format: MD5
@@ -24,8 +24,8 @@ api-commands:
   - entry: 'SEND'
     description: 'Envia un mensaje al servidor'
     parameters:
-      - name: message
+      - name: action_id, message
         format: string
         required: TRUE
-        syntax: 'SEND|[message]'
+        syntax: 'SEND|[action_id]|[message]'
         return: ACK

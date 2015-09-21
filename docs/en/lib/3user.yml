@@ -1,10 +1,10 @@
 ---
 api-section: user
-api-section-description: 'Esta sección es la encargada de gestionar las cuentas de usuario'
+api-section-description: 'This section is in charge of manage the user accounts'
 api-entries:
   - entry: 'vi/user/:id'
     method: GET
-    description: 'Retorna la informancion de un usuario. Solamente se puede recuperar del usuario relacionado al token'
+    description: 'Returns the information of a User. Only can be retrieved the user related to the token'
     parameters:
       - name: id
         format: string
@@ -13,7 +13,7 @@ api-entries:
     authentication: BEARER
   - entry: 'vi/user/:id/api'
     method: GET
-    description: 'Retorna la informancion de acceso al API relacionada al usuario'
+    description: 'Returns the API access information related to the user'
     parameters:
       - name: id
         format: string
@@ -22,7 +22,7 @@ api-entries:
     authentication: BEARER
   - entry: 'v1/module/:id/update'
     method: PUT
-    description: 'Actualiza la información de un usuario'
+    description: 'Updates the user information'
     parameters:
       - name: id
         format: string

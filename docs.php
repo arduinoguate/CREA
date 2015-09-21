@@ -115,15 +115,15 @@
           <div class="bhoechie-tab-content active">
             <center>
               <h1 class="glyphicon glyphicon-road" style="font-size:14em;"></h1>
-              <h2 style="margin-top: 0;">Bienvenidos al portal de desarrolladores CREA</h2>
+              <h2 style="margin-top: 0;"><?php echo $locale['docs_welcome']; ?></h2>
             </center>
 
 						<hr/>
 
-						<h2>Antes de Empezar</h2>
+						<h2><?php echo $locale['docs_ws_before']; ?></h2>
 
 						<p class="lead">
-							Te sugerimos que leas los siguientes recursos antes de comenzar a utilizar esta guía.
+							<?php echo $locale['docs_gs']; ?>
 							<br />
 							<ul>
 								<li><a href="https://www.ibm.com/developerworks/webservices/library/ws-restful/" target"_blank">Conceptos básicos de servicos REST</a></li>
@@ -158,9 +158,7 @@
           	<hr/>
 
             <p class="lead">
-		        	A continuación encontrarás la documentación de llamadas al API de CREA. Este es un API <a href="http://es.wikipedia.org/wiki/Representational_State_Transfer" target="_blank">REST</a> para que lo tengas en cuenta.
-			        <br /><br />
-			        Suerte creando.
+							<?php echo $locale['docs_api_lead']; ?>
 				    </p>
 
 						<?php foreach ($api_ref as $api_module): ?>
@@ -195,7 +193,7 @@
 						   	</div>
 
 						    <div>
-						    	<b>Autenticación: </b><?php echo $value['authentication']; ?>
+						    	<b><?php echo $locale['authentication']; ?>: </b><?php echo $value['authentication']; ?>
 						    </div>
 						    <br />
 
@@ -203,10 +201,10 @@
 
 									<div class="method">
 						        <div class="row margin-0 list-header hidden-sm hidden-xs">
-						            <div class="col-md-3"><div class="header">Propiedad</div></div>
-						            <div class="col-md-2"><div class="header">Tipo</div></div>
-						            <div class="col-md-2"><div class="header">Requerido</div></div>
-						            <div class="col-md-5"><div class="header">Formato</div></div>
+						            <div class="col-md-3"><div class="header"><?php echo $locale['property']; ?></div></div>
+						            <div class="col-md-2"><div class="header"><?php echo $locale['type']; ?></div></div>
+						            <div class="col-md-2"><div class="header"><?php echo $locale['required']; ?></div></div>
+						            <div class="col-md-5"><div class="header"><?php echo $locale['format']; ?></div></div>
 						        </div>
 
 						        <?php foreach ($value['parameters'] as $val): ?>
@@ -253,21 +251,19 @@
 						<div class="bhoechie-tab-content">
 							<center>
 								<h1 class="fa fa-mobile" style="font-size:14em;"></h1>
-								<h2 style="margin-top: 10;">Desarrollando aplicaciones móviles con CREA API</h3>
+								<h2 style="margin-top: 10;"><?php echo $locale['docs_mob_title']; ?></h3>
 							</center>
 
 	          	<hr/>
 
 							<p class="lead">
-			        	La siguiente guía te lleva de la mano explicándote como desarrollar aplicaciones móviles utilizando el API de CREA en un dispositivo <a href="https://www.android.com/" target="_blank">Android</a>
-				        <br /><br />
-				        Suerte creando.
+								<?php echo $locale['docs_mob_lead']; ?>
 					    </p>
 
-							<h1>Antes de Empezar</h1>
+							<h1><?php echo $locale['docs_ws_before']; ?></h1>
 
 							<p class="lead">
-			        	Te sugerimos que leas los siguientes recursos antes de comenzar a utilizar esta guía.
+			        	<?php echo $locale['docs_gs']; ?>
 				        <br />
 				        <ul>
 									<li><a href="http://developer.android.com/index.html" target"_blank">Sitio para empezar a desarrollar en Android</a></li>
@@ -283,19 +279,19 @@
 						<div class="bhoechie-tab-content">
 							<center>
 								<h1 class="fa fa-gears" style="font-size:14em;"></h1>
-								<h2 style="margin-top: 10;">Interacción con el websocket CREA</h3>
+								<h2 style="margin-top: 10;"><?php echo $locale['docs_ws_title']; ?></h3>
 							</center>
 
 	          	<hr/>
 
 							<p class="lead">
-			        	En esta sección te explicaremos como el API de CREA interactua con el websocket y permite que los dispositivos interactuen con el API
+			        	<?php echo $locale['docs_ws_lead']; ?>
 					    </p>
 
-							<h1>Antes de Empezar</h1>
+							<h1><?php echo $locale['docs_ws_before']; ?></h1>
 
 							<p class="lead">
-			        	Puedes probar el websocket <a href="http://crea.arduinogt.com/websocket.php" target="_blank">aquí</a>
+			        	<?php echo $locale['docs_ws_test']; ?> <a href="http://www.creaengine.com/websocket.php" target="_blank"><?php echo $locale['docs_ws_here']; ?></a>
 					    </p>
 
 							<?php foreach ($cmd_ref as $command): ?>
@@ -318,11 +314,11 @@
 
 										<div class="method">
 							        <div class="row margin-0 list-header hidden-sm hidden-xs">
-							            <div class="col-md-2"><div class="header">Nombre</div></div>
-							            <div class="col-md-3"><div class="header">Formato</div></div>
-							            <div class="col-md-2"><div class="header">Requerido</div></div>
-							            <div class="col-md-3"><div class="header">Sintaxis</div></div>
-													<div class="col-md-2"><div class="header">Retorno</div></div>
+							            <div class="col-md-2"><div class="header"><?php echo $locale['name']; ?></div></div>
+							            <div class="col-md-3"><div class="header"><?php echo $locale['format']; ?></div></div>
+							            <div class="col-md-2"><div class="header"><?php echo $locale['required']; ?></div></div>
+							            <div class="col-md-3"><div class="header"><?php echo $locale['syntax']; ?></div></div>
+													<div class="col-md-2"><div class="header"><?php echo $locale['returns']; ?></div></div>
 							        </div>
 
 							        <?php foreach ($value['parameters'] as $val): ?>

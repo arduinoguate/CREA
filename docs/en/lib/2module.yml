@@ -1,15 +1,15 @@
 ---
 api-section: module
-api-section-description: 'Esta sección es la encargada de gestionar los modulos asociados al usuario'
+api-section-description: 'This section is the one in charge of managing the user associated modules'
 api-entries:
   - entry: 'v1/module'
     method: GET
-    description: 'Retorna el listado de todos los modulos asociados al token'
+    description: 'Returns the list of all the token associated modules'
     parameters: NONE
     authentication: BEARER
   - entry: 'vi/module/:id'
     method: GET
-    description: 'Retorna la informancion de un modulo especifico'
+    description: 'Returns the information of an specific module'
     parameters:
       - name: id
         format: MD5
@@ -18,7 +18,7 @@ api-entries:
     authentication: BEARER
   - entry: 'v1/module/:id/actions'
     method: GET
-    description: 'Retorna las acciones asociadas a un modulo'
+    description: 'Returns the actions associated to the module'
     parameters:
       - name: id
         format: MD5
@@ -27,7 +27,7 @@ api-entries:
     authentication: BEARER
   - entry: 'v1/module'
     method: POST
-    description: 'Crea un nuevo modulo'
+    description: 'Creates a new module'
     parameters:
       - name: nombre
         format: string
@@ -40,7 +40,7 @@ api-entries:
     authentication: BEARER
   - entry: 'v1/module/:id/register-action'
     method: PUT
-    description: 'Crea una nueva accion asociada al modulo :id'
+    description: 'Creates a new action associated to the module :id'
     parameters:
       - name: id
         format: MD5
@@ -61,7 +61,7 @@ api-entries:
     authentication: BEARER
   - entry: 'v1/module/:id/execute-action'
     method: PUT
-    description: 'Ejecuta una nueva accion asociada al modulo :id'
+    description: 'Executes a new action associated to the module :id'
     parameters:
       - name: id
         format: MD5
@@ -78,7 +78,7 @@ api-entries:
     authentication: BEARER
   - entry: 'v1/module/:id/request-status'
     method: PUT
-    description: 'Solicita informacion relacionada al modulo'
+    description: 'Requests the information related to the module'
     parameters:
       - name: id
         format: MD5
@@ -87,7 +87,7 @@ api-entries:
     authentication: BEARER
   - entry: 'v1/module/:id/disable'
     method: PUT
-    description: 'Desactiva el modulo para ser utilizado'
+    description: 'Deactivates the module for been used'
     parameters:
       - name: id
         format: MD5
@@ -96,7 +96,7 @@ api-entries:
     authentication: BEARER
   - entry: 'v1/module/:id/enable'
     method: PUT
-    description: 'Activa un modulo desactivado anteriormente'
+    description: 'Activates the module previously deactivated'
     parameters:
       - name: id
         format: MD5
@@ -114,7 +114,7 @@ api-entries:
     authentication: BEARER
   - entry: 'v1/module/:id/actions'
     method: DELETE
-    description: 'Solicita informacion relacionada al modulo'
+    description: 'Deletes the action related to the module :id'
     parameters:
       - name: id
         format: MD5

@@ -24,8 +24,8 @@ api-commands:
   - entry: 'SEND'
     description: 'Envia un mensaje al servidor'
     parameters:
-      - name: message
+      - name: action_id, message
         format: string
         required: TRUE
-        syntax: 'SEND|[message]'
+        syntax: 'SEND|[action_id]|[message]'
         return: ACK
