@@ -4,7 +4,7 @@
   class Locale extends GCConfig{
 
     public function getCountryLanguageByIp($ip){
-      $data = getLocationInfoByIp($ip);
+      $data = $this->getLocationInfoByIp($ip);
       $q_list = $this->country->fetch("nombre = '".$data['country']."'");
       if (count($q_list) > 0) {
         return $q_item->columns['crea_lang'];
