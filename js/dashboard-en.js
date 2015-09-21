@@ -112,12 +112,12 @@ $(document).ready(function() {
             window.location = "logout.php";
           } else {
             if (jqXHR.status == "200") {
-              show_alert("Cambios guardados con exito");
+              show_alert("Changes saved successfully");
             } else
             if (jqXHR.responseJSON.code == 2)
-              show_alert("Error de validacion de campos");
+              show_alert("Fields validation Error");
             else
-              show_alert("Error general");
+              show_alert("General Error");
           }
         },
       });
@@ -138,7 +138,7 @@ $(document).ready(function() {
       var password = $("input#cp-pass").val();
       var pass_conf = $("input#cp-pass-confirm").val();
       if (password != pass_conf){
-        show_alert("Las contraseñas no coinciden");
+        show_alert("Passwords don't match");
       }else
         $.ajax({
           url: api + "user/" + user + '/update',
@@ -161,12 +161,12 @@ $(document).ready(function() {
               window.location = "logout.php";
             } else {
               if (jqXHR.status == "200") {
-                show_alert("Cambios guardados con exito");
+                show_alert("Changes saved successfully");
               } else
               if (jqXHR.responseJSON.code == 2)
-                show_alert("Error de validacion de campos");
+                show_alert("Fields validation Error");
               else
-                show_alert("Error general");
+                show_alert("General Error");
             }
           },
         });
@@ -201,8 +201,8 @@ $(document).ready(function() {
         var info = "";
         console.log(json.usuarios[0]);
         if (json.http_code == 200) {
-          info = '<div class="row"><div class="col-md-12"><h2>Editar información</h2></div>';
-          info += '<div class="col-md-12">Puedes editar tu información seleccionando la opcion "editar".<hr/></div>';
+          info = '<div class="row"><div class="col-md-12"><h2>Edit Information</h2></div>';
+          info += '<div class="col-md-12">You can edit your information selecting the "edit" option.<hr/></div>';
           info += '</div>';
           $("#eu-nombre").val(json.usuarios[0].nombre);
           $("#eu-apellido").val(json.usuarios[0].apellido);
@@ -215,14 +215,14 @@ $(document).ready(function() {
         if (jqXHR.status != '422') {
           window.location = "logout.php";
         } else
-          $('#devices').append('<li class="list-group-item"><span class="glyphicon glyphicon-remove text-primary"></span>No hay dispositivos</li>');
+          $('#devices').append('<li class="list-group-item"><span class="glyphicon glyphicon-remove text-primary"></span>No available information</li>');
       },
     });
   }
 
   function load_password() {
-    info = '<div class="row"><div class="col-md-12"><h2>Cambiar Contraseña</h2></div>';
-    info += '<div class="col-md-12">Puedes cambiar tu contraseña desde este formulario.<hr/></div>';
+    info = '<div class="row"><div class="col-md-12"><h2>Change Password</h2></div>';
+    info += '<div class="col-md-12">You can change your password here.<hr/></div>';
     info += '</div>';
     $('#dashboard').html(info);
   }
@@ -241,8 +241,8 @@ $(document).ready(function() {
       complete: function(resp) {
         json = resp.responseJSON;
         console.log(json);
-        var info = '<div class="row"><div class="col-md-12"><h2>Credenciales del API</h2></div>';
-        info += '<div class="col-md-12">Los siguientes accesos los puedes utilizar para acceder a CREA desde tus dispositivos registrados.<hr/></div>';
+        var info = '<div class="row"><div class="col-md-12"><h2>API Credentials</h2></div>';
+        info += '<div class="col-md-12">The following access tokens can be used to access CREA from your registered devices.<hr/></div>';
         info += '<div class="col-md-12">API Key <b>' + json.credenciales.client_id + '</b><br/>';
         info += 'API Secret <b>' + json.credenciales.client_secret + '</b><br/>';
         info += 'Authorization <b>' + btoa(json.credenciales.client_id + ":" + json.credenciales.client_secret) + '</b></div>';
