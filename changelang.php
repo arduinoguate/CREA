@@ -2,6 +2,7 @@
   include_once 'lib/locale.php';
   session_start();
   $lang = (isset($_POST['lang']))?$_POST['lang']:'';
+  echo 'lango'.$lang;
   switch ($lang) {
     case 'es':
     case 'en':
