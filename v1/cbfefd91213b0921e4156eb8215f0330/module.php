@@ -81,7 +81,7 @@ class MODULE extends GCConfig
   public function delete($id=null, $token){
 		if ($this->validate_module_id($id, $token)){
 			if ($this->modulo->fetch_id( array("id" => $id) )){
-		    if (!$this->entidad->delete()){
+		    if (!$this->modulo->delete()){
           $this->response['type'] = 'error';
           $this->response['title'] = 'Delete Error';
           $this->response['message'] = 'No se pudo eliminar la data';
