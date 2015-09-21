@@ -80,7 +80,7 @@ class MODULE extends GCConfig
 
   public function delete($id=null, $token){
 		if ($this->validate_module_id($id, $token)){
-			if ($this->modulo->fetch_id( array("idusuario" => $id) )){
+			if ($this->modulo->fetch_id( array("id" => $id) )){
 		    if (!$this->entidad->delete()){
           $this->response['type'] = 'error';
           $this->response['title'] = 'Delete Error';
