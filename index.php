@@ -69,8 +69,8 @@
 
     <!-- Header -->
     <header>
-        <div class="container">
-            <div class="row">
+        <div class="container canvas-wrap">
+            <div class="row canvas-content">
                 <div class="col-lg-12">
                     <img class="img-responsive" src="img/crea.png" alt="">
                     <div class="intro-text">
@@ -79,6 +79,7 @@
                         <span class="skills"><?php echo $locale['platform_slogan']; ?></span>
                     </div>
                 </div>
+                <div id="canvas" class="gradient"></div>
             </div>
         </div>
     </header>
@@ -407,8 +408,19 @@
         </div>
     </div>
 
+    <!-- Main library -->
+    <script src="js/vecs/three.min.js"></script>
+
+    <!-- Helpers -->
+    <script src="js/vecs/projector.js"></script>
+    <script src="js/vecs/canvas-renderer.js"></script>
+
+    <!-- Visualitzation adjustments -->
+    <script src="js/vecs/3d-lines-animation.js"></script>
+
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
+    <script src="js/vecs/color.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
