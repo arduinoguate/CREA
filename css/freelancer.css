@@ -464,6 +464,7 @@ footer .footer-below {
 
 }
 div.canvas-content{
+    margin-top: 50px;
     padding-top: 150px;
     position:relative;
     z-index:500;
