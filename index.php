@@ -50,7 +50,7 @@
                         <a href="#contact"><?php echo $locale['request']; ?></a>
                     </li>
                     <li class="page-scroll">
-                        <form action="post/changelang.php" method="post" id="changelang">
+                        <form action="changelang.php" method="post" id="changelang">
                           <input type="hidden" value="" name="lang" id="lang">
                           <a href="#" id="es">Es</a>|<a href="#" id="en">En</a>
                         </form>
