@@ -1,6 +1,6 @@
 <?php
   include_once 'lib/locale.php';
-
+  session_start();
   if (isset($_SESSION['lang'])){
     include 'locale/'.$_SESSION['lang'].'.php';
   }else{
