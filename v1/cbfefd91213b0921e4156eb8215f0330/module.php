@@ -79,7 +79,7 @@ class MODULE extends GCConfig
   }
 
   public function delete($id=null, $token){
-		if ($this->validate_module($params['nombre'], $token)){
+		if ($this->validate_module_id($id, $token)){
 			if ($this->modulo->fetch_id( array("idusuario" => $id) )){
 		    if (!$this->entidad->delete()){
           $this->response['type'] = 'error';
@@ -229,7 +229,30 @@ class MODULE extends GCConfig
     $result = $this->modulo->fetch("nombre = '$module'");
     if (count($result) <= 0){
       $this->response['type'] = 'error';
-      $this->response['title'] = 'Usuario';
+      $this->response['title'] = 'Modulo';
+      $this->response['message'] = 'El dispositivo no existe';
+			$this->response['code'] = 2;
+			$this->response['http_code'] = 422;
+    }else{
+    	foreach ($result as $mod) {
+				if ($this->modulo_asoc->fetch_id(array('idusuario'=>$token, 'modulo_id'=>$mod->columns['id']))){
+    			return true;
+      	}
+			}
+    }
+
+    return $validation;
+  }
+
+	//Private Methods
+	private function validate_module_id($id, $token){
+
+		$validation = false;
+
+    $result = $this->modulo->fetch("id = '$id'");
+    if (count($result) <= 0){
+      $this->response['type'] = 'error';
+      $this->response['title'] = 'Modulo';
       $this->response['message'] = 'El dispositivo no existe';
 			$this->response['code'] = 2;
 			$this->response['http_code'] = 422;
