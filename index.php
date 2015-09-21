@@ -36,6 +36,11 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <form action="changelang.php" method="post" id="changelang">
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="page-scroll small"><a href="#" id="en">En</a></li>
+                    <li class="page-scroll small"><a href="#" id="es">Es</a></li>
+                </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="page-scroll">
                         <a href="docs.php"><?php echo $locale['documentation']; ?></a>
@@ -50,15 +55,10 @@
                         <a href="#contact"><?php echo $locale['request']; ?></a>
                     </li>
                     <li class="page-scroll">
-                        <form action="changelang.php" method="post" id="changelang">
-                          <input type="hidden" value="" name="lang" id="lang">
-                          <a href="#" id="es">Es</a>|<a href="#" id="en">En</a>
-                        </form>
-                    </li>
-                    <li class="page-scroll">
                         <a href="login.php"><?php echo $locale['login']; ?></a>
                     </li>
                 </ul>
+              </form>
             </div>
             <!-- /.navbar-collapse -->
         </div>
