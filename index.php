@@ -38,6 +38,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <form action="changelang.php" method="post" id="changelang">
                 <ul class="nav navbar-nav navbar-left">
+                    <input type="hidden" name="lang" id="lang"/>
                     <li class="page-scroll small"><a href="#" id="en">En</a></li>
                     <li class="page-scroll small"><a href="#" id="es">Es</a></li>
                 </ul>
