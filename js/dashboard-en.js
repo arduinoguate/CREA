@@ -54,6 +54,7 @@ $(document).ready(function() {
 
     user = $(this).data("user");
     $("#user-info").hide();
+    $("#user-password").hide();
 
     load_api(user);
   });
@@ -63,10 +64,20 @@ $(document).ready(function() {
 
     user = $(this).data("user");
     $("#user-info").show();
+    $("#user-password").hide();
 
     load_user(user);
   });
 
+  $("#user_password").click(function(e) {
+    e.preventDefault();
+
+    user = $(this).data("user");
+    $("#user-password").show();
+    $("#user-info").hide();
+
+    load_password();
+  });
 
   $("#user-edit-form input").jqBootstrapValidation({
     preventSubmit: true,
@@ -110,6 +121,55 @@ $(document).ready(function() {
           }
         },
       });
+    },
+    filter: function() {
+      return $(this).is(":visible");
+    },
+  });
+
+  $("#password-edit-form input").jqBootstrapValidation({
+    preventSubmit: true,
+    submitError: function($form, event, errors) {
+      // additional error messages or events
+    },
+    submitSuccess: function($form, event) {
+      event.preventDefault(); // prevent default submit behaviour
+      // get values from FORM
+      var password = $("input#cp-pass").val();
+      var pass_conf = $("input#cp-pass-confirm").val();
+      if (password != pass_conf){
+        show_alert("Las contraseñas no coinciden");
+      }else
+        $.ajax({
+          url: api + "user/" + user + '/update',
+          type: 'PUT',
+          dataType: 'json',
+          crossDomain: true,
+          async: false,
+          data: "password=" + password,
+          beforeSend: function(xhr) {
+            xhr.setRequestHeader("Authorization", "Bearer " + token);
+          },
+          complete: function(resp) {
+            json = resp.responseJSON;
+            console.log(json);
+            load_user(user);
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            var arr = ["202", "422", "200"];
+            if (!inArray(jqXHR.status, arr)) {
+              window.location = "logout.php";
+            } else {
+              if (jqXHR.status == "200") {
+                show_alert("Cambios guardados con exito");
+              } else
+              if (jqXHR.responseJSON.code == 2)
+                show_alert("Error de validacion de campos");
+              else
+                show_alert("Error general");
+            }
+          },
+        });
     },
     filter: function() {
       return $(this).is(":visible");
@@ -160,6 +220,13 @@ $(document).ready(function() {
     });
   }
 
+  function load_password() {
+    info = '<div class="row"><div class="col-md-12"><h2>Cambiar Contraseña</h2></div>';
+    info += '<div class="col-md-12">Puedes cambiar tu contraseña desde este formulario.<hr/></div>';
+    info += '</div>';
+    $('#dashboard').html(info);
+  }
+
   function load_api(user) {
     //LOAD API ACCESS KEYS
     $.ajax({
@@ -186,7 +253,7 @@ $(document).ready(function() {
         if (jqXHR.status != '422') {
           window.location = "logout.php";
         } else
-          $('#devices').append('<li class="list-group-item"><span class="glyphicon glyphicon-remove text-primary"></span>No hay dispositivos</li>');
+          $('#devices').append('<li class="list-group-item"><span class="glyphicon glyphicon-remove text-primary"></span>No devices</li>');
       },
     });
   }
@@ -194,6 +261,7 @@ $(document).ready(function() {
   function load_devices() {
     //LOAD DEVICES
     $("#user-info").hide();
+    $("#user-password").hide();
     $("#devices").html("");
     $.ajax({
       url: api + "module/",
@@ -219,6 +287,7 @@ $(document).ready(function() {
 
               get_modulo($(this).attr("id"));
               $("#user-info").hide();
+              $("#user-password").hide();
             });
           });
       },
@@ -226,7 +295,7 @@ $(document).ready(function() {
         if (jqXHR.status != '422') {
           window.location = "logout.php";
         } else
-          $('#devices').append('<li class="list-group-item"><span class="glyphicon glyphicon-remove text-primary"></span>No hay dispositivos</li>');
+          $('#devices').append('<li class="list-group-item"><span class="glyphicon glyphicon-remove text-primary"></span>No devices</li>');
       },
     });
   }
@@ -249,7 +318,7 @@ $(document).ready(function() {
         if (jqXHR.status != '422') {
           window.location = "logout.php";
         } else
-          $("#act_type").append("<option>No hay tipos</option>");
+          $("#act_type").append("<option>No types</option>");
       },
     });
   }
@@ -272,7 +341,7 @@ $(document).ready(function() {
         if (jqXHR.status != '422') {
           window.location = "logout.php";
         } else
-          $("#act_type").append("<option>No hay tipos</option>");
+          $("#act_type").append("<option>No types</option>");
       },
     });
   }
@@ -292,14 +361,14 @@ $(document).ready(function() {
         json = resp.responseJSON;
         $.each(json.modulos, function(i, item) {
           var info = '<div class="row"><div class="col-md-8">Nombre <b>' + item.nombre + '</b><br/>';
-          info += 'ID del dispositivo <b>' + item.id + '</b><br/>';
-          info += 'Dispositivo <b>' + item.tipo_modulo.nombre + '</b><br/>';
-          info += 'Estado <b>' + item.estado + '</b><br/>Ultima Respuesta <b>' + item.last_response + '</b><br/>';
-          info += '<small>Actualizado en: <b>' + item.updated_at + '</b></small></div>';
-          info += '<div class="col-md-4"><div class="col-md-12"><button data-mod="' + item.id + '" class="btn-success btn-lg add_action">Agregar Acción</button></div>';
-          info += '<div class="col-md-12"><a href="'+item.tipo_modulo.url_libreria+'" target="_blank" class="btn btn-primary btn-lg">Descargar Lib.</a></div>';
-          info += '<div class="col-md-12"><small><a href="#" class="eliminar_mod" id="' + item.id + '">Eliminar</a></small></div></div>';
-          info += '</div><hr/><p>Acciones</p>';
+          info += 'Device ID <b>' + item.id + '</b><br/>';
+          info += 'Device <b>' + item.tipo_modulo.nombre + '</b><br/>';
+          info += 'Status <b>' + item.estado + '</b><br/>Last response <b>' + item.last_response + '</b><br/>';
+          info += '<small>Updated at: <b>' + item.updated_at + '</b></small></div>';
+          info += '<div class="col-md-4"><div class="col-md-12  text-right"><button data-mod="' + item.id + '" class="btn-success btn-lg add_action">Add Action</button></div>';
+          info += '<div class="col-md-12  text-right"><small><a href="'+item.tipo_modulo.url_libreria+'" target="_blank" class="">Download Library</a></small></div>';
+          info += '<div class="col-md-12  text-right"><small><a href="#" class="eliminar_mod text-danger" id="' + item.id + '">Delete</a></small></div></div>';
+          info += '</div><hr/><p>Actions</p>';
           info += '<div class="row" id="actions_int"></div>';
 
           $('#dashboard').html(info);
@@ -312,6 +381,8 @@ $(document).ready(function() {
 
           $(".eliminar_mod").click(function(e) {
             e.preventDefault();
+            id = $(this).attr("id");
+            show_confirm_delete_module("Do you wish to delete this module?", id);
           });
 
           $.ajax({
@@ -327,18 +398,18 @@ $(document).ready(function() {
               json = resp.responseJSON;
               console.log(json);
               $.each(json.acciones, function(i, item) {
-                info = '<div class="col-md-4"><div class="col-md-11 alert alert-success">Nombre: <b>' + item.nombre + '</b><br/>';
-                info += 'Tipo: <b>' + item.tipo_accion.nombre + '</b><br/>';
-                info += 'Comando: <b>' + item.comando + '</b><br/>';
-                info += 'Ultima instrucción: <b>' + item.ultimo_valor + '</b><br/><hr/>';
+                info = '<div class="col-md-4"><div class="col-md-11 alert alert-success">Name: <b>' + item.nombre + '</b><br/>';
+                info += 'Type: <b>' + item.tipo_accion.nombre + '</b><br/>';
+                info += 'Command: <b>' + item.comando + '</b><br/>';
+                info += 'Last instruction: <b>' + item.ultimo_valor + '</b><br/><hr/>';
                 info += '<div class="form-group">';
-                info += '<label for="' + item.id + '">Enviar Instrucción</label>';
-                info += '<input type="text" class="form-control" data-modulo="' + item.modulo_id.id + '" id="' + item.id + '" placeholder="Instrucción">';
+                info += '<label for="' + item.id + '">Send Instruction</label>';
+                info += '<input type="text" class="form-control" data-modulo="' + item.modulo_id.id + '" id="' + item.id + '" placeholder="Instruction">';
                 info += '</div>';
                 info += '<div class="form-group">';
-                info += '<button class="col-md-8 btn btn-primary btn-sm send_action" data-act="' + item.id + '">Enviar</button><button class="btn btn-danger btn-sm delete_action" data-act="' + item.id + '"><span class="glyphicon glyphicon-trash"></span></button>';
+                info += '<button class="col-md-8 btn btn-primary btn-sm send_action" data-act="' + item.id + '">Send</button><button class="btn btn-danger btn-sm delete_action" data-act="' + item.id + '"><span class="glyphicon glyphicon-trash"></span></button>';
                 info += '</div>';
-                info += '<small>Actualizado en: <b>' + item.updated_at + '</b></small></div></div>';
+                info += '<small>Updated at: <b>' + item.updated_at + '</b></small></div></div>';
 
 
                 $('#actions_int').append(info);
@@ -358,8 +429,8 @@ $(document).ready(function() {
                 e.preventDefault();
                 id = $(this).data("act");
                 mod = $("#" + id).data("modulo");
+                show_confirm_delete_action("Do you wish to delete this action?", mod, id);
 
-                delete_action(mod, id);
               });
 
             },
@@ -367,7 +438,7 @@ $(document).ready(function() {
               if (jqXHR.status != '422') {
                 window.location = "logout.php";
               } else
-                $('#actions_int').html('<div class="col-md-12"><h2>No hay acciones disponibles</h2></div>');
+                $('#actions_int').html('<div class="col-md-12"><h2>No available actions</h2></div>');
             },
           });
 
@@ -402,9 +473,39 @@ $(document).ready(function() {
           window.location = "logout.php";
         } else {
           if (jqXHR.responseJSON.code == 2)
-            show_alert("Error de validacion de campos");
+            show_alert("Field validation error");
           else
-            show_alert("Error general");
+            show_alert("General Error");
+        }
+      },
+    });
+  }
+
+  function delete_module(mod){
+    $.ajax({
+      url: api + "module/" + mod,
+      type: 'DELETE',
+      dataType: 'json',
+      crossDomain: true,
+      async: false,
+      data: "",
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader("Authorization", "Bearer " + token);
+      },
+      complete: function(resp) {
+        json = resp.responseJSON;
+        console.log(json);
+        load_devices();
+        $('#dashboard').html("");
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        if (jqXHR.status != '422') {
+          window.location = "logout.php";
+        } else {
+          if (jqXHR.responseJSON.code == 2)
+            show_alert("Field validation error");
+          else
+            show_alert("General Error");
         }
       },
     });
@@ -431,9 +532,9 @@ $(document).ready(function() {
           window.location = "logout.php";
         } else {
           if (jqXHR.responseJSON.code == 2)
-            show_alert("Error de validacion de campos");
+            show_alert("Field validation error");
           else
-            show_alert("Error general");
+            show_alert("General Error");
         }
       },
     });
@@ -464,9 +565,9 @@ $(document).ready(function() {
           window.location = "logout.php";
         } else {
           if (jqXHR.responseJSON.code == 2)
-            show_alert("Error de validacion de campos");
+            show_alert("Field validation error");
           else
-            show_alert("Error general");
+            show_alert("General Error");
         }
       },
     });
@@ -494,9 +595,9 @@ $(document).ready(function() {
           window.location = "logout.php";
         } else {
           if (jqXHR.responseJSON.code == 2)
-            show_alert("Error de validacion de campos");
+            show_alert("Field validation error");
           else
-            show_alert("Error general");
+            show_alert("General Error");
         }
       },
     });
@@ -504,5 +605,28 @@ $(document).ready(function() {
 
   function show_alert(message) {
     //pending to implement
+    $("#mod_alert_msg").html(message);
+    $('#alertModal').modal("show");
   }
+
+  function show_confirm_delete_action(message, mod, id) {
+    //pending to implement
+    $("#mod_delete_msg").html(message);
+    $('#deleteModal').modal("show");
+    $("#modal_yes_btn").unbind("click");
+    $("#modal_yes_btn").bind("click", function(){
+      delete_action(mod, id);
+    });
+  }
+
+  function show_confirm_delete_module(message, mod) {
+    //pending to implement
+    $("#mod_delete_msg").html(message);
+    $('#deleteModal').modal("show");
+    $("#modal_yes_btn").unbind("click");
+    $("#modal_yes_btn").bind("click", function(){
+      delete_module(mod);
+    });
+  }
+
 });
