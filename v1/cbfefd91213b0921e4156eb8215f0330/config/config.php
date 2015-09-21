@@ -116,10 +116,9 @@
 			$foreign_tact = array('id_type' => array('api_field_type','id', $this->api_field_type));
 			$this->tipo_action = new DBManager($this->connection, 'tipo_action', $col_tact, $key_tact, $foreign_tact);
 
-			$col_tres = array('id', 'nombre', 'detalle', 'enabled', 'created_at');
+			$col_tres = array('id', 'nombre-es', 'nombre-en', 'detalle-es', 'detalle-en', 'enabled', 'created_at');
 			$key_tres = array('id');
 			$this->tipo_respuesta = new DBManager($this->connection, 'tipo_respuesta', $col_tres, $key_tres);
-
 
 			switch ($request) {
 				case 'module':
