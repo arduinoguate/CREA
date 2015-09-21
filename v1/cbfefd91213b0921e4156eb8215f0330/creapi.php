@@ -162,7 +162,7 @@ class CREAPI extends API
           }
           break;
         case 'DELETE':
-          if (isset($this->verb) && (trim($this->verb) != '')){
+          if (isset($this->verb) && (trim($this->verb) != '') && (isset($this->args[0]))){
             switch($this->args[0]){
               case 'actions':
                 if (!allow::is_allowed($this->session->session_scopes, allow::PUBLISH())){
@@ -176,18 +176,23 @@ class CREAPI extends API
                 return $this->action->response;
                 break;
               default:
-                if (!allow::is_allowed($this->session->session_scopes, allow::PUBLISH())){
-                  $this->response_code = '401';
-                  return allow::denied($this->session->session_scopes);
-                }
-                $this->action->delete($this->verb);
-                $this->response_code = $this->action->response['http_code'];
-                return $this->action->response;
+                $this->response_code = '401';
+                return $this::return_message('Método Invalido','error');
                 break;
             }
           }else{
-            $this->response_code = '401';
-            return $this::return_message('URL Invalido','error');
+            if (isset($this->verb) && (trim($this->verb) != '')){
+              if (!allow::is_allowed($this->session->session_scopes, allow::PUBLISH())){
+                $this->response_code = '401';
+                return allow::denied($this->session->session_scopes);
+              }
+              $this->action->delete($this->verb);
+              $this->response_code = $this->action->response['http_code'];
+              return $this->action->response;
+            }else{
+              $this->response_code = '401';
+              return $this::return_message('URL Invalido','error');
+            }
           }
           break;
         default:
