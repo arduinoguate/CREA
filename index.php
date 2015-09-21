@@ -80,8 +80,8 @@
                     </div>
                 </div>
             </div>
-            <div id="canvas" class="gradient"></div>
         </div>
+        <div id="canvas" class="gradient"></div>
     </header>
 
     <!-- Portfolio Grid Section -->
