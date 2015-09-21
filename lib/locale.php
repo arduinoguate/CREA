@@ -1,11 +1,12 @@
 <?php
-  include_once '../config/config.php';
+  include_once 'config/config.php';
 
   class Locale extends GCConfig{
 
     public function getCountryLanguageByIp($ip){
       $data = $this->getLocationInfoByIp($ip);
       $q_list = $this->country->fetch("codigo = '".$data['country']."'");
+
       if (count($q_list) > 0) {
         return $q_list[0]->columns['crea_lang'];
       }else {
