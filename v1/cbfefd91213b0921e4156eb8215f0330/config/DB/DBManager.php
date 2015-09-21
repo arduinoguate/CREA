@@ -507,7 +507,6 @@ class DBManager extends DataBaseManager{
 		}else{
 			$count = 0;
 			foreach ($this->the_key as $keys) {
-				print_r($this->columns[$keys]);
 				if ($count > 0)
 					$key_names .= ' AND ';
 				$key_names .= 'a.'.$keys.'='
