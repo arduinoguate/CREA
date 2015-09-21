@@ -483,12 +483,12 @@ $(document).ready(function() {
 
   function delete_module(mod){
     $.ajax({
-      url: api + "module/" + mod + '/actions',
+      url: api + "module/" + mod,
       type: 'DELETE',
       dataType: 'json',
       crossDomain: true,
       async: false,
-      data: "action=" + action,
+      data: "",
       beforeSend: function(xhr) {
         xhr.setRequestHeader("Authorization", "Bearer " + token);
       },
