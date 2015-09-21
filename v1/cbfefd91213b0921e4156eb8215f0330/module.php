@@ -90,7 +90,7 @@ class MODULE extends GCConfig
     			$this->response['http_code'] = 422;
         }else{
 					if ($this->modulo_asoc->fetch_id(array('idusuario'=>$token, 'modulo_id'=>$modulo_id))){
-						if (!$this->modulo_asoc->delete()){
+						if (!$this->modulo_asoc->delete("idusuario = '$token' AND modulo_id='$modulo_id'")){
 							$this->response['type'] = 'error';
 		          $this->response['title'] = 'Delete Error';
 		          $this->response['message'] = 'No se pudo eliminar la data asociada';

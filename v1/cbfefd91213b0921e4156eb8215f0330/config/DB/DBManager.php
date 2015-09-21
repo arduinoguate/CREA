@@ -498,31 +498,35 @@ class DBManager extends DataBaseManager{
 		return $count;
 	}
 
-	function delete(){
+	function delete($conditions = null){
 		$this->err_data = "";
-
 		$key_names = "";
-		$count = 0;
-		foreach ($this->the_key as $keys) {
-			print_r($this->columns[$keys]);
-			if ($count > 0)
-				$key_names .= ' AND ';
-			$key_names .= 'a.'.$keys.'='
-				.((($this->GetType($this->columns[$keys]) == 'boolean'
-				|| $this->GetType($this->columns[$keys]) == 'float'
-				|| $this->GetType($this->columns[$keys]) == 'integer'
-				|| $this->GetType($this->columns[$keys]) == 'numeric'
-				|| $this->GetType($this->columns[$keys]) == 'NULL'))?'':"'")
-					.(($this->GetType($this->columns[$keys]) == 'NULL')?'NULL':$this->columns[$keys])
-				.((($this->GetType($this->columns[$keys]) == 'boolean'
-				|| $this->GetType($this->columns[$keys]) == 'float'
-				|| $this->GetType($this->columns[$keys]) == 'integer'
-				|| $this->GetType($this->columns[$keys]) == 'numeric'
-				|| $this->GetType($this->columns[$keys]) == 'NULL'))?'':"'");
-			$count++;
+
+		if (!is_null($conditions)){
+			$key_names = $conditions;
+		}else{
+			$count = 0;
+			foreach ($this->the_key as $keys) {
+				print_r($this->columns[$keys]);
+				if ($count > 0)
+					$key_names .= ' AND ';
+				$key_names .= 'a.'.$keys.'='
+					.((($this->GetType($this->columns[$keys]) == 'boolean'
+					|| $this->GetType($this->columns[$keys]) == 'float'
+					|| $this->GetType($this->columns[$keys]) == 'integer'
+					|| $this->GetType($this->columns[$keys]) == 'numeric'
+					|| $this->GetType($this->columns[$keys]) == 'NULL'))?'':"'")
+						.(($this->GetType($this->columns[$keys]) == 'NULL')?'NULL':$this->columns[$keys])
+					.((($this->GetType($this->columns[$keys]) == 'boolean'
+					|| $this->GetType($this->columns[$keys]) == 'float'
+					|| $this->GetType($this->columns[$keys]) == 'integer'
+					|| $this->GetType($this->columns[$keys]) == 'numeric'
+					|| $this->GetType($this->columns[$keys]) == 'NULL'))?'':"'");
+				$count++;
+			}
 		}
 
-		echo $sql = "DELETE a FROM ".$this->db_name." a WHERE ".$key_names.";";
+		$sql = "DELETE a FROM ".$this->db_name." a WHERE ".$key_names.";";
 
 		try{
 			$this->BeginTransaction();
