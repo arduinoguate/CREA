@@ -88,9 +88,25 @@ class MODULE extends GCConfig
   				$this->response['code'] = 1;
     			$this->response['http_code'] = 422;
         }else{
-        	$this->response['message'] = 'Deleted';
-      		$this->response['http_code'] = 202;
-					$this->response['code'] = 0;
+					if ($this->modulo_asoc->fetch_id(array('idusuario'=>$token, 'modulo_id'=>$mod->columns['id']))){
+						if (!$this->modulo_asoc->delete()){
+							$this->response['type'] = 'error';
+		          $this->response['title'] = 'Delete Error';
+		          $this->response['message'] = 'No se pudo eliminar la data asociada';
+		  				$this->response['code'] = 1;
+		    			$this->response['http_code'] = 422;
+						}else{
+							$this->response['message'] = 'Deleted';
+		      		$this->response['http_code'] = 202;
+							$this->response['code'] = 0;
+						}
+					}else{
+						$this->response['type'] = 'error';
+						$this->response['request'] = $_POST;
+						$this->response['message'] = 'Cannot retrieve data';
+						$this->response['code'] = 2;
+						$this->response['http_code'] = 422;
+					}
         }
     	}else{
         $this->response['type'] = 'error';
