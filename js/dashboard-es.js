@@ -427,8 +427,8 @@ $(document).ready(function() {
                 e.preventDefault();
                 id = $(this).data("act");
                 mod = $("#" + id).data("modulo");
+                show_confirm_delete_action("Desea eliminar esta acci&oacute;n?", mod, id);
 
-                delete_action(mod, id);
               });
 
             },
@@ -477,6 +477,10 @@ $(document).ready(function() {
         }
       },
     });
+  }
+
+  function delete_module(mod){
+
   }
 
   function execute_action(mod, value, action) {
@@ -577,9 +581,24 @@ $(document).ready(function() {
     $('#alertModal').modal("show");
   }
 
-  function show_confirm(message) {
+  function show_confirm_delete_action(message, mod, id) {
     //pending to implement
     $("#mod_alert_msg").html(message);
     $('#alertModal').modal("show");
+    $("#modal_yes_btn").unbind("click");
+    $("#modal_yes_btn").bind("click", function(){
+      delete_action(mod, id);
+    });
   }
+
+  function show_confirm_delete_module(message, mod) {
+    //pending to implement
+    $("#mod_alert_msg").html(message);
+    $('#alertModal').modal("show");
+    $("#modal_yes_btn").unbind("click");
+    $("#modal_yes_btn").bind("click", function(){
+      delete_module(mod);
+    });
+  }
+
 });

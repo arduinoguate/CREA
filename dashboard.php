@@ -395,7 +395,7 @@
               </div>
             	<div class="form-group">
                 <div class="col-sm-12 text-right">
-									<button type="button" class="btn btn-default" data-dismiss="modal" id="modal_delete_btn"><?php echo $locale['form_yes']; ?></button>
+									<button type="button" class="btn btn-default" data-dismiss="modal" id="modal_yes_btn"><?php echo $locale['form_yes']; ?></button>
 									<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $locale['form_no']; ?></button>
                 </div>
               </div>

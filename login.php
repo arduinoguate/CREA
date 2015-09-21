@@ -26,7 +26,7 @@
   <link rel="shortcut icon" type="img/png" href="img/favicon.png">
   <script src="js/jquery.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="js/login.js"></script>
+  <script type="text/javascript" src="js/login-<?php echo $lang; ?>.js"></script>
 </head>
 
 <body>

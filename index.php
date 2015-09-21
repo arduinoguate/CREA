@@ -8,7 +8,8 @@
     include 'locale/'.$_SESSION['lang'].'.php';
   }else{
     $locale = new Locale();
-    include 'locale/'.$locale->getCountryLanguageByIp($_SERVER['REMOTE_ADDR']).'.php';
+    $_SESSION['lang'] = $locale->getCountryLanguageByIp($_SERVER['REMOTE_ADDR']);
+    include 'locale/'.$_SESSION['lang'].'.php';
   }
 
   $styles = array();
