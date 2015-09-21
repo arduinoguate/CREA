@@ -21,7 +21,7 @@
     'form_password_confirm' => 'Confirm password',
     'form_password_validation' => 'Write your password.',
     'form_module_type' => 'Module type',
-    'form_pin' => 'Serial Pin/Canal Associated',
+    'form_pin' => 'Pin/Serial Channel Associated',
     'form_action_type' => 'Action Type',
     'form_request' => 'Request',
     'form_save_changes' => 'Save Changes',
