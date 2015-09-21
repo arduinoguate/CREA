@@ -297,6 +297,12 @@
                                 <input type="text" class="form-control" id="act_cmda" name="act_cmda">
                             </div>
                         </div>
+												<div class="form-group">
+                            <label for="concept" class="col-sm-3 control-label"><?php echo $locale['form_response_type']; ?></label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="res_type" name="res_type">
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-sm-12 text-right">
                                 <button type="button" id="add_action_btn" class="btn btn-default preview-add-button">
@@ -420,8 +426,8 @@
 	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-	  ga('create', 'UA-7853765-6', 'auto');
+	  ga('create', 'UA-7853765-8', 'auto');
 	  ga('send', 'pageview');
-
 	</script>
+	
 </body>
