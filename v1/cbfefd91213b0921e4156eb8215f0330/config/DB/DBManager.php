@@ -336,40 +336,37 @@ class DBManager extends DataBaseManager{
 					|| $this->GetType($id[$keys]) == 'numeric'
 					|| $this->GetType($id[$keys]) == 'NULL'))?"":"'");
 				$count++;
-
 			}
 
-
-
-		if ($cond != ""){
-			$key_names .= ($key_names != "")?" AND ":"";
-			$key_names .= $cond;
-		}
-
-		$count = 0;
-		$order_text = "";
-		if (!is_null($order)){
-			$order_text = " ORDER BY ";
-			foreach ($order as $keys){
-				if ($count > 0)
-					$order_text .= ' , ';
-				$order_text .= $keys;
-				$count++;
+			if ($cond != ""){
+				$key_names .= ($key_names != "")?" AND ":"";
+				$key_names .= $cond;
 			}
-			if ($asc){
-				$order_text .= "ASC";
-			}else{
-				$order_text .= "DESC";
+
+			$count = 0;
+			$order_text = "";
+			if (!is_null($order)){
+				$order_text = " ORDER BY ";
+				foreach ($order as $keys){
+					if ($count > 0)
+						$order_text .= ' , ';
+					$order_text .= $keys;
+					$count++;
+				}
+				if ($asc){
+					$order_text .= "ASC";
+				}else{
+					$order_text .= "DESC";
+				}
 			}
-		}
 
 	    $sql = 'SELECT * FROM '.$this->db_name.' WHERE '.$key_names.' '.$order_text;
-		$this->count = $this->fixed_count('SELECT count(*) FROM '.$this->db_name.' WHERE '.$key_names.' '.$order_text.';');
-		if ($this->pagination){
-			$this->pages = ceil($this->count / $this->ipp);
-			$sql .= ' LIMIT '.($page * $this->ipp).','.$this->ipp.';';
-		}else
-			$sql .= ';';
+			$this->count = $this->fixed_count('SELECT count(*) FROM '.$this->db_name.' WHERE '.$key_names.' '.$order_text.';');
+			if ($this->pagination){
+				$this->pages = ceil($this->count / $this->ipp);
+				$sql .= ' LIMIT '.($page * $this->ipp).','.$this->ipp.';';
+			}else
+				$sql .= ';';
 
 		try{
 			if (is_null($id)){
@@ -507,6 +504,7 @@ class DBManager extends DataBaseManager{
 		$key_names = "";
 		$count = 0;
 		foreach ($this->the_key as $keys) {
+			print_r($this->columns[$keys]);
 			if ($count > 0)
 				$key_names .= ' AND ';
 			$key_names .= 'a.'.$keys.'='
