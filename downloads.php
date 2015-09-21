@@ -2,6 +2,7 @@
 	session_start();
 
 	include_once 'lib/layout.php';
+	include_once 'lib/locale.php';
 
   $styles = array();
 	$styles[] = new CSS('docs.css','css','stylesheet');
@@ -11,7 +12,8 @@
 	if (isset($_SESSION['lang'])){
     include 'locale/'.$_SESSION['lang'].'.php';
   }else{
-    include 'locale/es.php';
+    $locale = new Locale();
+    include 'locale/'.$locale->getCountryLanguageByIp($_SERVER['REMOTE_ADDR']).'.php';
   }
 
 	addHeader("CREA - ".$locale['downloads'], $styles);

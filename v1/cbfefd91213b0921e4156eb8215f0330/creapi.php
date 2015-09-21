@@ -384,6 +384,22 @@ class CREAPI extends API
     }
   }
 
+  protected function action_response(){
+    switch ($this->method) {
+      case 'GET':
+        $this->action = new ACTION('action');
+        $this->action->show_action_response($_GET);
+        $this->response_code = $this->action->response['http_code'];
+        return $this->action->response;
+        break;
+      case 'POST':
+      default:
+        $this->response_code = 405;
+        return "Invalid action method";
+      break;
+    }
+  }
+
   protected function session(){
     switch ($this->method) {
      case 'POST':
