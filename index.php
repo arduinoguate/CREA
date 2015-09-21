@@ -438,7 +438,7 @@
         $(document).ready(function(){
           $("#es, #en").click(function(){
             var id = $(this).attr("id");
-            $("#lang").value(id);
+            $("#lang").val(id);
             $("#changelang").submit();
           });
         });
