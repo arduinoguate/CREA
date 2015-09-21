@@ -470,7 +470,7 @@ $(document).ready(function() {
       },
       error: function(jqXHR, textStatus, errorThrown) {
         if (jqXHR.status != '422') {
-          //window.location = "logout.php";
+          window.location = "logout.php";
         } else {
           if (jqXHR.responseJSON.code == 2)
             show_alert("Error de validacion de campos");
@@ -500,7 +500,7 @@ $(document).ready(function() {
       },
       error: function(jqXHR, textStatus, errorThrown) {
         if (jqXHR.status != '422') {
-          window.location = "logout.php";
+          //window.location = "logout.php";
         } else {
           if (jqXHR.responseJSON.code == 2)
             show_alert("Error de validacion de campos");
