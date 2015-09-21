@@ -2,17 +2,16 @@
   include_once 'lib/locale.php';
   session_start();
   $lang = (isset($_POST['lang']))?$_POST['lang']:'';
-  echo 'lango'.$lang;
   switch ($lang) {
     case 'es':
     case 'en':
-      $_SESSION[] = $lang;
+      $_SESSION['lang'] = $lang;
       break;
 
     default:
       $locale = new Locale();
 
-      $_SESSION[] = $locale->getCountryLanguageByIp($_SERVER['REMOTE_ADDR']);
+      $_SESSION['lang'] = $locale->getCountryLanguageByIp($_SERVER['REMOTE_ADDR']);
       break;
   }
 ?>
