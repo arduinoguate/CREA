@@ -66,7 +66,6 @@ class MODULE extends GCConfig
 			foreach ($q_list as $q_item) {
 				$mid = $q_item->columns['modulo_id']['id'];
 				if ($this->modulo->fetch_id(array("id" => $mid), null, true, "$verified")){
-					echo $this->modulo->err_data;
       		$this->response['modulos'][] = $this->modulo->columns;
     		}
 			}

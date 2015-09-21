@@ -8,7 +8,7 @@
 include_once("DataBaseManager.php");
 
 class DBManager extends DataBaseManager{
-	
+
 	const SELF = '_self';
 	// atributos heredados
 	// $db
@@ -27,7 +27,7 @@ class DBManager extends DataBaseManager{
 	public $columns_defs = array();
 	var $connection;
 	private $recursive;
-	
+
 	// constructor
 	function __construct($connection, $db_name, $db_columns, $key, $foreigns = null, $ipp = 25){
 		parent::__construct($connection);
@@ -48,23 +48,23 @@ class DBManager extends DataBaseManager{
 		}
 		$this->count = 0;
 	}
-	
-	function set_pagination($value){	
+
+	function set_pagination($value){
 		$this->pagination = $value;
 	}
-	
-	function set_recursivity($value){	
+
+	function set_recursivity($value){
 		$this->recursive = $value;
 	}
-	
-	function set_ipp($value){	
+
+	function set_ipp($value){
 		$this->ipp = $value;
 	}
-    
+
     function get_columns(){
         return $this->columns_defs;
     }
-	
+
 	/*
 	 * Method: Fetch
 	 * Executes a select based on the information of the model
@@ -93,12 +93,12 @@ class DBManager extends DataBaseManager{
 				$order_text .= " DESC";
 			}
 		}
-		
+
 		if (!$custom){
 			if ($query != ""){
 				$query = " WHERE ".$query;
 			}
-			
+
 			$sql = 'SELECT * FROM '.$this->db_name.''.$query.' '.$order_text;
 			$this->count = $this->fixed_count('SELECT count(*) FROM '.$this->db_name.''.$query.' '.$order_text.';');
 			if ($this->pagination){
@@ -109,12 +109,12 @@ class DBManager extends DataBaseManager{
 		}else {
 			$sql = $query;
 		}
-		
+
 		$retorno = array();
 		//echo '<b>'.$sql.'</b><br/>';
 		try{
 			$result = $this->db->Execute($sql);
-			
+
 			while ($row = mysqli_fetch_assoc($result)){
                 if (!$custom){
 				    $rowobj = new DBManager($this->connection, $this->db_name, $this->columns_defs, $this->the_key);
@@ -127,7 +127,7 @@ class DBManager extends DataBaseManager{
     								//can go to further entities or just stays in one level
     								if ($this->recursive){
     									$this->fetch_id(array($this->foreign_relations[$definitions][1]=>$row[$definitions]));
-    									$rowobj->columns[$definitions] = $this->foreign_relations[$definitions][2]->columns;	
+    									$rowobj->columns[$definitions] = $this->foreign_relations[$definitions][2]->columns;
     								}else{
     									$rowobj->columns[$definitions] = $row[$definitions];
     								}
@@ -141,11 +141,11 @@ class DBManager extends DataBaseManager{
 								}
     						}
     					}else{
-    						$rowobj->columns[$definitions] = $row[$definitions];	
+    						$rowobj->columns[$definitions] = $row[$definitions];
     					}
     				}
 				}else{
-    			    $retorno[] = $row;       
+    			    $retorno[] = $row;
 				}
 				$retorno[] = $rowobj;
 			}
@@ -162,17 +162,17 @@ class DBManager extends DataBaseManager{
 	function fetch_obj_in($objs, $cond="", $order = null, $asc = true, $page=0){
 		$consulta = "";
 		$this->err_data = "";
-		
+
 		$valid = false;
 		$statements = array();
 		$tables = array();
 		$ftables = array();
 		$fobjs = array();
-		
+
 		$base_letter = "A";
 		$tables[] = $this->db_name." ".$base_letter;
 		$base_table = $base_letter;
-		
+
 		foreach ($objs as $obj) {
 			$base_letter++;
 			$tables[] = $obj->db_name." ".$base_letter;
@@ -182,23 +182,23 @@ class DBManager extends DataBaseManager{
 					$ftables[$fkey] = $obj->columns;
 					if (in_array($value[1], $obj->the_key)){
 						$statements[] = $base_letter.".".$value[1]."="
-						.((($this->GetType($obj->columns[$value[1]]) == 'boolean' 
-						|| $this->GetType($obj->columns[$value[1]]) == 'float' 
-						|| $this->GetType($obj->columns[$value[1]]) == 'integer' 
-						|| $this->GetType($obj->columns[$value[1]]) == 'numeric' 
+						.((($this->GetType($obj->columns[$value[1]]) == 'boolean'
+						|| $this->GetType($obj->columns[$value[1]]) == 'float'
+						|| $this->GetType($obj->columns[$value[1]]) == 'integer'
+						|| $this->GetType($obj->columns[$value[1]]) == 'numeric'
 						|| $this->GetType($obj->columns[$value[1]]) == 'NULL'))?'':"'")
 							.(($this->GetType($obj->columns[$value[1]]) == 'NULL')?'NULL':$obj->columns[$value[1]])
-						.((($this->GetType($obj->columns[$value[1]]) == 'boolean' 
-						|| $this->GetType($obj->columns[$value[1]]) == 'float' 
-						|| $this->GetType($obj->columns[$value[1]]) == 'integer' 
-						|| $this->GetType($obj->columns[$value[1]]) == 'numeric' 
+						.((($this->GetType($obj->columns[$value[1]]) == 'boolean'
+						|| $this->GetType($obj->columns[$value[1]]) == 'float'
+						|| $this->GetType($obj->columns[$value[1]]) == 'integer'
+						|| $this->GetType($obj->columns[$value[1]]) == 'numeric'
 						|| $this->GetType($obj->columns[$value[1]]) == 'NULL'))?'':"'");
 						$statements[] = $base_letter.".".$value[1]."=".$base_table.".".$fkey;
-					}	
+					}
 				}
 			}
 		}
-		
+
 		$tablestr = "";
 		$count = 0;
 		foreach ($tables as $table) {
@@ -207,7 +207,7 @@ class DBManager extends DataBaseManager{
 			$tablestr .= $table;
 			$count++;
 		}
-		
+
 		$joinstr = "";
 		$count = 0;
 		foreach ($statements as $statement) {
@@ -216,11 +216,11 @@ class DBManager extends DataBaseManager{
 			$joinstr .= $statement;
 			$count++;
 		}
-		
+
 		if ($cond != ""){
 			$joinstr .= " AND ".$cond;
 		}
-		
+
 		$count = 0;
 		$order_text = "";
 		if (!is_null($order)){
@@ -237,7 +237,7 @@ class DBManager extends DataBaseManager{
 				$order_text .= "DESC";
 			}
 		}
-		
+
 	    $sql = 'SELECT '.$base_table.'.* FROM '.$tablestr.' WHERE '.$joinstr.' '.$order_text;
 		$this->count = $this->fixed_count('SELECT count('.$base_table.'.*) FROM '.$tablestr.' WHERE '.$joinstr.' '.$order_text.';');
 		if ($this->pagination){
@@ -245,12 +245,12 @@ class DBManager extends DataBaseManager{
 			$sql .= ' LIMIT '.($page * $this->ipp).','.$this->ipp.';';
 		}else
 			$sql .= ';';
-		
+
 		$retorno = array();
-		
+
 		try{
 			$result = $this->db->Execute($sql);
-			
+
 			while ($row = mysqli_fetch_assoc($result)){
 				$rowobj = new DBManager($this->connection, $this->db_name, $this->columns_defs, $this->the_key);
 				foreach($this->columns_defs as $definitions){
@@ -265,7 +265,7 @@ class DBManager extends DataBaseManager{
 									//can go to further entities or just stays in one level
 									if ($this->recursive){
 										$this->fetch_id(array($this->foreign_relations[$definitions][1]=>$row[$definitions]));
-										$rowobj->columns[$definitions] = $this->foreign_relations[$definitions][2]->columns;	
+										$rowobj->columns[$definitions] = $this->foreign_relations[$definitions][2]->columns;
 									}else{
 										$rowobj->columns[$definitions] = $row[$definitions];
 									}
@@ -279,11 +279,11 @@ class DBManager extends DataBaseManager{
 								}
 							}
 						}else{
-							$rowobj->columns[$definitions] = $row[$definitions];	
+							$rowobj->columns[$definitions] = $row[$definitions];
 						}
-							
+
 					}
-					
+
 				}
 				$retorno[] = $rowobj;
 			}
@@ -295,9 +295,9 @@ class DBManager extends DataBaseManager{
 			return FALSE;
 		}
 		return $retorno;
-		
+
 	}
-	
+
 	/*
 	 * Method: fetch_id
 	 * Executes a select based on the information of the model and per Keys
@@ -311,41 +311,41 @@ class DBManager extends DataBaseManager{
 	function fetch_id($id, $order = null, $asc = true, $cond = "", $page=0){
 		$consulta = "";
 		$this->err_data = "";
-		
+
 		$result = false;
-		
+
 		$key_names = "";
 		$count = 0;
-		
+
 		if (count($id) > 0)
 			foreach ($this->the_key as $keys) {
-				
+
 				if ($count > 0)
 					$key_names .= ' AND ';
-				
+
 				$key_names .= $keys."="
-					.((($this->GetType($id[$keys]) == 'boolean' 
-					|| $this->GetType($id[$keys]) == 'float' 
-					|| $this->GetType($id[$keys]) == 'integer' 
-					|| $this->GetType($id[$keys]) == 'numeric' 
+					.((($this->GetType($id[$keys]) == 'boolean'
+					|| $this->GetType($id[$keys]) == 'float'
+					|| $this->GetType($id[$keys]) == 'integer'
+					|| $this->GetType($id[$keys]) == 'numeric'
 					|| $this->GetType($id[$keys]) == 'NULL'))?"":"'")
 						.(($this->GetType($id[$keys]) == 'NULL')?'NULL':$id[$keys])
-					.((($this->GetType($id[$keys]) == 'boolean' 
-					|| $this->GetType($id[$keys]) == 'float' 
-					|| $this->GetType($id[$keys]) == 'integer' 
-					|| $this->GetType($id[$keys]) == 'numeric' 
+					.((($this->GetType($id[$keys]) == 'boolean'
+					|| $this->GetType($id[$keys]) == 'float'
+					|| $this->GetType($id[$keys]) == 'integer'
+					|| $this->GetType($id[$keys]) == 'numeric'
 					|| $this->GetType($id[$keys]) == 'NULL'))?"":"'");
 				$count++;
-				
+
 			}
-		
-		
-		
+
+
+
 		if ($cond != ""){
 			$key_names .= ($key_names != "")?" AND ":"";
 			$key_names .= $cond;
 		}
-		
+
 		$count = 0;
 		$order_text = "";
 		if (!is_null($order)){
@@ -362,7 +362,7 @@ class DBManager extends DataBaseManager{
 				$order_text .= "DESC";
 			}
 		}
-		
+
 	    $sql = 'SELECT * FROM '.$this->db_name.' WHERE '.$key_names.' '.$order_text;
 		$this->count = $this->fixed_count('SELECT count(*) FROM '.$this->db_name.' WHERE '.$key_names.' '.$order_text.';');
 		if ($this->pagination){
@@ -379,7 +379,7 @@ class DBManager extends DataBaseManager{
 			else{
 				//echo $sql.'<br/>';
 				$result = $this->db->Execute($sql);
-				
+
 				if ($row = mysqli_fetch_assoc($result)){
 					/*foreach($this->columns_defs as $definitions){
 						$this->columns[$definitions] = $row[$definitions];
@@ -393,7 +393,7 @@ class DBManager extends DataBaseManager{
 									//can go to further entities or just stays in one level
 									if ($this->recursive){
 										$this->fetch_id(array($this->foreign_relations[$definitions][1]=>$row[$definitions]));
-										$this->columns[$definitions] = $this->foreign_relations[$definitions][2]->columns;	
+										$this->columns[$definitions] = $this->foreign_relations[$definitions][2]->columns;
 									}else{
 										$this->columns[$definitions] = $row[$definitions];
 									}
@@ -401,13 +401,13 @@ class DBManager extends DataBaseManager{
 							}else{
 								if ($this->recursive){
 									$this->foreign_relations[$definitions][2]->fetch_id(array($this->foreign_relations[$definitions][1]=>$row[$definitions]));
-									$this->columns[$definitions] = $this->foreign_relations[$definitions][2]->columns;	
+									$this->columns[$definitions] = $this->foreign_relations[$definitions][2]->columns;
 								}else{
 									$this->columns[$definitions] = $row[$definitions];
 								}
 							}
 						}else{
-							$this->columns[$definitions] = $row[$definitions];	
+							$this->columns[$definitions] = $row[$definitions];
 						}
     				}
 				}else
@@ -422,18 +422,18 @@ class DBManager extends DataBaseManager{
 		}
 		return TRUE;
 	}
-	
+
 	function fixed_count($cond = ""){
 		$this->err_data = "";
-		
+
 		$result = false;
-		
+
 		$count = 0;
 	    $sql = $cond;
 
 		try{
 			$result = $this->db->Execute($sql);
-			
+
 			if ($row = mysqli_fetch_array($result)){
 				$count = $row[0];
 			}
@@ -446,48 +446,48 @@ class DBManager extends DataBaseManager{
 		}
 		return $count;
 	}
-	
+
 	function count($id, $order = null, $asc = true, $cond = ""){
 		$this->err_data = "";
-		
+
 		$result = false;
-		
+
 		$key_names = "";
 		$count = 0;
-		
+
 		foreach ($this->the_key as $keys) {
-			
+
 			if ($count > 0)
 				$key_names .= ' AND ';
-			
+
 			$key_names .= $keys."="
-				.((($this->GetType($id[$keys]) == 'boolean' 
-				|| $this->GetType($id[$keys]) == 'float' 
-				|| $this->GetType($id[$keys]) == 'integer' 
-				|| $this->GetType($id[$keys]) == 'numeric' 
+				.((($this->GetType($id[$keys]) == 'boolean'
+				|| $this->GetType($id[$keys]) == 'float'
+				|| $this->GetType($id[$keys]) == 'integer'
+				|| $this->GetType($id[$keys]) == 'numeric'
 				|| $this->GetType($id[$keys]) == 'NULL'))?"":"'")
 					.(($this->GetType($id[$keys]) == 'NULL')?'NULL':$id[$keys])
-				.((($this->GetType($id[$keys]) == 'boolean' 
-				|| $this->GetType($id[$keys]) == 'float' 
-				|| $this->GetType($id[$keys]) == 'integer' 
-				|| $this->GetType($id[$keys]) == 'numeric' 
+				.((($this->GetType($id[$keys]) == 'boolean'
+				|| $this->GetType($id[$keys]) == 'float'
+				|| $this->GetType($id[$keys]) == 'integer'
+				|| $this->GetType($id[$keys]) == 'numeric'
 				|| $this->GetType($id[$keys]) == 'NULL'))?"":"'");
 			$count++;
-			
+
 		}
-		
+
 		if ($cond != ""){
 			if ($count > 0)
 				$key_names .= ' AND ';
 			$key_names .= $cond;
 		}
-		
+
 		$count = 0;
 	    $sql = 'SELECT count(*) FROM '.$this->db_name.' WHERE '.$key_names.' '.$order_text.';';
 
 		try{
 			$result = $this->db->Execute($sql);
-			
+
 			if ($row = mysqli_fetch_array($result)){
 				$count = $row[0];
 			}
@@ -500,38 +500,38 @@ class DBManager extends DataBaseManager{
 		}
 		return $count;
 	}
-	
+
 	function delete(){
 		$this->err_data = "";
-		
+
 		$key_names = "";
 		$count = 0;
 		foreach ($this->the_key as $keys) {
 			if ($count > 0)
 				$key_names .= ' AND ';
 			$key_names .= 'a.'.$keys.'='
-				.((($this->GetType($this->columns[$keys]) == 'boolean' 
-				|| $this->GetType($this->columns[$keys]) == 'float' 
-				|| $this->GetType($this->columns[$keys]) == 'integer' 
-				|| $this->GetType($this->columns[$keys]) == 'numeric' 
+				.((($this->GetType($this->columns[$keys]) == 'boolean'
+				|| $this->GetType($this->columns[$keys]) == 'float'
+				|| $this->GetType($this->columns[$keys]) == 'integer'
+				|| $this->GetType($this->columns[$keys]) == 'numeric'
 				|| $this->GetType($this->columns[$keys]) == 'NULL'))?'':"'")
 					.(($this->GetType($this->columns[$keys]) == 'NULL')?'NULL':$this->columns[$keys])
-				.((($this->GetType($this->columns[$keys]) == 'boolean' 
-				|| $this->GetType($this->columns[$keys]) == 'float' 
-				|| $this->GetType($this->columns[$keys]) == 'integer' 
-				|| $this->GetType($this->columns[$keys]) == 'numeric' 
+				.((($this->GetType($this->columns[$keys]) == 'boolean'
+				|| $this->GetType($this->columns[$keys]) == 'float'
+				|| $this->GetType($this->columns[$keys]) == 'integer'
+				|| $this->GetType($this->columns[$keys]) == 'numeric'
 				|| $this->GetType($this->columns[$keys]) == 'NULL'))?'':"'");
 			$count++;
 		}
-		
-		$sql = "DELETE a FROM ".$this->db_name." a WHERE ".$key_names.";";
-		
+
+		echo $sql = "DELETE a FROM ".$this->db_name." a WHERE ".$key_names.";";
+
 		try{
 			$this->BeginTransaction();
-			
+
 			$this->db->Execute($sql);
-			
-			$this->Commit();	
+
+			$this->Commit();
 		}
 		catch(Exception $ex){
 			$this->RollBack();
@@ -539,15 +539,15 @@ class DBManager extends DataBaseManager{
 			$this->err_data = $ex->getMessage();
 			return FALSE;
 		}
-		
+
 		return TRUE;
 	}
-	
+
 	function update($conditions = null, $set = array(), $from = array()){
 		$query = "";
 		try{
 			$this->BeginTransaction();
-			
+
 			if (empty($set))
 				$query = $this->assemble_query(true);
 			else{
@@ -555,20 +555,20 @@ class DBManager extends DataBaseManager{
 					if ($count > 0)
 						$query .= ', ';
 					$query .= $key.'='
-						.((($this->GetType($value) == 'boolean' 
-						|| $this->GetType($value) == 'float' 
-						|| $this->GetType($value) == 'integer' 
-						|| $this->GetType($value) == 'numeric' 
+						.((($this->GetType($value) == 'boolean'
+						|| $this->GetType($value) == 'float'
+						|| $this->GetType($value) == 'integer'
+						|| $this->GetType($value) == 'numeric'
 						|| $this->GetType($value) == 'NULL'))?'':"'")
 							.(($this->GetType($value) == 'NULL')?'NULL':$value)
-						.((($this->GetType($value) == 'boolean' 
-						|| $this->GetType($value) == 'float' 
-						|| $this->GetType($value) == 'integer' 
-						|| $this->GetType($value) == 'numeric' 
+						.((($this->GetType($value) == 'boolean'
+						|| $this->GetType($value) == 'float'
+						|| $this->GetType($value) == 'integer'
+						|| $this->GetType($value) == 'numeric'
 						|| $this->GetType($value) == 'NULL'))?'':"'");
 				}
 			}
-			
+
 			$key_names = "";
 			if (empty($from)){
 				$count = 0;
@@ -576,48 +576,48 @@ class DBManager extends DataBaseManager{
 					if ($count > 0)
 						$key_names .= ' AND ';
 					$key_names .= $keys.'='
-						.((($this->GetType($this->columns[$keys]) == 'boolean' 
-						|| $this->GetType($this->columns[$keys]) == 'float' 
-						|| $this->GetType($this->columns[$keys]) == 'integer' 
-						|| $this->GetType($this->columns[$keys]) == 'numeric' 
+						.((($this->GetType($this->columns[$keys]) == 'boolean'
+						|| $this->GetType($this->columns[$keys]) == 'float'
+						|| $this->GetType($this->columns[$keys]) == 'integer'
+						|| $this->GetType($this->columns[$keys]) == 'numeric'
 						|| $this->GetType($this->columns[$keys]) == 'NULL'))?'':"'")
 							.(($this->GetType($this->columns[$keys]) == 'NULL')?'NULL':$this->columns[$keys])
-						.((($this->GetType($this->columns[$keys]) == 'boolean' 
-						|| $this->GetType($this->columns[$keys]) == 'float' 
-						|| $this->GetType($this->columns[$keys]) == 'integer' 
-						|| $this->GetType($this->columns[$keys]) == 'numeric' 
+						.((($this->GetType($this->columns[$keys]) == 'boolean'
+						|| $this->GetType($this->columns[$keys]) == 'float'
+						|| $this->GetType($this->columns[$keys]) == 'integer'
+						|| $this->GetType($this->columns[$keys]) == 'numeric'
 						|| $this->GetType($this->columns[$keys]) == 'NULL'))?'':"'");
 					$count++;
-				}	
+				}
 			}else{
 				foreach ($from as $key => $value) {
 					if ($count > 0)
 						$key_names .= ' AND ';
 					$key_names .= $key.'='
-						.((($this->GetType($value) == 'boolean' 
-						|| $this->GetType($value) == 'float' 
-						|| $this->GetType($value) == 'integer' 
-						|| $this->GetType($value) == 'numeric' 
+						.((($this->GetType($value) == 'boolean'
+						|| $this->GetType($value) == 'float'
+						|| $this->GetType($value) == 'integer'
+						|| $this->GetType($value) == 'numeric'
 						|| $this->GetType($value) == 'NULL'))?'':"'")
 							.(($this->GetType($value) == 'NULL')?'NULL':$value)
-						.((($this->GetType($value) == 'boolean' 
-						|| $this->GetType($value) == 'float' 
-						|| $this->GetType($value) == 'integer' 
-						|| $this->GetType($value) == 'numeric' 
+						.((($this->GetType($value) == 'boolean'
+						|| $this->GetType($value) == 'float'
+						|| $this->GetType($value) == 'integer'
+						|| $this->GetType($value) == 'numeric'
 						|| $this->GetType($value) == 'NULL'))?'':"'");
 				}
 			}
-			
+
 			$sql = "UPDATE ".$this->db_name." SET ".$query." WHERE ".$key_names;
-			
+
 			if (!is_null($conditions)){
 				$sql .= ' AND '.$conditions;
 			}
-			
+
             //echo $sql;
-            
+
 			$result = $this->db->Execute($sql);
-			
+
 			$this->Commit();
 		}catch(Exception $e)
 		{
@@ -627,24 +627,24 @@ class DBManager extends DataBaseManager{
 			//throw new Exception("(UPDATE) " . $e->getMessage());
 		}
 		return TRUE;
-				
+
 	}
 
 	function insert(){
 		$query = "";
 		$result = FALSE;
-		
+
 		try{
 			$this->BeginTransaction();
-			
+
 			$query = $this->assemble_query();
-			
+
 			$sql = "INSERT INTO ".$this->db_name." VALUES ( ".$query." ) ";
-			
+
 			$this->db->Execute($sql);
 			$result = mysqli_insert_id($this->db->link);
-			
-			$this->Commit();	
+
+			$this->Commit();
 		}catch(Exception $e)
 		{
 			$this->RollBack();
@@ -657,27 +657,27 @@ class DBManager extends DataBaseManager{
 	private function assemble_query($is_insert = false){
 		$query = "";
 		$count = 0;
-		
+
 		foreach ($this->columns as $key => $value) {
 			if ($count > 0)
 				$query .= ', ';
 			$query .= ($is_insert?$key.'=':"")
-				.((($this->GetType($value) == 'boolean' 
-				|| $this->GetType($value) == 'float' 
-				|| $this->GetType($value) == 'integer' 
-				|| $this->GetType($value) == 'numeric' 
+				.((($this->GetType($value) == 'boolean'
+				|| $this->GetType($value) == 'float'
+				|| $this->GetType($value) == 'integer'
+				|| $this->GetType($value) == 'numeric'
 				|| $this->GetType($value) == 'NULL'))?'':"'")
 					.(($this->GetType($value) == 'NULL')?'NULL':$value)
-				.((($this->GetType($value) == 'boolean' 
-				|| $this->GetType($value) == 'float' 
-				|| $this->GetType($value) == 'integer' 
-				|| $this->GetType($value) == 'numeric' 
+				.((($this->GetType($value) == 'boolean'
+				|| $this->GetType($value) == 'float'
+				|| $this->GetType($value) == 'integer'
+				|| $this->GetType($value) == 'numeric'
 				|| $this->GetType($value) == 'NULL'))?'':"'");
 			$count++;
 		}
-		
+
 		return $query;
-	}	
-	
+	}
+
 }
 ?>
