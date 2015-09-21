@@ -69,8 +69,8 @@
 
     <!-- Header -->
     <header class="canvas-wrap">
-        <div class="container canvas-content">
-            <div class="row">
+        <div class="container">
+            <div class="row canvas-content">
                 <div class="col-lg-12">
                     <img class="img-responsive" src="img/crea.png" alt="">
                     <div class="intro-text">
