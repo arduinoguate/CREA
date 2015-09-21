@@ -258,6 +258,8 @@ class MODULE extends GCConfig
 			$this->response['http_code'] = 404;
     }else{
     	foreach ($result as $mod) {
+				echo $token.'   ---   ';
+				echo $mod->columns['id'];
 				if ($this->modulo_asoc->fetch_id(array('idusuario'=>$token, 'modulo_id'=>$mod->columns['id']))){
     			return true;
       	}else{
