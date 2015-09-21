@@ -255,12 +255,18 @@ class MODULE extends GCConfig
       $this->response['title'] = 'Modulo';
       $this->response['message'] = 'El dispositivo no existe';
 			$this->response['code'] = 2;
-			$this->response['http_code'] = 422;
+			$this->response['http_code'] = 404;
     }else{
     	foreach ($result as $mod) {
 				if ($this->modulo_asoc->fetch_id(array('idusuario'=>$token, 'modulo_id'=>$mod->columns['id']))){
     			return true;
-      	}
+      	}else{
+					$this->response['type'] = 'error';
+		      $this->response['title'] = 'Modulo';
+		      $this->response['message'] = 'El dispositivo no esta disponible';
+					$this->response['code'] = 2;
+					$this->response['http_code'] = 422;
+				}
 			}
     }
 
