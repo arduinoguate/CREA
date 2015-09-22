@@ -335,7 +335,7 @@ $(document).ready(function() {
       complete: function(resp) {
         json = resp.responseJSON;
         $.each(json.respuestas, function(i, item) {
-          var item = '<option value="' + item.id + '">' + item.nombre-en + '</option>';
+          var item = '<option value="' + item.id + '">' + item.nombre_en + '</option>';
           $("#res_type").append(item);
         });
       },
