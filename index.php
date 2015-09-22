@@ -196,7 +196,7 @@
                 </div>
             </div>
         </div>
-        <div id="canvas" class="gradient"></div>
+        <div id="canvas1" class="gradient"></div>
     </section>
 
     <!-- Contact Section -->
