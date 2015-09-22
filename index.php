@@ -438,6 +438,7 @@
         //loadjscssfile("js/vecs/projector.js", "js");
         //loadjscssfile("js/vecs/canvas-renderer.js", "js");
         loadjscssfile("js/vecs/3d-lines-animation.js", "js");
+        loadjscssfile("js/vecs/3d-lines-animation-b.js", "js");
       }
 
     </script>
