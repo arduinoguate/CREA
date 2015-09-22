@@ -300,7 +300,9 @@
 												<div class="form-group">
                             <label for="concept" class="col-sm-3 control-label"><?php echo $locale['form_response_type']; ?></label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="res_type" name="res_type">
+															<select class="form-control" id="res_type" name="res_type">
+
+															</select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -429,5 +431,5 @@
 	  ga('create', 'UA-7853765-8', 'auto');
 	  ga('send', 'pageview');
 	</script>
-	
+
 </body>

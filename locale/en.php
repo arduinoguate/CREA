@@ -74,6 +74,7 @@
     'dashboard_welcome_message' => 'This is a preliminary version<br/> <small>we are still working hard in giving you a better experience</small>',
     'modal_create_device' => 'Create Device',
     'modal_create_action' => 'Create Action',
+    'form_response_type' => 'Response Type',
     'modal_alert' => 'Alert',
     'modal_delete' => 'Delete',
     'modal_yes' => 'Yes',

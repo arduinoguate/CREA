@@ -5,6 +5,7 @@ $(document).ready(function() {
   load_devices();
   load_types();
   load_module_types();
+  load_response_types();
 
   $("#add_action_btn").click(function(e) {
     e.preventDefault();
@@ -13,8 +14,9 @@ $(document).ready(function() {
     cmd = $("#act_cmd").val();
     type = $("#act_type").val();
     name = $("#act_name").val();
+    response = $("#res_type").val();
 
-    save_new_action(mod, cmd, type, name);
+    save_new_action(mod, cmd, type, name, response);
 
     $('#actionModal').modal("hide");
   });
@@ -323,6 +325,29 @@ $(document).ready(function() {
     });
   }
 
+  function load_response_types() {
+    $.ajax({
+      url: api + "action_response",
+      type: 'GET',
+      dataType: 'json',
+      crossDomain: true,
+      async: false,
+      complete: function(resp) {
+        json = resp.responseJSON;
+        $.each(json.respuestas, function(i, item) {
+          var item = '<option value="' + item.id + '">' + item.nombre-es + '</option>';
+          $("#res_type").append(item);
+        });
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        if (jqXHR.status != '422') {
+          window.location = "logout.php";
+        } else
+          $("#res_type").append("<option>No hay tipos</option>");
+      },
+    });
+  }
+
   function load_module_types() {
     $.ajax({
       url: api + "module_type",
@@ -540,14 +565,14 @@ $(document).ready(function() {
     });
   }
 
-  function save_new_action(mod, cmd, type, name) {
+  function save_new_action(mod, cmd, type, name, response) {
     $.ajax({
       url: api + "module/" + mod + '/register-action',
       type: 'PUT',
       dataType: 'json',
       crossDomain: true,
       async: false,
-      data: "tipo-accion=" + type + "&comando=" + cmd + "&input=1&nombre=" + name,
+      data: "tipo-accion=" + type + "&comando=" + cmd + "&input=1&nombre=" + name + "&tipo_respuesta=" + response,
       beforeSend: function(xhr) {
         xhr.setRequestHeader("Authorization", "Bearer " + token);
       },

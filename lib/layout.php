@@ -79,7 +79,7 @@
     											<h3><?php echo $locale['on_web']; ?></h3>
     											<ul class="list-inline">
     													<li>
-    															<a href="https://www.facebook.com/ArduinoGuatemala" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+    															<a href="https://www.facebook.com/creaengine" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
     													</li>
     													<li>
     															<a href="https://plus.google.com/u/0/b/114155441272026687984/114155441272026687984/posts" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
