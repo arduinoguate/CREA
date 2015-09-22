@@ -7,7 +7,7 @@
     'login' => 'Login',
     'platform_title' => 'Crea Engine',
     'platform_slogan' => 'A whole new ecosystem of things connected',
-    'about_col_1' => '<b>Crea</b> is an open source proyect for the development of IoT applications. Its main objective is to facilitate the access to an easy to use framework which allows to manage the communication between IoT devices.',
+    'about_col_1' => '<b>Crea</b> is an open source project for the development of IoT applications. Its main objective is to facilitate the access to an easy to use framework which allows to manage the communication between IoT devices.',
     'about_col_2' => 'We have a growing set of libraries that allows this interaction and is compatible for a most Open Hardware platforms. Plus, the API access of <b>Crea</b> is available for any developer to be integrated into any application.',
     'download_for' => ' Download library for ',
     'form_name' => 'Name',

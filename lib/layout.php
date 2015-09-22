@@ -73,7 +73,7 @@
     									<div class="footer-col col-md-4">
     											<h3><?php echo $locale['sponsored_by']; ?></h3>
     											<p>Comunidad Arduino Guatemala</p>
-    											<p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">CREA Engine</span>.</p>
+    											<p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type"><small>&copy; CREA Engine</small></span>.</p>
     									</div>
     									<div class="footer-col col-md-4">
     											<h3><?php echo $locale['on_web']; ?></h3>
