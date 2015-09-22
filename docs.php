@@ -57,7 +57,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><span><img src="img/crea.png" width="25px"></span> Crea</a>
+                <a class="navbar-brand" href="/"><span><img src="img/crea.png" width="25px"></span> Crea</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
