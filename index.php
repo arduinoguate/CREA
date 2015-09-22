@@ -409,7 +409,7 @@
     </div>
 
     <!-- Main library -->
-    <script src="js/vecs/three.min.js"></script>
+
 
     <!-- Helpers -->
     <script src="js/vecs/projector.js"></script>
@@ -458,7 +458,7 @@
         console.log("mobile");
       }else
       {
-        loadjscssfile("myscript.js", "js");
+        loadjscssfile("js/vecs/three.min.js", "js");
       }
 
     </script>
