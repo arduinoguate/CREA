@@ -23,7 +23,7 @@ var mouseX = 0, mouseY = 0,
                 var container, separation = 1000, amountX = 50, amountY = 50, color = 0xffffff,
                 particles, particle;
 
-                container = document.getElementById("canvas");
+                container = document.getElementById("canvas1");
 
 
                 camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
@@ -37,7 +37,7 @@ var mouseX = 0, mouseY = 0,
                 renderer.setSize( window.innerWidth, window.innerHeight );
                 container.appendChild( renderer.domElement );
 
-               
+
 
                 var PI2 = Math.PI * 2;
                 var material = new THREE.SpriteCanvasMaterial( {

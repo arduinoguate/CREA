@@ -159,8 +159,8 @@
     </section>
 
     <!-- About Section -->
-    <section class="success" id="about">
-        <div class="container">
+    <section class="success canvas-wrap" id="about">
+        <div class="container canvas-content">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2><?php echo $locale['about_crea']; ?></h2>
@@ -196,6 +196,7 @@
                 </div>
             </div>
         </div>
+        <div id="canvas" class="gradient"></div>
     </section>
 
     <!-- Contact Section -->
