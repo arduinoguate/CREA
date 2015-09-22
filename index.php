@@ -408,16 +408,6 @@
         </div>
     </div>
 
-    <!-- Main library -->
-
-
-    <!-- Helpers -->
-    <script src="js/vecs/projector.js"></script>
-    <script src="js/vecs/canvas-renderer.js"></script>
-
-    <!-- Visualitzation adjustments -->
-    <script src="js/vecs/3d-lines-animation.js"></script>
-
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
     <script src="js/vecs/color.js"></script>
@@ -459,6 +449,9 @@
       }else
       {
         loadjscssfile("js/vecs/three.min.js", "js");
+        loadjscssfile("js/vecs/projector.js", "js");
+        loadjscssfile("js/vecs/canvas-renderer.js", "js");
+        loadjscssfile("js/vecs/3d-lines-animation.js", "js");
       }
 
     </script>
