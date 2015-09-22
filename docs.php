@@ -126,12 +126,12 @@
 							<?php echo $locale['docs_gs']; ?>
 							<br />
 							<ul>
-								<li><a href="https://www.ibm.com/developerworks/webservices/library/ws-restful/" target"_blank">Conceptos básicos de servicos REST</a></li>
-								<li><a href="https://www.youtube.com/watch?v=hdSrT4yjS1g" target="_blank">Un video explicando las mejores practicas para aplicar servicios REST</a></li>
+								<li><a href="https://www.ibm.com/developerworks/webservices/library/ws-restful/" target"_blank"><?php echo $locale['docs_rest_basic']; ?></a></li>
+								<li><a href="https://www.youtube.com/watch?v=hdSrT4yjS1g" target="_blank"><?php echo $locale['docs_rest_video']; ?></a></li>
 							</ul>
 						</p>
 
-						<h2>¿Qué es REST?</h2>
+						<h2><?php echo $locale['docs_wc_rest']; ?></h2>
 
 						<p class="">
 							REST is the underlying architectural principle of the web. The amazing thing about the web is the fact that clients (browsers) and servers can interact in complex ways without the client knowing anything beforehand about the server and the resources it hosts. The key constraint is that the server and client must both agree on the media used, which in the case of the web is HTML.

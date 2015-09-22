@@ -38,7 +38,7 @@
     'modal_cd_title' => 'Conecta cualquier dispositivo',
     'modal_cd_text' => 'Ya sea una solución de domótica o una licuadora, puedes conectar cualquier dispositvo con CREA para poder hacerlo interactual de la manera que quieras.',
     'modal_at_title' => 'Un API para todos',
-    'modal_at_text' => 'Hemos desarrollado un <a href="#">API</a> para que puedas desarrollar cualquier aplicación integrada a CREA. Ya sea un sitio web o un app movil, las opciones son infinitas.',
+    'modal_at_text' => 'Hemos creado un <a href="#">API</a> para que puedas desarrollar cualquier aplicación integrada a CREA. Ya sea un sitio web o un app movil, las opciones son infinitas.',
     'modal_aa_title' => 'Todo Administrado',
     'modal_aa_text' => 'Con nuestro panel de control, puedes crear dispositivos, ver su estado y analizar su historial de funcionamiento. Todo en un solo lugar.',
     'modal_sc_title' => 'Somos comunidad',
@@ -98,6 +98,9 @@
     'docs_mob_title' => 'Desarrollando aplicaciones móviles con CREA API',
     'docs_mob_lead' => 'La siguiente guía te lleva de la mano explicándote como desarrollar aplicaciones móviles utilizando el API de CREA en un dispositivo <a href="https://www.android.com/" target="_blank">Android</a><br /><br />Suerte creando.',
     'docs_welcome' => 'Bienvenidos al portal de desarrolladores CREA',
+    'docs_wc_rest' => '¿QUÉ ES REST?',
+    'docs_rest_basic' => 'Conceptos básicos de servicios REST',
+    'docs_rest_video' => 'Un video explicando las mejores practicas para aplicar servicios REST',
     'docs_api_lead' => 'A continuación encontrarás la documentación de llamadas al API de CREA. Este es un API <a href="http://es.wikipedia.org/wiki/Representational_State_Transfer" target="_blank">REST</a> para que lo tengas en cuenta.<br /><br />  Suerte creando.',
     'docs_gs' => 'Te sugerimos que leas los siguientes recursos antes de comenzar a utilizar esta guía.'
   );

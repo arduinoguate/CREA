@@ -98,6 +98,9 @@
     'docs_mob_title' => 'Developing mobile applications with the CREA API',
     'docs_mob_lead' => 'The following guide takes you to understand how to develop applications using the CREA API in an <a href="https://www.android.com/" target="_blank">Android</a> device<br /><br />Good luck creating.',
     'docs_welcome' => 'Welcome to the CREA developers portal',
+    'docs_wc_rest' => 'WHAT IS REST?',
+    'docs_rest_basic' => 'Basic concepts on REST services',
+    'docs_rest_video' => 'A video explaining the best practices applying a REST service',
     'docs_api_lead' => 'Here you will find the CREA API calls documentation. This is a <a href="http://es.wikipedia.org/wiki/Representational_State_Transfer" target="_blank">REST</a> API, so you can take that in count.<br /><br />  Good luck creating.',
     'docs_gs' => 'We recommend the following resources before getting started with this guide.'
   );
