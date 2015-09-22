@@ -408,6 +408,8 @@
         </div>
     </div>
 
+    <script src="js/vecs/three.min.js"></script>
+
     <script type="text/javascript">
       function loadjscssfile(filename, filetype){
         if (filetype=="js"){ //if filename is a external JavaScript file
@@ -429,7 +431,7 @@
         console.log("mobile");
       }else
       {
-        loadjscssfile("js/vecs/three.min.js", "js");
+        //loadjscssfile("js/vecs/three.min.js", "js");
         loadjscssfile("js/vecs/projector.js", "js");
         loadjscssfile("js/vecs/canvas-renderer.js", "js");
         loadjscssfile("js/vecs/3d-lines-animation.js", "js");
