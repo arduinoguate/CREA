@@ -409,6 +409,7 @@
     </div>
 
     <script src="js/vecs/three.min.js"></script>
+    <script src="js/vecs/projector.js"></script>
     <script src="js/vecs/canvas-renderer.js"></script>
 
     <script type="text/javascript">
@@ -433,7 +434,7 @@
       }else
       {
         //loadjscssfile("js/vecs/three.min.js", "js");
-        loadjscssfile("js/vecs/projector.js", "js");
+        //loadjscssfile("js/vecs/projector.js", "js");
         //loadjscssfile("js/vecs/canvas-renderer.js", "js");
         loadjscssfile("js/vecs/3d-lines-animation.js", "js");
       }
