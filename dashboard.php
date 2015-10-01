@@ -1,6 +1,9 @@
 <?php
 	include_once 'lib/locale.php';
 	session_start();
+	if (!isset($_SESSION['token']) || $_SESSION['token'] == ""){
+		header("location:login.php");
+	}
 
 	$output = "";
 	exec('git rev-list HEAD --count', $output);

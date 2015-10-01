@@ -42,7 +42,7 @@
       <div id="output"></div>
       <div class="avatar"></div>
       <div class="form-box">
-        <form id="loginfrm" action="" method="">
+        <form id="loginfrm" action="" method="POST">
           <input name="user" type="text" placeholder="<?php echo $locale['form_username']; ?>">
           <div class="password">
             <input type="password" name="passwordfield" id="passwordfield" placeholder="<?php echo $locale['form_password']; ?>">
