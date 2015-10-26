@@ -424,6 +424,7 @@ $(document).ready(function() {
               console.log(json);
               $.each(json.acciones, function(i, item) {
                 info = '<div class="col-md-4"><div class="col-md-11 alert alert-success">Name: <b>' + item.nombre + '</b><br/>';
+                info += 'ID: <b>' + item.id + '</b><br/>';
                 info += 'Type: <b>' + item.tipo_accion.nombre + '</b><br/>';
                 info += 'Command: <b>' + item.comando + '</b><br/>';
                 info += 'Last instruction: <b>' + item.ultimo_valor + '</b><br/><hr/>';
