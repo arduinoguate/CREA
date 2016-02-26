@@ -412,6 +412,9 @@ class CREAPI extends API
     	 $this->response_code = $this->session->response['code'];
        return $this->session->response;
     	 break;
+     case 'OPTIONS':
+       $this->response_code = 200;
+       break;
      default:
     	 $this->response_code = 405;
     	 return "Invalid action method";
