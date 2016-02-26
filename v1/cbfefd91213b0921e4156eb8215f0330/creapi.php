@@ -413,7 +413,8 @@ class CREAPI extends API
        return $this->session->response;
     	 break;
      case 'OPTIONS':
-       $this->response_code = 200;
+       $this->response_code = '200';
+       return "OK";
        break;
      default:
     	 $this->response_code = 405;
