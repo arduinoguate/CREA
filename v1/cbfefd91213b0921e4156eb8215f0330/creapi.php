@@ -407,15 +407,12 @@ class CREAPI extends API
 
   protected function session(){
     switch ($this->method) {
+     case 'OPTIONS':
      case 'POST':
     	 $this->session->validate_basic_token($_SERVER['HTTP_Authorization'], $_POST, $this->method);
     	 $this->response_code = $this->session->response['code'];
        return $this->session->response;
     	 break;
-     case 'OPTIONS':
-       $this->response_code = '200';
-       return "OK";
-       break;
      default:
     	 $this->response_code = 405;
     	 return "Invalid action method";
